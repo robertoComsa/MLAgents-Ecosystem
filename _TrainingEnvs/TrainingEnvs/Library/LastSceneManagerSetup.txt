@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/Scenes/TerestrialSearchAgents/TerestrialSearchAgents.unity
+  isLoaded: 1
+  isActive: 1

@@ -1,0 +1,93 @@
+default:
+    trainer: ppo
+    batch_size: 1024
+    beta: 5.0e-3
+    buffer_size: 10240
+    epsilon: 0.2
+    hidden_units: 128
+    lambd: 0.95
+    learning_rate: 3.0e-4
+    learning_rate_schedule: linear
+    max_steps: 5.0e5
+    memory_size: 256
+    normalize: false
+    num_epoch: 3
+    num_layers: 2
+    time_horizon: 64
+    sequence_length: 64
+    summary_freq: 10000
+    use_recurrent: false
+    vis_encode_type: simple
+    reward_signals:
+        extrinsic:
+            strength: 1.0
+            gamma: 0.99
+
+HeliosLearning:
+    summary_freq: 5000
+    time_horizon: 128
+    batch_size: 128
+    buffer_size: 2048
+    hidden_units: 128
+    beta: 1.0e-2
+    max_steps: 4.0e6
+
+Heliosv2Learning:
+    summary_freq: 5000          # How often, in steps, to save training statistics. This determines the number of data points shown by TensorBoard.
+    time_horizon: 128           # How many steps of experience to collect per-agent before adding it to the experience buffer.
+    beta: 1.0e-2                # The strength of entropy regularization.
+    batch_size: 2048            # The number of experiences in each iteration of gradient descent.
+    buffer_size: 20480          # The number of experiences to collect before updating the policy model.
+    hidden_units: 256           # The number of units in the hidden layers of the neural network.
+    num_layers: 3               # The number of hidden layers in the neural network.
+    max_steps: 7.0e6            # The maximum number of simulation steps to run during a training session.
+
+Heliosv3Learning:
+    summary_freq: 5000         
+    time_horizon: 128           
+    beta: 1.0e-2                
+    batch_size: 2048            
+    buffer_size: 20480          
+    hidden_units: 256           
+    num_layers: 3               
+    max_steps: 7.0e6
+
+MulakLearning:
+    summary_freq: 5000         
+    time_horizon: 256           
+    beta: 1.0e-2                
+    batch_size: 2048            
+    buffer_size: 10240          
+    hidden_units: 256           
+    num_layers: 4               
+    max_steps: 5.0e6
+
+GalvadonEatLearning:
+    summary_freq: 5000         
+    time_horizon: 128           
+    beta: 1.0e-2                
+    batch_size: 2048            
+    buffer_size: 10240          
+    hidden_units: 128           
+    num_layers: 2               
+    max_steps: 2.0e6
+
+GalvadonFeedLearning:
+    summary_freq: 5000         
+    time_horizon: 128           
+    beta: 1.0e-2                
+    batch_size: 2048            
+    buffer_size: 10240          
+    hidden_units: 256           
+    num_layers: 2         
+    max_steps: 4.0e6
+
+Galvadon2Learning:
+    summary_freq: 5000         
+    time_horizon: 128           
+    beta: 1.0e-2                
+    batch_size: 2048            
+    buffer_size: 10240          
+    hidden_units: 256           
+    num_layers: 2         
+    max_steps: 4.0e6
