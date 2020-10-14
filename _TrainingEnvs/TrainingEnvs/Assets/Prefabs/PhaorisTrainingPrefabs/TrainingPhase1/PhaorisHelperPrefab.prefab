@@ -13,11 +13,9 @@ GameObject:
   - component: {fileID: 6857172273098847149}
   - component: {fileID: 6857172273098847146}
   - component: {fileID: 1371608066309517327}
-  - component: {fileID: 1047600857019683461}
-  - component: {fileID: 212543739923983246}
-  - component: {fileID: 114859422487634314}
+  - component: {fileID: 114459359467646556}
   m_Layer: 0
-  m_Name: TerestrialGalvadonAgent
+  m_Name: PhaorisHelperPrefab
   m_TagString: helper
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,7 +110,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!114 &1047600857019683461
+--- !u!114 &114459359467646556
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,55 +119,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6857172273098847144}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
+  m_Script: {fileID: 11500000, guid: b89254424cda5ee4f9cd0b5a1e4a8623, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DecisionPeriod: 1
-  RepeatAction: 0
-  offsetStep: 0
---- !u!114 &212543739923983246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6857172273098847144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_BrainParameters:
-    vectorObservationSize: 11
-    numStackedVectorObservations: 3
-    vectorActionSize: 0200000003000000
-    vectorActionDescriptions: []
-    vectorActionSpaceType: 0
-  m_Model: {fileID: 11400000, guid: 740ccc25a83b6da41af43d93eed76f88, type: 3}
-  m_InferenceDevice: 0
-  m_BehaviorType: 0
-  m_BehaviorName: Galvadon2Learning
-  m_TeamID: 0
-  m_UseChildSensors: 1
---- !u!114 &114859422487634314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6857172273098847144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04907f3a6b14e6348b4446202bd46ed0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agentParameters:
-    maxStep: 0
-  hasUpgradedFromAgentParameters: 1
-  maxStep: 0
-  moveSpeed: 11
-  rotationSpeed: 220
-  searchProximity: 35
+  positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
 --- !u!1 &8862841607337231285
 GameObject:
   m_ObjectHideFlags: 0

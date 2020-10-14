@@ -11,6 +11,8 @@ TagManager:
   - galvadonFood
   - preyFood
   - helper
+  - preyFoodTree
+  - phaorisBeak
   layers:
   - Default
   - TransparentFX
