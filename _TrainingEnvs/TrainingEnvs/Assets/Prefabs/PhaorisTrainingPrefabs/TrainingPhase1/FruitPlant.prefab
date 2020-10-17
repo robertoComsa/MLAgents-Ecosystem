@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7059192992176530482}
   - component: {fileID: 7059192992176530481}
   - component: {fileID: 7059192992176530480}
+  - component: {fileID: 8653519051940452920}
   m_Layer: 0
   m_Name: preyFoodTree
   m_TagString: preyFoodTree
@@ -105,6 +106,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needsRandomPosition: 0
+--- !u!114 &8653519051940452920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7059192992176530487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2047d37fe5b1ebd468e9f20992fb47ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7059192992264456262
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,6 +313,7 @@ GameObject:
   - component: {fileID: 7059192992584692297}
   - component: {fileID: 7059192992584692296}
   - component: {fileID: 7059192992584692303}
+  - component: {fileID: 6064454847961562126}
   m_Layer: 0
   m_Name: preyFoodTree (2)
   m_TagString: preyFoodTree
@@ -392,6 +406,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needsRandomPosition: 0
+--- !u!114 &6064454847961562126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7059192992584692302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2047d37fe5b1ebd468e9f20992fb47ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7059192992590392582
 GameObject:
   m_ObjectHideFlags: 0
@@ -496,6 +522,7 @@ GameObject:
   - component: {fileID: 7059192992683209498}
   - component: {fileID: 7059192992683209497}
   - component: {fileID: 7059192992683209496}
+  - component: {fileID: 7560517341786282232}
   m_Layer: 0
   m_Name: preyFoodTree (5)
   m_TagString: preyFoodTree
@@ -588,6 +615,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needsRandomPosition: 0
+--- !u!114 &7560517341786282232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7059192992683209503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2047d37fe5b1ebd468e9f20992fb47ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7059192992722762473
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,6 +640,7 @@ GameObject:
   - component: {fileID: 7059192992722762468}
   - component: {fileID: 7059192992722762475}
   - component: {fileID: 7059192992722762474}
+  - component: {fileID: 2550228366615465702}
   m_Layer: 0
   m_Name: preyFoodTree (7)
   m_TagString: preyFoodTree
@@ -693,6 +733,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needsRandomPosition: 0
+--- !u!114 &2550228366615465702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7059192992722762473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2047d37fe5b1ebd468e9f20992fb47ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7059192992788679942
 GameObject:
   m_ObjectHideFlags: 0
@@ -706,6 +758,7 @@ GameObject:
   - component: {fileID: 7059192992788679937}
   - component: {fileID: 7059192992788679936}
   - component: {fileID: 7059192992788679943}
+  - component: {fileID: 1493641287101231489}
   m_Layer: 0
   m_Name: preyFoodTree (1)
   m_TagString: preyFoodTree
@@ -798,6 +851,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needsRandomPosition: 0
+--- !u!114 &1493641287101231489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7059192992788679942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2047d37fe5b1ebd468e9f20992fb47ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7059192992844064359
 GameObject:
   m_ObjectHideFlags: 0
@@ -1122,6 +1187,7 @@ GameObject:
   - component: {fileID: 7059192993016862464}
   - component: {fileID: 7059192993016862471}
   - component: {fileID: 7059192993016862470}
+  - component: {fileID: 7108224443174363933}
   m_Layer: 0
   m_Name: preyFoodTree (6)
   m_TagString: preyFoodTree
@@ -1214,6 +1280,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needsRandomPosition: 0
+--- !u!114 &7108224443174363933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7059192993016862469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2047d37fe5b1ebd468e9f20992fb47ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7059192993291035371
 GameObject:
   m_ObjectHideFlags: 0
@@ -1447,6 +1525,7 @@ GameObject:
   - component: {fileID: 7059192993462749088}
   - component: {fileID: 7059192993462749095}
   - component: {fileID: 7059192993462749094}
+  - component: {fileID: 7491341133403702865}
   m_Layer: 0
   m_Name: preyFoodTree (3)
   m_TagString: preyFoodTree
@@ -1539,6 +1618,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needsRandomPosition: 0
+--- !u!114 &7491341133403702865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7059192993462749093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2047d37fe5b1ebd468e9f20992fb47ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7059192993517472428
 GameObject:
   m_ObjectHideFlags: 0
@@ -1706,6 +1797,7 @@ GameObject:
   - component: {fileID: 7059192994099975282}
   - component: {fileID: 7059192994099975281}
   - component: {fileID: 7059192994099975280}
+  - component: {fileID: 4025691507615924921}
   m_Layer: 0
   m_Name: preyFoodTree (4)
   m_TagString: preyFoodTree
@@ -1798,3 +1890,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needsRandomPosition: 0
+--- !u!114 &4025691507615924921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7059192994099975287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2047d37fe5b1ebd468e9f20992fb47ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

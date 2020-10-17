@@ -7,10 +7,10 @@ public class PreyFoodTreeScript : MonoBehaviour
     // Cand fructul este atins de ciocul pasarii phaoris
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("phaorisBeak"))
+        if (other.CompareTag("phaorisBeak") && gameObject.activeInHierarchy == true)
         {
-            gameObject.SetActive(false);
             StartCoroutine(ActivateFruit());
+            gameObject.SetActive(false);
         }
 
     }

@@ -112,7 +112,7 @@ public class TerestrialSearchAgent : Agent
         return new float[] { forwardAction, turnAction };
     }
 
-    // Reseteaza agentul (MaxStep = 0 = infinit -> nu va mai folosi resetare)
+    // Cod aplicat la inceputul unui episod (MaxStep = 0 = infinit -> nu va mai folosi resetare)
     public override void AgentReset()
     {
         PlaceRandomly(6f);

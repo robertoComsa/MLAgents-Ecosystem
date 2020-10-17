@@ -258,7 +258,7 @@ Transform:
   m_GameObject: {fileID: 534669902}
   m_LocalRotation: {x: 0.15488279, y: 0, z: 0, w: 0.98793286}
   m_LocalPosition: {x: -17.53, y: 13.5, z: -46.58}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.0000002, y: 0.99999994, z: 1.0000002}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -293,7 +293,7 @@ PrefabInstance:
     - target: {fileID: 7059192993517472429, guid: 3a45796ae48e530439e6a2e5d56a06bb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.825
+      value: -5.45
       objectReference: {fileID: 0}
     - target: {fileID: 7059192993517472429, guid: 3a45796ae48e530439e6a2e5d56a06bb,
         type: 3}
@@ -689,10 +689,55 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 968204868}
     m_Modifications:
+    - target: {fileID: 971475512877950635, guid: b9f65f2dd3369e34b878f02aed38394d,
+        type: 3}
+      propertyPath: DecisionPeriod
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4715273742790843504, guid: b9f65f2dd3369e34b878f02aed38394d,
+        type: 3}
+      propertyPath: beakTip
+      value: 
+      objectReference: {fileID: 2088342571}
+    - target: {fileID: 4715273742790843504, guid: b9f65f2dd3369e34b878f02aed38394d,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921107779359973353, guid: b9f65f2dd3369e34b878f02aed38394d,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960614576979937261, guid: b9f65f2dd3369e34b878f02aed38394d,
+        type: 3}
+      propertyPath: m_BehaviorName
+      value: PhaorisLearning
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960614576979937261, guid: b9f65f2dd3369e34b878f02aed38394d,
+        type: 3}
+      propertyPath: m_BrainParameters.vectorActionSpaceType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960614576979937261, guid: b9f65f2dd3369e34b878f02aed38394d,
+        type: 3}
+      propertyPath: m_BrainParameters.vectorActionSize.Array.data[0]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960614576979937261, guid: b9f65f2dd3369e34b878f02aed38394d,
+        type: 3}
+      propertyPath: m_BehaviorType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8625346006607644998, guid: b9f65f2dd3369e34b878f02aed38394d,
         type: 3}
       propertyPath: m_Name
       value: PhaorisAgent
+      objectReference: {fileID: 0}
+    - target: {fileID: 8625346006607644998, guid: b9f65f2dd3369e34b878f02aed38394d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8625346006607644999, guid: b9f65f2dd3369e34b878f02aed38394d,
         type: 3}
@@ -712,22 +757,22 @@ PrefabInstance:
     - target: {fileID: 8625346006607644999, guid: b9f65f2dd3369e34b878f02aed38394d,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8625346006607644999, guid: b9f65f2dd3369e34b878f02aed38394d,
-        type: 3}
-      propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8625346006607644999, guid: b9f65f2dd3369e34b878f02aed38394d,
         type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8625346006607644999, guid: b9f65f2dd3369e34b878f02aed38394d,
+        type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8625346006607644999, guid: b9f65f2dd3369e34b878f02aed38394d,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 8625346006607644999, guid: b9f65f2dd3369e34b878f02aed38394d,
         type: 3}
@@ -742,7 +787,7 @@ PrefabInstance:
     - target: {fileID: 8625346006607644999, guid: b9f65f2dd3369e34b878f02aed38394d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 8625346006607644999, guid: b9f65f2dd3369e34b878f02aed38394d,
         type: 3}
@@ -751,3 +796,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9f65f2dd3369e34b878f02aed38394d, type: 3}
+--- !u!4 &2088342571 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3118564890626384546, guid: b9f65f2dd3369e34b878f02aed38394d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2088342570}
+  m_PrefabAsset: {fileID: 0}
