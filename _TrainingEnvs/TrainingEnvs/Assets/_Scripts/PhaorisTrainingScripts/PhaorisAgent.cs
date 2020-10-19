@@ -11,9 +11,13 @@ public class PhaorisAgent : Agent
     [Tooltip("Viteza de inaintare")] [SerializeField] float moveSpeed = 1000f;
     [Tooltip("Viteza de giratie (rotire in jurul axei y)")] [SerializeField] float yRotSpeed = 100f;  // yaw
     [Tooltip("Viteza de inclinare (rotire in jurul axei z)")] [SerializeField] float xRotSpeed = 100f;  // pitch
+    [Tooltip("Distanta de cautare")] [SerializeField] float searchProximity = 40f;
+    [Tooltip("Proximitatea de livrare")] [SerializeField] float deliveryDistanceRequired = 0.4f;
 
     [Header("Ciocul pasarii")]
-    [Tooltip("Centrul pozitiei ce reprezinta varful ciocului")] [SerializeField] Transform beakTip;
+    [Tooltip("Centrul pozitiei ce reprezinta varful ciocului")] [SerializeField] Transform beakTip=null;
+    [Tooltip("Radiusul in care este acceptata coliziunea cu ciocul")] [SerializeField] float beakTipRadius = 0.03f;
+    [Tooltip("Obiect copil al agentului")] [SerializeField] GameObject beakFruit = null;
 
     //  ---------------------------------------------------------- VARIABILE ----------------------------------------------------- //
 
@@ -28,34 +32,55 @@ public class PhaorisAgent : Agent
     const float max_X_axis_angle = 80f;
 
     // Observatii legate de cea mai apropriata tinta
-    protected Vector3 closestTargetPosition = Vector3.zero;
-    protected float distanceToClosestTarget = 0f;
+    Vector3 closestTargetPosition = Vector3.zero;
+    float distanceToClosestTarget = 0f;
 
     // Folosita pentru a optimiza (mai putine utilizari) ale metodei de cautare in proximitate
-    protected float timeGap = 0f;
+    float timeGap = 0f;
 
     // Agentilor le-am oferit localPosition , dar noi vrem sa tragem raycasturi pana la position  
-    protected Vector3 targetedRayPos = Vector3.zero;
+    Vector3 targetedRayPos = Vector3.zero;
 
     // Tag-ul tintei
-    protected string tagName = "";
+    string targetTagName = "";
 
+    // Culoarea raycast-ului catre tinta
+    Color rayColor = Color.cyan;
+
+    // Daca a cules un fruct sau nu
+    int pickedUpFruit = 0; // 0 - nu , 1 - da
+ 
     // ------------------------------------------------- METODE (Mostenite din) AGENT -------------------------------------------- //
 
     // Initializarea agentului; apelata o singura data 
     public override void InitializeAgent()
     {
         base.InitializeAgent();
+
+        // Resetare a componentei fizice
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = Vector3.zero;
         rb.inertiaTensorRotation = Quaternion.identity;
+
+        // Setare componente 
+        ChangeTargetTag("preyFoodTree");
+        pickedUpFruit = 0;
     }
 
     // Cod aplicat la inceputul unui episod
     public override void AgentReset()
     {
+        // Reseteaza culoarea raycastului
+        rayColor = Color.cyan;
+
         // Reseteaza tag 
-        ChangeTag("preyFoodTree");
+        ChangeTargetTag("preyFoodTree");
+
+        // Dezactiveaza fructul din cioc
+        beakFruit.SetActive(false);
+
+        // Reseteaza pickedUpFruit 
+        pickedUpFruit = 0;
 
         // Reseteaza fortele aplicate asupra agentului
         rb.velocity = Vector3.zero;
@@ -65,7 +90,18 @@ public class PhaorisAgent : Agent
     // Observatiile numerice oferite agentului
     public override void CollectObservations()
     {
+        AddVectorObs(gameObject.transform.localRotation.normalized); // 1 quaternion = 4 valori float
 
+        Vector3 beak_to_target = closestTargetPosition - beakTip.localPosition;
+        AddVectorObs(beak_to_target.normalized); // 1 vector3 = 3 valori float
+
+        AddVectorObs(pickedUpFruit); // 1 valoare float
+
+        AddVectorObs(distanceToClosestTarget / searchProximity); // 1 valoare float; impartim la searchProximity (valoarea maxima pe care o poate lua distance to closestPrey pentru normalizare)
+
+        AddVectorObs(Vector3.Dot(beakTip.forward.normalized, beak_to_target.normalized)); // 1 valoare float intre [-1,1]
+
+        // Total : 10 observatii (fara localPosition)
     }
 
     /// <summary>
@@ -164,11 +200,128 @@ public class PhaorisAgent : Agent
     // -------------------------------------------------------- METODE ----------------------------------------------------------- //
 
     // Redenumire a tagului pentru tinta agentului
-    void ChangeTag(string newTagName) => tagName = newTagName;
+    void ChangeTargetTag(string newTagName) => targetTagName = newTagName;
 
     // Spawn system 
 
-    // Searching system - with optimization and checking in update 
+    // Searching system - with optimization and checking in update
 
-    // Reward system 
+    private void Update()
+    {
+        OptimizedCheckInRadius(rayColor);
+    }
+
+    // Optimizeaza (reduce numarul de utilizari) ale metodei de cautare in proximitate ( metoda foarte "grea" )
+    protected virtual void OptimizedCheckInRadius(Color rayColor)
+    {
+        if (Time.time - timeGap >= 0.1f)
+        {
+            // Verificam cea mai apropriata tinta (if any) si stocam informatii legate despre ea
+            CheckTargetInProximity();
+            timeGap = Time.time;
+
+            // Verificam daca agentul a terminat sarcina
+            CheckIfFoodWasDelivered();
+
+            // Aplicam -mic reward o data la 0.1s in functie de distanta pana la tinta
+            AddReward(Mathf.Min(-distanceToClosestTarget, 0f) / maxStep);
+        }
+
+        if (targetedRayPos != Vector3.zero)
+            Debug.DrawLine(transform.position, targetedRayPos, rayColor);
+    }
+
+    /// <summary>
+    /// Verifica daca exista tinta intr-un radius setat in jurul agentului
+    /// Daca da , colecteaza pentru observatii distanta pana la acesta si pozitia sa
+    /// </summary>
+    protected virtual void CheckTargetInProximity()
+    {
+        GameObject[] targets = GameObject.FindGameObjectsWithTag(targetTagName);
+        float nearestDistance = Mathf.Infinity;
+        GameObject closestTarget = null;
+        bool targetInRadius = false;
+
+        foreach (GameObject target in targets)
+        {
+            float distance = Vector3.Distance(transform.position, target.transform.position);
+
+            if (distance < nearestDistance && distance < searchProximity) // fara a 2-a conditie ar primi distanta fata de cel mai apropriat pradator din toata scena
+            {
+                targetInRadius = true;
+                nearestDistance = distance;
+                closestTarget = target;
+            }
+        }
+
+        if (targetInRadius)
+        {
+            closestTargetPosition = closestTarget.transform.localPosition;
+            distanceToClosestTarget = nearestDistance;
+            targetedRayPos = closestTarget.transform.position;
+        }
+        else
+        {
+            closestTargetPosition = Vector3.zero;
+            distanceToClosestTarget = 0f;
+            targetedRayPos = Vector3.zero;
+        }
+    }
+
+    // Verifica daca a intr-at intr-un anumit radius fata de helper pentru a "livra" mancarea
+    // O functie predefinita va da drop la mancare in viitor
+    void CheckIfFoodWasDelivered()
+    {
+        if(targetTagName == "helper" && distanceToClosestTarget <= deliveryDistanceRequired)
+        {
+            // Agent
+            beakFruit.SetActive(false);
+
+            // Invatare
+            SetReward(1f);
+            Done();
+        }
+    }
+
+    // Reward system - (Collision part of it)
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("boundary"))
+        {
+            SetReward(-1f);
+            Done();
+        }
+
+        //  coliziunea cu fructe (cand nu are fruct cules / cand are )
+        if (other.gameObject.CompareTag("preyFoodTree"))
+        {
+            // Verificam inainte daca agentul culege fructul cu ciocul (nu vrem sa se atinga cu aripa si fructul sa fie cules)
+            Vector3 closestPointToBeakTip = other.ClosestPoint(beakTip.position);
+            if (Vector3.Distance(beakTip.position, closestPointToBeakTip) < beakTipRadius)
+            {
+                if (pickedUpFruit == 0)
+                {
+                    AddReward(1f);
+                    ChangeTargetTag("helper");
+                    rayColor = Color.yellow;
+                    pickedUpFruit = 1;
+                    beakFruit.SetActive(true);
+                }
+                else
+                {
+                    AddReward(-0.2f);
+                }
+            }
+        }
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        // Coliziunea cu pamantul
+        if(other.gameObject.CompareTag("Ground"))
+        {
+            SetReward(-1f);
+            //Done();
+        }
+    }
 }
