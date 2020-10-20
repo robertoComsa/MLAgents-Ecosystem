@@ -12,11 +12,11 @@ public class PhaorisAgent : Agent
     [Tooltip("Viteza de giratie (rotire in jurul axei y)")] [SerializeField] float yRotSpeed = 100f;  // yaw
     [Tooltip("Viteza de inclinare (rotire in jurul axei z)")] [SerializeField] float xRotSpeed = 100f;  // pitch
     [Tooltip("Distanta de cautare")] [SerializeField] float searchProximity = 40f;
-    [Tooltip("Proximitatea de livrare")] [SerializeField] float deliveryDistanceRequired = 0.4f;
+    [Tooltip("Proximitatea de livrare")] [SerializeField] float deliveryDistanceRequired = 5f;
 
     [Header("Ciocul pasarii")]
     [Tooltip("Centrul pozitiei ce reprezinta varful ciocului")] [SerializeField] Transform beakTip=null;
-    [Tooltip("Radiusul in care este acceptata coliziunea cu ciocul")] [SerializeField] float beakTipRadius = 0.03f;
+    [Tooltip("Radiusul in care este acceptata coliziunea cu ciocul")] [SerializeField] float beakTipRadius = 0.05f;
     [Tooltip("Obiect copil al agentului")] [SerializeField] GameObject beakFruit = null;
 
     //  ---------------------------------------------------------- VARIABILE ----------------------------------------------------- //
@@ -65,6 +65,10 @@ public class PhaorisAgent : Agent
         // Setare componente 
         ChangeTargetTag("preyFoodTree");
         pickedUpFruit = 0;
+        beakFruit.SetActive(false);
+
+        // Reseteaza pozitia agentului 
+        ResetAgentPosition();
     }
 
     // Cod aplicat la inceputul unui episod
@@ -85,6 +89,9 @@ public class PhaorisAgent : Agent
         // Reseteaza fortele aplicate asupra agentului
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
+
+        // Reseteaza pozitia agentului 
+        ResetAgentPosition();
     }
 
     // Observatiile numerice oferite agentului
@@ -101,7 +108,7 @@ public class PhaorisAgent : Agent
 
         AddVectorObs(Vector3.Dot(beakTip.forward.normalized, beak_to_target.normalized)); // 1 valoare float intre [-1,1]
 
-        // Total : 10 observatii (fara localPosition)
+    // Total : 10 observatii (fara gameObject.localPosition , closestTarget.localPosition si beakTip.localPosition) -> Pot fi adaugate in viitor pentru consolidare
     }
 
     /// <summary>
@@ -202,9 +209,34 @@ public class PhaorisAgent : Agent
     // Redenumire a tagului pentru tinta agentului
     void ChangeTargetTag(string newTagName) => targetTagName = newTagName;
 
-    // Spawn system 
+    // Sistem de reasezare a agentului
 
-    // Searching system - with optimization and checking in update
+    void ResetAgentPosition()
+    {
+        // Resetarea pozitiei - Inaltime aleatorie (axa y) - Una dintre 3 pozitii (axele x,z) 
+        int posIndex = Random.Range(0, 3);
+        switch (posIndex)
+        {
+            case 0:
+                gameObject.transform.position = new Vector3(-29f, Random.Range(4.5f, 12f), -16.5f);
+                break;
+            case 1:
+                gameObject.transform.position = new Vector3(-27f, Random.Range(4.5f, 12f), -9f);
+                break;
+            case 2:
+                gameObject.transform.position = new Vector3(-27f, Random.Range(4.5f, 12f), -25.5f);
+                break;
+        }
+
+        // Rotatie aleatorie 
+        int rotationIndex = Random.Range(0, 3);
+        if (rotationIndex != 0)
+            transform.rotation = Quaternion.Euler(transform.rotation.x, Random.Range(40f, 140f), transform.rotation.y);
+        else
+            transform.rotation = Quaternion.Euler(transform.rotation.x, Random.Range(-40f, -140f), transform.rotation.y);
+    }
+
+    // Sistem de cautare - cu optimizare . (apelata de 10 ori pe secunda in loc de ~ 60)
 
     private void Update()
     {
@@ -283,7 +315,9 @@ public class PhaorisAgent : Agent
         }
     }
 
-    // Reward system - (Collision part of it)
+    // Functia de reward - Partea ce tine de coliziuni
+
+    // Coliziuni cu triggere 
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("boundary"))
@@ -315,13 +349,14 @@ public class PhaorisAgent : Agent
         }
     }
 
+    // Coliziuni cu obiecte rigide
     private void OnCollisionEnter(Collision other)
     {
         // Coliziunea cu pamantul
         if(other.gameObject.CompareTag("Ground"))
         {
             SetReward(-1f);
-            //Done();
+            Done();
         }
     }
 }
