@@ -1,0 +1,9 @@
+
+
+	Acest model este bazat pe GalvadonFeed_01 si 02. cand vine vorba de observatii , actiuni , functie de reward. 
+
+	Diferit va fi trainer_config.yaml si probabil setup-ul de antrenare.
+
+	Pentru inceput voi incerca o retea de 256 x 2 layere , direct in PHASE2 -> Acesta va fi GalvadonFeedv2_01
+
+	La aproximativ 1.6m de pasi am trecut la FAZA 2 

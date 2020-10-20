@@ -1,0 +1,103 @@
+
+	Mulak va fi antrenat in 2 pasi. Prima data pentru a invata sa se reproduca , apoi adaugam in mediu si carnivori pentru a fugi.
+	
+	Mulak_01:
+
+	Antrenament imperechere:
+
+		--(Functia de reward)-- 
+
+		-> -0.01 pe secunda (sau mai putin pana la -0.01 in functie de distanta pana la un partener compatibil) pentru a incuraja actiunea
+		-> +1 cand se reproduce (chiar daca se reproduce prin metoda GetMated() )
+		-> La atingerea peretilor rewardul este *setat* la -1. si se incheie episodul (prin Done(); )
+		-> -0.1 de fiecare data cand apeleaza Mate() fara a fi in conditii de imperechere ( vectorAction[2] = 1)
+		
+		--(Observatii)--:
+
+		Componenta parinte = Spatiul de antrenare
+		Pozitia trebuie sa fie raportata la componenta parinte pentru ca , dupa ce terminam spatiul de antrenare il multiplicam pentru a antrena mai multi
+		 agenti simultan	
+
+		-> Pozitia raportata la componenta parinte , un vector3 normalizat (3 valori)
+		-> Directia in care agentul inainteaza , un vector3 normalizat (3 valori)
+		-> Directia in care se afla cel mai apropriat erbivor compatibil,un vector 3 normalizat (3 valori)
+		-> Distanta pana la cel mai apropriat erbivor compativil , un float (1 valoare)
+
+		In total 10 + Observatiile de tip Raycast. De asemenea observatiile sunt stackate cate 3 (deci 10 x 3 + Raycast x 3 observatii)
+		(agentul are acces la observatiile prezente + ultimele 2 seturi de observatii primite)
+
+		Raycast: 2 seturi de aceeasi configuratie (5 in fiecare directie i.e. 1 frontala 5 dreapta 5 stanga = 11 ) cu unghi larg.
+			 cel frontal depisteaza limitele scenei de antrenare si pradatorii
+			 iar cel dorsal depisteaza doar pradatorii
+
+		--(Actiunile)--
+
+		Actiunile iau valori discrete:
+
+		-agentul decide daca inainteaza sau nu 
+		-daca se roteste (la stanga/dreapta) sau nu.
+		-daca se imperecheaza sau nu 
+
+		--(TrainingConfig)--
+
+		MulakLearning:
+    			 summary_freq: 5000         
+    			 time_horizon: 256           
+                         beta: 1.0e-2                
+    		         batch_size: 2048            
+    		         buffer_size: 10240          
+    			 hidden_units: 256           
+    			 num_layers: 4               
+    			 max_steps: 5.0e6
+
+		A se nota ca agentii au invatat extrem de repede strategia cea mai buna de a se multiplica. (la 500k pasi). 
+		Dar nu este cea mai corecta strategie . in sensul ca nu isi cauta un partener valabil ci doar stau langa unul anume . 
+
+		Am sa schimb mediul , acum va contine doar 2 agenti care sunt instantiati in zone diferite si episodul se incheie (done) cand acestia se imperecheaza.
+		SetReward(1) este folosit inainte de a incheia episodul , deci acum rewardul nu va mai fluctua asa mult pentru ca agentul stie deja ce are de facut in schimb
+		foarte importanta va fi durata episoadelor.
+
+		Pauza la 2.38m pasi pentru a indeparta cei doi agenti si mai mult.
+
+		Agentii reusesc sa se gaseasca destul de bine fara observatii de tip raycast (cu raycasturile detectam doar pradatori si limitele spatiului de antrenare)
+
+		Am oprit antrenamentul la aproximativ 2.8m de pasi pentru a testa cum functioneaza modelul (reteaua neuronala) in timp real si scenarii diferite.
+
+		Sunt multumit de modul in care agentii actioneaza (chiar si cand sunt mai multi) , chiar iau in considerare distanta pana la cel mai apropriat partener COMPATIBIL.
+
+		
+	Antrenament final:
+
+		Acum trecem la etapa urmatoare , antrenarea acestui model sa rezolve aceasta sarcina + sa fuga de pradator.
+
+		Pentru asta am sa fac un back-up al acestui creier Mulakv1_01 si am sa continui antrenarea pe el si cu pradator/pradatori.
+
+		Este natural ca agentul sa primeasca in continuare reward pentru imperechere , asa ca functia de reward pentru aceasta sarcina finala arata asa:
+
+		-> -0.01 pe secunda (sau mai putin pana la -0.001 in functie de distanta pana la un partener compatibil) pentru a incuraja actiunea
+		-> La atingerea peretilor rewardul este *setat* la -1. si se incheie episodul (prin Done(); ) - Desi agentul nu mai atinge peretii
+		-> -0.1 de fiecare data cand apeleaza Mate() fara a fi in conditii de imperechere ( vectorAction[2] = 1)
+		MODIFICAT:
+		-> Cum am spus agentul trebuie sa fie in continuare incurajat sa se imperecheze , altfel exista riscul sa se concentreze doar pe a fugi de carnivor
+		   deci la fiecare imperechere Primeste +1 reward dar apelam si SetReward(1) pentru ca vrem sa pastram rewardul in [-1,1]
+		-> De fiecare data cand este mancat rewardul este setat la -1 ( SetReward(-1) ) si agentul este resetat prin Done();
+	
+		Setup-ul final de load pe care l-am ales este cu 3 agenti erbivori cu viteza lor normala 10 si 2 agenti carnivori cu viteza redusa la 4 , pe parcursul antrenamentului
+		voi pune pauza si voi creste treptat viteza de miscare a agentilor carnivori  
+		Ideal ar fi ca agentii erbivori sa invete o strategie in care se folosesc de avantajul de viteza pentru a se indeparta de carnivori si a se reproduce in siguranta
+		( exista cateva frame-uri in care se aplica *animatia* de imperechere si agentul erbivor nu poate lua actiuni timp in care poate fi mancat daca este aproape de un pradator)
+	
+		Dupa aproximativ 1m de pasi am oprit antrenamentul , deoarece agentii erbivori reusesc sa fuga cu succes de cei carnivoi , intr-un patern desigur circular.
+		Acest modelNN final este redenumit Mulakv1_02 in proiect si putem compara direct cu Mulakv1_01 
+		 
+		Cu avantajul de viteza agentii erbivori au invatat cum sa nu fie prinsi . Nu o sa antrenez in continuare impotriva unei viteze mai mari deoarece vrem totusi
+		ca unele exemplare sa fie mancate de agentii carnivori - SI intr-adevar cu o viteza crescuta (7) care este in continuare mai mica decat cea a erbivorilor , Helios
+		reuseste sa prinda erbivori. SUNT multumit cu comportamentul ambelor modele si cum functioneaza in mod adversarial.
+
+		Un sistem de multiplicare si de modificare (evolutie) genetica a agentilor mulak va fi hardcodat. 
+		Agentul indeplineste bine taskurile de a-si cauta/urmari un partener compatibil si de a se multiplica cu el , in acelas timp de a evita pradatorul.
+
+
+		
+		
+	

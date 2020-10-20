@@ -1,0 +1,7 @@
+	
+	03 este o extindere a lui 02 , in sensul ca am sa adaug inca 2m la numarul maxim de pasi (trainer_config.yaml -> max_steps) (A fost antrenat 2m).
+	Rezultatele sunt bune , vreau acum sa antrenez cu un singur erbivor in scena. Helios_02 functioneaza deja *bine* cu un singur erbivor.
+	03 va folosi comanda --load pentru a incepe antrenamentul cu creierul Helios_02 
+
+	NOTA! In tensorboard nu voi avea Helios_02 si 03 , va fi helios_02 cu 4m de pasi. pana la 2m a fost Antrenat sa invete sa manance erbivori , urmatoarele 2 milioane sunt alocate
+	tehnicii de cautare a erbivorilor in scena (acum ca e doar unul)

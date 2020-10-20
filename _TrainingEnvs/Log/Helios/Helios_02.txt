@@ -1,5 +1,0 @@
-
-	Agentul nu a fost stimulat pozitiv suficient, incat sa creeze un obicei/politica de a manca erbivorii
-	Am adaugat inca 5 erbivori in scena 
-	Si am redus -reward-ul de pe secunda la -0.01/s 
-	Am crescut si hitbox-ul de la raze ( 0.2 -> 0.5 )

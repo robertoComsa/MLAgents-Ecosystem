@@ -1,0 +1,34 @@
+
+	
+	Plec de la Heliosv2_02 (script , prefab , senzori raycast , functie de reward , observatii , actiuni si parametrii din trainer_config.yaml) 
+	si vom antrena initial cu 5 animale statice erbivore in scena
+
+	Modificari aduse la observatii:
+
+	(NUMERICE)
+	
+	-> In schimbul pozitiei celui mai apropriat pradator oferim agentului directia in care acesta se afla (pozitie.prada - pozitie.proprie) 
+		desigur raportate la spatiul parinte si normalizate
+
+	-> O valoare float , produs dot intre directia in care agentul inainteaza si directia celui mai apropriat erbivor 
+		1 - daca au aceeasi directie (agentul se uita / inainteaza direct spre erbivor)
+		0 - perpendicular 
+		-1 - este exact opus 
+		si orice valoare intre acestea in functie de unghiul la care e cel mai apropriat erbivor (forward o sa fie mereu acelas pentru agent)
+	
+	(RAYCASTURI)
+
+	-> Am inlocuit vechiul design ce continea un singur senzor de 4 raze per directie ( 1 fata + 4 stanga + 4 dreapta = 9) la unghi de 70 si sphere cast de 0.7 cu urmatorul design:
+
+	-> 1 senzor cu 3 raze pe directie (7 in total) cu unghi larg de 80 ce detecteaza obstacolele (boundary) si prada ; sphere cast de 0.6 
+	-> 1 senzor (de vanatoare) cu 2 raze pe directie (5 in total) cu un unghi mic de 35 de grade ce detecteaza doar prada; sphere cast de 0.5
+
+	Agentul a invatat extrem de repede sa manance prada (la 500k pasi a atins abilitatea de a obtine un reward constant)
+	
+	LA 930k am pus pauza la antrenament si voi continua cu --load si un singur erbivor in scena.
+	
+	(NOTA: Am testat creierul asa cum este cu un singur erbivor in scena si se descurca bine deja ; Este cel mai performant model de pana acum!) 
+	Dar voi continua totusi antrenarea sa pana la 1.5m de pasi . 
+
+	Modelul este un Succes pentru scena statica
+		

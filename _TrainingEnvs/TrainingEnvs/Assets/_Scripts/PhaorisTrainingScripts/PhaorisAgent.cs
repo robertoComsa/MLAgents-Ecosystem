@@ -19,6 +19,13 @@ public class PhaorisAgent : Agent
     [Tooltip("Radiusul in care este acceptata coliziunea cu ciocul")] [SerializeField] float beakTipRadius = 0.05f;
     [Tooltip("Obiect copil al agentului")] [SerializeField] GameObject beakFruit = null;
 
+    [Header("Planta si Helperul")]
+    [Tooltip("Scriptul folosit pentru a roti aleatoriu copacul")] [SerializeField] RandomRotationForPlant plant = null;
+    [Tooltip("Scriptul folosit pentru a reaseza aleatoriu helperul")] [SerializeField] RandomPositionForHelper helper = null;
+
+    [Header("Spatiu de antrenare")]
+    [Tooltip("Componenta transform a spatiului de antrenare")] [SerializeField] Transform trainingGround = null;
+
     //  ---------------------------------------------------------- VARIABILE ----------------------------------------------------- //
 
     // Componenta rigidBody (ne permita sa aplicam manevre fizice)
@@ -92,6 +99,12 @@ public class PhaorisAgent : Agent
 
         // Reseteaza pozitia agentului 
         ResetAgentPosition();
+
+        // Roteste planta
+        plant.RotateFoodPlant();
+
+        // Reamplaseaza helperul
+        helper.ResetPosition();
     }
 
     // Observatiile numerice oferite agentului
@@ -115,11 +128,11 @@ public class PhaorisAgent : Agent
     /// Pentru acest model vom folosi actiuni continue
     /// 
     /// vectorAction[i]:
-    /// 0: miscare pe axa x (+1 - dreapta , -1 stanga)
-    /// 1: miscare pe axa y (+1 - sus , -1 jos)
-    /// 2: miscare pe axa z (+1 - inainte , -1 inapoi)
-    /// 3: unghiul de inclinare (+1 - sus (spre cer) , -1 jos (spre sol) ) (rotatie pe axa lui x)
-    /// 4: unghiul de giratie (+1 - rotatie spre dreapta , -1 - rotatie spre stanga) (rotatie pe axa lui y)
+    /// 0: miscare pe axa x (pozitiv - dreapta , negativ - stanga)
+    /// 1: miscare pe axa y (pozitiv - sus , negativ jos)
+    /// 2: miscare pe axa z (pozitiv - inainte , negativ inapoi)
+    /// 3: unghiul de inclinare pozitiv - sus (spre cer) , negativ jos (spre sol) ) (rotatie pe axa lui x)
+    /// 4: unghiul de giratie (pozitiv - rotatie spre dreapta , negativ - rotatie spre stanga) (rotatie pe axa lui y)
     /// 
     /// </summary>
     /// <param name="vectorAction"></param>
@@ -218,13 +231,13 @@ public class PhaorisAgent : Agent
         switch (posIndex)
         {
             case 0:
-                gameObject.transform.position = new Vector3(-29f, Random.Range(4.5f, 12f), -16.5f);
+                gameObject.transform.position = new Vector3(trainingGround.position.x-29f, Random.Range(4.5f, 12f), trainingGround.position.y - 16.5f);
                 break;
             case 1:
-                gameObject.transform.position = new Vector3(-27f, Random.Range(4.5f, 12f), -9f);
+                gameObject.transform.position = new Vector3(trainingGround.position.x - 27f, Random.Range(4.5f, 12f), trainingGround.position.y - 9f);
                 break;
             case 2:
-                gameObject.transform.position = new Vector3(-27f, Random.Range(4.5f, 12f), -25.5f);
+                gameObject.transform.position = new Vector3(trainingGround.position.x - 27f, Random.Range(4.5f, 12f), trainingGround.position.y - 25.5f);
                 break;
         }
 

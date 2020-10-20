@@ -1,0 +1,28 @@
+
+
+	Acum ca agentul a invatat sa evite boundary (marginea invizibila a scenei) si ca trebuie sa manance prada, ne putem concentra pe imbunatatirea performantei.
+
+	Cu un singur erbivor in scena agentul se descurca in regula , dar daca prada este instantiata la o distanta mai mare decat media cu care a fost obisnuit
+	atunci cand a fost antrenat cu mai multe modele in scena (fiind instantiate aleatoriu era foarte improbabil sa nu gaseasca prada intr-o proximitate mica)
+	,agentul se invarte de cateva ori in cerc (Indepartandu-se de prada).
+	 Vrem sa fie mai eficient/prompt in rezolvarea taskului.
+
+	Am marit proximitatea de vanare (huntProximity) la 35. 
+
+	Pentru a incuraja agentul sa foloseasca observatiile legate de erbivor (pozitia sa si distanta pana la el) am inlocuit 
+
+		AddReward(-1f / maxStep); // x 50 de apeluri -> -0.01s pe secunda ------ INCURAJAREA ACTIUNII
+
+	cu
+		 if (distanceToClosestPrey != 0)
+            		AddReward(-(distanceToClosestPrey / huntProximity) / maxStep);
+        	 else AddReward(-1f/maxStep);
+
+	
+	NOTA: distanceToClosestPrey = 0 daca agentul nu are nici un erbivor in proximitatea de vanatoare
+	      Acum agentul este penalizat pentru distanta fata de prada . Cu cat e mai aproape cu atat este penalizat mai putin
+	      Daca este exact la valoarea maxima a proximitatii sau nu are deloc un erbivor in proximitate este penalizat ca pana acum pentru existenta (incurajarea actiunii)
+	      Sper ca valorile sa nu fie prea mici pentru a fi notate de agent.
+
+	Am adaugat 2M de pasi si vom antrena in continuarea Heliosv2_01 (De notat ca pe TENSORBOARD va fi un singur model , pana la 5m de pasi Heliosv2_01 , apoi pana la 7m Heliosv2_02)
+	Folosim comanda --load pentru a incarca creierul (in caz ca antrenamentul nu decurge cum trebuie avem back-up pentru Heliosv2_01 in Unity)

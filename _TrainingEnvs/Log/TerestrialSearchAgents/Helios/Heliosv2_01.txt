@@ -1,0 +1,49 @@
+
+	Helios va fi antrenat in 2 pasi. Prima data cu erbivori statici, pentru a fi antrenat dupa cu erbivori dinamici.
+	Am folosit in prima varianta 10 erbivori statici. 	
+
+	Heliosv2_01:
+
+	Static:
+
+		--(Functia de reward)-- 
+
+		-> -0.02 pe secunda pentru a incuraja actiunea
+		-> +0.2 cand mananca un erbivor
+		-> La atingerea peretilor rewardul este *setat* la -1. si se incheie episodul (prin Done(); )
+
+		Nota: Folosim un contor pentru a numara cati erbivori au fost mancati, la 6 incheiem episodul (tot prin Done(); )
+		      0.2 x 6 = 1.2 reward maxim (daca agentul ar putea sa prinda instant toti erbivorii si nu ar fi penalizat pe secunda)
+		      In principiu , vrem sa oprim antrenamentul cand avem rewardul in jur de 1. (probabil mai mult , si variaza deoarece erbivorii sunt plasati aleatoriu in scena)
+
+		
+		--(Observatii)--:
+
+		Componenta parinte = Spatiul de antrenare
+		Pozitia trebuie sa fie raportata la componenta parinte pentru ca , dupa ce terminam spatiul de antrenare il multiplicam pentru a antrena mai multi
+		 agenti simultan	
+
+		-> Pozitia raportata la componenta parinte , un vector3 normalizat (3 valori)
+		-> Directia forward a agentului (in care inainteaza) , un vector3 normalizat (3 valori)
+		-> Pozitia raportata la componenta parinte a celui mai apropriat erbivor , un vector3 normalizat (3 valori)
+		-> Distanta pana la cel mai apropriat erbivor , o valoare float curpinsa intre 0 si 1 
+
+		In total 10 + Observatiile de tip Raycast. De asemenea observatiile sunt stackate cate 3 (deci 10 x 3 + Raycast x 3 observatii)
+		(agentul are acces la observatiile prezente + ultimele 2 seturi de observatii primite)
+
+		--(Actiunile)--
+
+		Actiunile iau valori discrete ,  agentul decide daca inainteaza sau nu , si daca se roteste (la stanga/dreapta) sau nu.
+
+		--(TrainingConfig)--
+
+		Heliosv2Learning:
+    			summary_freq: 5000          # How often, in steps, to save training statistics. This determines the number of data points shown by TensorBoard.
+    			time_horizon: 128           # How many steps of experience to collect per-agent before adding it to the experience buffer.
+    			beta: 1.0e-2                # The strength of entropy regularization.
+    			batch_size: 2048            # The number of experiences in each iteration of gradient descent.
+    			buffer_size: 20480          # The number of experiences to collect before updating the policy model.
+    			hidden_units: 256           # The number of units in the hidden layers of the neural network.
+    			num_layers: 3               # The number of hidden layers in the neural network.
+    			max_steps: 5.0e6            # The maximum number of simulation steps to run during a training session.
+	

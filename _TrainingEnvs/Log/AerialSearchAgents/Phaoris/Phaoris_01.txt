@@ -1,0 +1,80 @@
+
+
+	Phaoris_01:
+
+	--(Mediul de antrenare)-- 
+
+	Cum agentul se poate deplasa in toate axele , el este instantiat astfel:
+	
+	-> Inaltimea liber arbitrara 
+	-> 3 pozitii diferite 
+	-> rotatie aleatorie dar cu 1/3 sanse sa fie cu spatele spre planta (tinta initiala) 
+	-> 2/3 cu fata spre planta.
+
+	Planta ce contine fructele (primele tinte ale agentului) are si ea rotatia resetata.
+
+	De asemenea si helperul (Galvadon replacer) este si el instantiat in 5 pozitii diferite. 
+
+	!! ACESTE RESETARI AJUTA LA EVITAREA OVERFITTING-ULUI PE SARCINA DIN ACEST MEDIU DE ANTRENARE
+
+	  In aceasta scena agentul trebuie sa invete sa culeaga fructe din copac cu ciocul si apoi
+	sa mearga in vecinatatea helperului (unde in viitor va fi aplicata automat o functie de drop a fructului) 
+
+	--(Functia de reward)--
+
+	-> intre -0.0002 si 0.008 reward pe step la fiecare actiune (in functie de distanta pana la tinta , mai aproape => mai putin)
+	-> La atingerea peretilor/pamantului rewardul este *setat* la -1. si se incheie episodul (prin Done(); )
+	-> Cand atinge un fruct: 
+		-> daca nu are fruct in cioc: +1 reward
+		-> daca are deja fruct in cioc: -0.2 reward 
+	-> La incheierea sarcinii rewardul este setat la 1 si se inchide episodul prin Done();
+
+	--(Observatii)-- 
+
+	Componenta parinte = Spatiul de antrenare
+
+	-> Rotatia raportata la componenta parinte , un Quaternion normalizat (4 valori)
+	-> Directia in care agentul inainteaza , un vector3 normalizat (3 valori) 
+	-> Un vector (directie) de la pozitia locala a ciocului la pozitia locala a celei mai apropriate tinte , un vector3 normalizat (3 valori)
+	-> Un indicator (asemenea bool) care poate fi 0 sau 1 , un int(1 valoare)
+	-> Distanta (normalizata , ia valori intre 0 si 1) pana la cea mai apropriata tinta , un float (1 valoare)
+	-> Un dot product intre directia in care e indreptat ciocul si directia pana la cea mai apropriata tinta 
+		ia valori in [-1,1] , un float (1 valoare)
+
+	RAYCASTs:
+
+	1 ray directionat in sus - pentru a depista distanta pana la peretele de sus , obiecte Untagged
+	1 ray directionat in jos - pentru a depista distanta pana la pamant , obiecte Untagged
+	1 set de 7 (3 per directie) sphere cast rays (radius 0.1) directionat frontal - pentru a depista distanta pana la mancare , pereti , obiecte Untagged  
+	
+
+	--(Actiunile)-- 
+
+	Actiunile sunt continue pentru acest agent, in sensul ca el poate oferi valori reale componentelor vectorului de actiuni
+
+	EXEMPLU - Vrem ca agentul sa inainteze. 
+
+	Utilizator uman: Vom apasa W care va face valoarea de inaintare 1 - maxim (de la 0 initial)
+
+	Retea cu actiuni continue: Reteaua poate oferi putere variata 0,3 sau 0,7 sau full cu 1 (valori intre [0,1])
+
+	Vectorul de actiuni: 
+
+	INDEX 0: miscare pe axa x (pozitiv - dreapta , negativ - stanga)
+	INDEX 1: miscare pe axa y (pozitiv - sus, negativ - jos)
+	INDEX 2: miscare pe axa z (pozitiv - inainte, negativ - inapoi)
+	INDEX 3: unghiul de inclinare (pozitiv - sus (spre cer) , negativ jos (spre sol) ) (rotatie pe axa lui x)
+	INDEX 4: unghiul de giratie (pozitiv - rotatie spre dreapta , negativ - rotatie spre stanga) (rotatie pe axa lui y)
+
+	--(TrainingConfig)--
+
+
+
+
+
+
+
+
+
+
+
