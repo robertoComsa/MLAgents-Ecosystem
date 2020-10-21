@@ -231,13 +231,13 @@ public class PhaorisAgent : Agent
         switch (posIndex)
         {
             case 0:
-                gameObject.transform.position = new Vector3(trainingGround.position.x-29f, Random.Range(4.5f, 12f), trainingGround.position.y - 16.5f);
+                gameObject.transform.position = new Vector3(trainingGround.position.x-29f, Random.Range(4.5f, 12f), trainingGround.position.z - 16.5f);
                 break;
             case 1:
-                gameObject.transform.position = new Vector3(trainingGround.position.x - 27f, Random.Range(4.5f, 12f), trainingGround.position.y - 9f);
+                gameObject.transform.position = new Vector3(trainingGround.position.x - 27f, Random.Range(4.5f, 12f), trainingGround.position.z - 9f);
                 break;
             case 2:
-                gameObject.transform.position = new Vector3(trainingGround.position.x - 27f, Random.Range(4.5f, 12f), trainingGround.position.y - 25.5f);
+                gameObject.transform.position = new Vector3(trainingGround.position.x - 27f, Random.Range(4.5f, 12f), trainingGround.position.z - 25.5f);
                 break;
         }
 
