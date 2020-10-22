@@ -1,0 +1,27 @@
+
+
+	Pentru Phaoris_04 am decis sa lucrez la parametrii.
+
+	--(Trainer_Config)--
+
+	PhaorisLearning:       
+    		time_horizon: 256
+    		batch_size: 2048            
+    		buffer_size: 10240          
+    		hidden_units: 256           
+    		num_layers: 3     
+    		max_steps: 8.0e6
+
+	De asemenea am: 
+	-> dublat radiusul ciocului de la 0.05 la 0.1 
+	-> am scazut la 6 (de la 7) viteza de miscare
+	-> Eliminat crengile (pentru acest antrenament ) 
+
+	Modificari la observatii: 
+
+	La cele numerice: beakTip.localPosition a fost introdus pentru a aduce un sens 
+	unde este partea cu care trebuie sa atinga fructul fata de pozitia fructului. (care este oferita si ea ca observatie)
+
+	Dar este raportata la o alta componenta parinte deci nu e chiar valida. 
+
+	Asa ca am inlocuit-o cu pozitia agentului. (Tot 19 obs numerice)

@@ -19,4 +19,6 @@
 
 	Am lasat cate o singura raza perpendiculara agentului pentru detectarea distantei fata de obiecte atat in sus cat si in jos.
 
-	In loc de 3/directie => -4 observatii rayCast
+	In loc de 3/directie => -4 raze rayCast ( 4 raze a cate 2 tag-uri posibile = 8 observatii in minus)
+
+	Si am adaugat o singura raza pentru a vedea distanta pana la obiectele din spatele agentului ( 1 raza ce poate vedea Untagged sau Boundary = 2 observatii )

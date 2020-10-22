@@ -109,7 +109,9 @@ public class PhaorisAgent : Agent
 
     // Observatiile numerice oferite agentului
     public override void CollectObservations()
-    { 
+    {
+        AddVectorObs(gameObject.transform.localRotation.normalized); // 1 Quaternion = 4 valori float 
+
         Vector3 beak_to_target = closestTargetPosition - beakTip.localPosition;
         AddVectorObs(beak_to_target.normalized); // 1 vector3 = 3 valori float
 

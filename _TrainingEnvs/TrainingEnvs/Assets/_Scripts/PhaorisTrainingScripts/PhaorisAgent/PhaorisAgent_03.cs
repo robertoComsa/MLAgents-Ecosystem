@@ -113,15 +113,15 @@ public class PhaorisAgent_03 : Agent
         // Rotatia agentului (raportat la obiectul parinte)
         AddVectorObs(gameObject.transform.localRotation.normalized); // 1 quaternion = 4 valori float
 
+        // Pozitia agentului ( raportat la obiectul parinte ) ------ ADAUGAT IN PHAORIS_04
+        AddVectorObs(gameObject.transform.localPosition.normalized); // 1 vector 3 = 3 valori float
+
         // Un vector ce indica directia *inainte* a ciocului (respectiv agent)
         AddVectorObs(beakTip.forward.normalized); // 1 vector3 = 3 valori float
 
         // Un vector ce indica directia de la cioc la tinta
         Vector3 beak_to_target = closestTargetPosition - beakTip.localPosition;
         AddVectorObs(beak_to_target.normalized); // 1 vector3 = 3 valori float
-
-        // Un vector ce indica pozitia ciocului (locala - raportata la obiectul parinte)
-        AddVectorObs(beakTip.localPosition.normalized); // 1 vector3 = 3 valori float
 
         // Un vector ce indica pozitia celei mai apropriate tinte (de asemenea raportata la obiectul parinte - care este comun)
         AddVectorObs(closestTargetPosition.normalized); // 1 vector3 = 3 valori float
@@ -136,6 +136,13 @@ public class PhaorisAgent_03 : Agent
         AddVectorObs(Vector3.Dot(beakTip.forward.normalized, beak_to_target.normalized)); // 1 valoare float intre [-1,1]
 
         // Total : 19 observatii numerice
+
+
+      /*
+      // Un vector ce indica pozitia ciocului (locala - raportata la obiectul parinte)
+      AddVectorObs(beakTip.localPosition.normalized); // 1 vector3 = 3 valori float  -- // Eliminat pentru Phaoris_04 deoarece componenta parinte e
+                                                                                        // diferita fata de cea a targetului
+      */
     }
 
     /// <summary>
