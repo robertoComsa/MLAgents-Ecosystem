@@ -1,0 +1,22 @@
+
+	Chiar daca fructele sunt mari rezultatele nu sunt cele mai bune , agentul reuseste sa 
+	duca sarcina la sfarsit dar nu in toate cazurile.
+
+	Am observat ca agentul este *greu* ( din punct de vedere al mecanicilor fizice)
+	si ca o data ce prinde momentum nu se opreste inainte de boundary . 
+
+	Asa ca pentru Phaoris_03: Am scazut masa obiectului la 0.4 (de la 1) si viteza la 7 (de la 15)
+
+	De asemenea am intarit spatiul de observatii numerice cu:
+
+	-> Pozitia celei mai apropriate tinte normalizata si raportata la obiectul parinte (scena de antrenare) - Un vector de 3 componente = 3 valori float
+	-> Pozitia ciocului normalizata si raportata la obiectul parinte (scena de antrenare) - Un vector de 3 componente = 3 valori float
+	-> Directia *inainte* a ciocului normalizata - Un vector de 3 componente = 3 valori float 
+
+	=> +9 observatii numerice
+
+	Observatiile rayCast : 
+
+	Am lasat cate o singura raza perpendiculara agentului pentru detectarea distantei fata de obiecte atat in sus cat si in jos.
+
+	In loc de 3/directie => -4 observatii rayCast

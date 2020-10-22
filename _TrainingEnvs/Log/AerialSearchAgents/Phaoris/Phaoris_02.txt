@@ -1,0 +1,22 @@
+
+
+	Modelul 01 a invatat sa zboare stabil , dar nu a fost indeajuns de stimulat
+	pentru a invata sa rezolve sarcinile. 
+
+	In aceasta varianta 02 am sa modific in principal componente din spatiul de antrenare
+	si anume copacul si fructele:
+
+	Planta - *2 size 
+	Fructele - *3 size ( total *6) 
+
+	De asemenea am scazut unghiul la 40 (de la 60) dintre raycasturile din setul frontal 
+
+	Distanta de livrara modificata de la 6 la 8
+
+	--
+
+	In caz de esec vom modifica (adauga) observatii 
+	
+	-- 
+	
+	In caz de succes vom antrena cu --load , dar cu fructe mai mici (miscorsam treptat)
