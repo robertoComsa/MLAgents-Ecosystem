@@ -1,0 +1,22 @@
+
+
+	Pentru Phaoris_05 am decis sa procesul de rezolvare a sarcinii (vom ingreuna sarcina cu trecerea timpului)
+
+	Pentru ca vreau ca agentul sa se concentreze pe invatarea controlarii mecanicilor de zbor.
+
+	Asa ca: 
+
+	-Acum agentul este instantiat doar cu fata la tinta
+	-Exista un singur fruct pe care il poate culege 
+
+	(--Trainer_Config--)
+
+	PhaorisLearning:       
+    		time_horizon: 256
+    		batch_size: 2048            
+    		buffer_size: 10240          
+    		hidden_units: 256           
+    		num_layers: 3     
+    		max_steps: 5.0e6
+
+	Vom adauga pasi in viitor (daca e cazul)

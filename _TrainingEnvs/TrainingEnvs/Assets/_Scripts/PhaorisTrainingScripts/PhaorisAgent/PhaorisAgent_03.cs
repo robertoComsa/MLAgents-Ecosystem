@@ -263,11 +263,12 @@ public class PhaorisAgent_03 : Agent
         }
 
         // Rotatie aleatorie 
-        int rotationIndex = Random.Range(0, 3);
+        int rotationIndex = 1; //Random.Range(0, 3); - // Instantiem doar cu fata la tinta in Phaoris_05
         if (rotationIndex != 0)
             transform.rotation = Quaternion.Euler(transform.rotation.x, Random.Range(40f, 140f), transform.rotation.y);
         else
             transform.rotation = Quaternion.Euler(transform.rotation.x, Random.Range(-40f, -140f), transform.rotation.y);
+         
     }
 
     // Sistem de cautare - cu optimizare . (apelata de 10 ori pe secunda in loc de ~ 60)

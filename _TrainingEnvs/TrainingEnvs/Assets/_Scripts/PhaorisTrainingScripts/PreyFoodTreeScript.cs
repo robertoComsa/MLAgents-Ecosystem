@@ -35,7 +35,7 @@ public class PreyFoodTreeScript : MonoBehaviour
     // Coroutina de activare a fructului
     IEnumerator ActivateFruit()
     {
-        yield return new WaitForSeconds(15f);
+        yield return new WaitForSeconds(3f); // 15 initial , 3 pentru Phaoris_05
         fruitMesh.enabled = true;
         ChangeTag("preyFoodTree");
     }
