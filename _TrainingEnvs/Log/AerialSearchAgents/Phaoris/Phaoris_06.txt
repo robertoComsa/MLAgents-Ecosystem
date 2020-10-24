@@ -1,0 +1,25 @@
+
+
+	Exista in continuare probleme la manevrarea agentului. Pentru Phaoris_06 am modificat urmatoarele:
+
+	(--Modificari script--)
+
+	- Am corectat formula in care *taxam* agentul pentru distanta pana la tinta cea mai apropriata , o data la 0.1 secunde.
+
+	distanceToClosestTarget apartine [-40f, 0f] cand este in afara , ia valoarea 0 , dar noi vrem sa taxam agentul chiar si atunci cand e 0 (pentru ca e in afara) (de aici noua formula)
+
+	Formula initiala: Min(-distanceToClosestTarget , 0f)/maxStep (unde maxStep = 5000) . 
+
+	Greseli: (1) Daca agentul este in afara distantei admise pentru cautare , => distanta = 0 => nu ar mai fi fost taxat desi ar fi fost mai departe decat la 38f.
+		 (2) Rata este poate prea mica ca agentul sa simta diferenta -> impartim la 500 (in loc de 5000)
+
+	Formula noua: Max(-distanceToClosestTarget , -40f)/500 
+
+	(--Modificari componenta fizica--)
+
+	- Masa agentului este acum 0.7 in loc de 0.4 (forta neschimbata)
+	- Nu mai este aplicata gravitatia asupra agentului
+
+	(--TrainerConfig--) - ca la Phaoris_05
+
+

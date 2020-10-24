@@ -291,7 +291,7 @@ public class PhaorisAgent_03 : Agent
             CheckIfFoodWasDelivered();
 
             // Aplicam -mic reward o data la 0.1s in functie de distanta pana la tinta
-            AddReward(Mathf.Min(-distanceToClosestTarget, 0f) / maxStep);
+            AddReward(Mathf.Max(-distanceToClosestTarget, -40f) / 500); // Phaoris_06 -> impartim la 500 in loc de maxStep
         }
 
         if (targetedRayPos != Vector3.zero)
