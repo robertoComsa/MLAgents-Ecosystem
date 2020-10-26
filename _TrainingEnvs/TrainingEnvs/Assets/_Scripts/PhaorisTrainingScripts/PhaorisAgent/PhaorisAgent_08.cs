@@ -41,6 +41,7 @@ public class PhaorisAgent_08 : Agent
     // Observatii legate de cea mai apropriata tinta
     Vector3 closestTargetPosition = Vector3.zero;
     float distanceToClosestTarget = 0f;
+    Vector3 closestTargetGlobalPosition = Vector3.zero;
 
     // Folosita pentru a optimiza (mai putine utilizari) ale metodei de cautare in proximitate
     float timeGap = 0f;
@@ -56,6 +57,9 @@ public class PhaorisAgent_08 : Agent
 
     // Daca a cules un fruct sau nu
     int pickedUpFruit = 0; // 0 - nu , 1 - da
+
+    // Valoarea vectorului dot dintre cioc si tinta 
+    float beakToTargetDotValue = 0f;
 
     // ------------------------------------------------- METODE (Mostenite din) AGENT -------------------------------------------- //
 
@@ -113,27 +117,30 @@ public class PhaorisAgent_08 : Agent
         // Rotatia agentului (raportat la obiectul parinte)
         AddVectorObs(gameObject.transform.localRotation.normalized); // 1 quaternion = 4 valori float
 
+        // -- 
+
         // Pozitia agentului ( raportat la obiectul parinte ) ------ ADAUGAT IN PHAORIS_04
         AddVectorObs(gameObject.transform.localPosition.normalized); // 1 vector 3 = 3 valori float
-
-        // Un vector ce indica directia *inainte* a ciocului (respectiv agent)
-        AddVectorObs(beakTip.forward.normalized); // 1 vector3 = 3 valori float
-
-        // Un vector ce indica directia de la cioc la tinta
-        Vector3 beak_to_target = closestTargetPosition - beakTip.localPosition;
-        AddVectorObs(beak_to_target.normalized); // 1 vector3 = 3 valori float
-
         // Un vector ce indica pozitia celei mai apropriate tinte (de asemenea raportata la obiectul parinte - care este comun)
         AddVectorObs(closestTargetPosition.normalized); // 1 vector3 = 3 valori float
 
+        // -- 
+
+        // Un vector ce indica directia *inainte* a ciocului (respectiv agent)
+        AddVectorObs(beakTip.forward.normalized); // 1 vector3 = 3 valori float
+        // Un vector ce indica directia de la cioc la tinta
+        Vector3 beak_to_target = closestTargetGlobalPosition - beakTip.position;
+        AddVectorObs(beak_to_target.normalized); // 1 vector3 = 3 valori float
+        // Un dot product - valori negative cand agentul e cu spatele la fructe , valori pozitive cand agentul e cu fata la fructe 
+        beakToTargetDotValue = Vector3.Dot(beakTip.forward.normalized, beak_to_target.normalized);
+        AddVectorObs(Vector3.Dot(beakTip.forward.normalized, beak_to_target.normalized)); // 1 valoare float intre [-1,1]
+
+        // --
+
         // Un int ce actioneaza ca un bool si verifica daca agentul a cules un fruct 
         AddVectorObs(pickedUpFruit); // 1 valoare int
-
         // Distanta pana la cea mai apropriata tinta
         AddVectorObs(distanceToClosestTarget / searchProximity); // 1 valoare float; impartim la searchProximity (valoarea maxima pe care o poate lua distance to closestPrey pentru normalizare)
-
-        // Un dot product - valori negative cand agentul e cu spatele la fructe , valori pozitive cand agentul e cu fata la fructe 
-        AddVectorObs(Vector3.Dot(beakTip.forward.normalized, beak_to_target.normalized)); // 1 valoare float intre [-1,1]
 
         // Total : 19 observatii numerice
 
@@ -290,8 +297,21 @@ public class PhaorisAgent_08 : Agent
             // Verificam daca agentul a terminat sarcina
             CheckIfFoodWasDelivered();
 
-            // Aplicam -mic reward o data la 0.1s in functie de distanta pana la tinta
-            AddReward(Mathf.Max(-distanceToClosestTarget, -40f) / 500); // Phaoris_06 -> impartim la 500 in loc de maxStep
+            // Phaoris_10  - Reward
+
+            if (beakToTargetDotValue != 0f)
+                AddReward(beakToTargetDotValue / 1000f);
+
+            AddReward(-distanceToClosestTarget / (searchProximity * 1000));
+
+            // AddReward(Mathf.Max(-distanceToClosestTarget, -40f) / 500); // Phaoris_06 -> impartim la 500 in loc de maxStep
+
+
+                // Aplicam -mic reward o data la 0.1s in functie de distanta pana la tinta - Eliminat pentru Phaoris_09 (inlocuit)
+                /*
+                  if(beakToTargetDotValue!=0f)
+                      AddReward((beakToTargetDotValue * distanceToClosestTarget)/1000);
+                */
         }
 
         if (targetedRayPos != Vector3.zero)
@@ -323,14 +343,16 @@ public class PhaorisAgent_08 : Agent
 
         if (targetInRadius)
         {
+            closestTargetGlobalPosition = closestTarget.transform.position;
             closestTargetPosition = closestTarget.transform.localPosition;
             distanceToClosestTarget = nearestDistance;
             targetedRayPos = closestTarget.transform.position;
         }
         else
         {
+            closestTargetGlobalPosition = Vector3.zero;
             closestTargetPosition = Vector3.zero;
-            distanceToClosestTarget = 0f;
+            distanceToClosestTarget = 40f;
             targetedRayPos = Vector3.zero;
         }
     }
@@ -345,7 +367,7 @@ public class PhaorisAgent_08 : Agent
             beakFruit.SetActive(false);
 
             // Invatare
-            SetReward(1f);
+            AddReward(1f);
             Done();
         }
     }

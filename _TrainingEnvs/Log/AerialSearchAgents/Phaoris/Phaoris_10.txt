@@ -1,0 +1,14 @@
+
+
+	Pentru Phaoris_10 am separat componentele din formula de la Phaoris_09 de reward.
+
+	--Directia ciocului inspre tinta: 
+
+	if (beakToTargetDotValue != 0f)
+                AddReward(beakToTargetDotValue / 1000f);
+
+	--Distanta fata de tinta 
+
+        AddReward(-distanceToClosestTarget / (searchProximity * 1000));
+
+	

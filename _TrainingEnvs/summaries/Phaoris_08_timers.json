@@ -1,0 +1,147 @@
+{
+  "name": "root",
+  "gauges": [
+    {
+      "name": "PhaorisLearning.mean_reward",
+      "value": -1.9739567569704377,
+      "min": -20.892240971326828,
+      "max": 0.7193930515786633,
+      "count": 483
+    }
+  ],
+  "total": 7791.5428666,
+  "count": 1,
+  "self": 207.43178429987347,
+  "children": [
+    {
+      "name": "TrainerController.advance",
+      "total": 7584.111082300126,
+      "count": 555669,
+      "self": 10.982504000004155,
+      "children": [
+        {
+          "name": "env_step",
+          "total": 6214.036853500164,
+          "count": 555669,
+          "self": 5530.452711800672,
+          "children": [
+            {
+              "name": "SubprocessEnvManager._take_step",
+              "total": 673.5272626996453,
+              "count": 555669,
+              "self": 27.264054099686632,
+              "children": [
+                {
+                  "name": "PPOPolicy.evaluate",
+                  "total": 646.2632085999587,
+                  "count": 555669,
+                  "self": 646.2632085999587
+                }
+              ]
+            },
+            {
+              "name": "workers",
+              "total": 10.056878999847497,
+              "count": 555669,
+              "self": 0.0,
+              "children": [
+                {
+                  "name": "worker_root",
+                  "total": 7774.528646200076,
+                  "count": 555669,
+                  "is_parallel": true,
+                  "self": 3043.2472794998785,
+                  "children": [
+                    {
+                      "name": "batched_step_result_from_proto",
+                      "total": 0.001979799999999088,
+                      "count": 1,
+                      "is_parallel": true,
+                      "self": 0.00018589999999818474,
+                      "children": [
+                        {
+                          "name": "_process_vector_observation",
+                          "total": 0.001793900000000903,
+                          "count": 5,
+                          "is_parallel": true,
+                          "self": 0.001793900000000903
+                        }
+                      ]
+                    },
+                    {
+                      "name": "UnityEnvironment.step",
+                      "total": 4731.279386900197,
+                      "count": 555669,
+                      "is_parallel": true,
+                      "self": 111.4814889995323,
+                      "children": [
+                        {
+                          "name": "UnityEnvironment._generate_step_input",
+                          "total": 83.6984875003441,
+                          "count": 555669,
+                          "is_parallel": true,
+                          "self": 83.6984875003441
+                        },
+                        {
+                          "name": "communicator.exchange",
+                          "total": 4050.409829400169,
+                          "count": 555669,
+                          "is_parallel": true,
+                          "self": 4050.409829400169
+                        },
+                        {
+                          "name": "batched_step_result_from_proto",
+                          "total": 485.68958100015124,
+                          "count": 555669,
+                          "is_parallel": true,
+                          "self": 62.82862730022987,
+                          "children": [
+                            {
+                              "name": "_process_vector_observation",
+                              "total": 422.86095369992137,
+                              "count": 2778345,
+                              "is_parallel": true,
+                              "self": 422.86095369992137
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "trainer_advance",
+          "total": 1359.0917247999578,
+          "count": 555669,
+          "self": 30.549275299874353,
+          "children": [
+            {
+              "name": "process_trajectory",
+              "total": 298.96853160007686,
+              "count": 555669,
+              "self": 298.96853160007686
+            },
+            {
+              "name": "_update_policy",
+              "total": 1029.5739179000066,
+              "count": 481,
+              "self": 471.01093159999607,
+              "children": [
+                {
+                  "name": "PPOPolicy.update",
+                  "total": 558.5629863000105,
+                  "count": 7215,
+                  "self": 558.5629863000105
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

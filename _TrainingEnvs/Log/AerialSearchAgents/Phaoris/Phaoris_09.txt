@@ -1,0 +1,23 @@
+
+	
+	Observatii : cele legate de cioc sunt acum la nivel global. 
+
+	vectorul de la tinta la cioc se realizeaza cu pozitia globala a tintei. 
+
+	Pentru un rezultat mai bun al dot product-ului. 
+
+	Am modificat si functia de reward . acm reward-ul primit o data la 0.1s este astfel:
+
+	AddReward(beakToTargetDotValue/distanceToClosestTarget)
+
+	beakToTargetDotValue : ia valori intre -1 si 1. 
+
+	1 . cand pasarea are ciocul direct indreptat spre cea mai apropriata tinta
+	-1 cand pasarea are ciocul in directia strict opusa 
+	(-1,1) intre. 
+
+	distanceToClosestTarget : ia valori intre 40 si 0 
+
+	Practic aceasta noua *functie de reward* (pe langa penalizarile pe coliziuni)
+
+	Incurajeaza agentul sa se aproprie de tinta , dar cu ciocul indreptat spre ea 
