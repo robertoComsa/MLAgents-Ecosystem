@@ -1,0 +1,6 @@
+
+	Dupa antrenamentul pentru Phaoris_07 am realizat ca task-ul deplasarii nu este unul chiar usor pentru agent.
+	Efectuand teste am realizat ca modul de miscare este putin nenatural deoarece nu exista nici o rezistenta fizica aplicata corpului (deoarece am eliminat gravitatea)
+	Prin urmare , o data pus in miscare agentul se poate opri doar prin selectarea miscarii in sens opus pana calibreaza velocitatea corpului fizic la 0. (aproximativ)
+
+	Asa ca am adaugat Drag ( - rezistenta a aerului ) aplicata asupra corpului , si intr-adevar sarcina de miscare devine mai usoara si pentru un utilizator uman.
