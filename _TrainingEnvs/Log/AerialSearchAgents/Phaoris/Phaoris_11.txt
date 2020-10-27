@@ -1,0 +1,10 @@
+
+	Phaoris 10 reuseste sa duca sarcina la bun sfarsit , chiar foarte rapid (sanse sa avem overfitting)
+
+	  Pentru Phaoris_11 voi continua antrenamentul inca 1.5m de pasi pe creierul Phaoris_10 
+	(maxSteps: 6.5e6 -> in trainer_config.yaml + adaugam --load la comanda de antrenare) 
+
+	cu urmatoarele modificari aduse antrenamentului: 
+
+	-> Acum instantiem agentul si cu spatele la fructe 
+	-> Fructele mai mici (Planta.size (2,2,2) -> (1.5 , 1.5 , 1.5) + Fructe.zise/1.5
