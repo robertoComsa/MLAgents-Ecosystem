@@ -379,7 +379,7 @@ public class PhaorisAgent_08 : Agent
     {
         if (other.CompareTag("boundary"))
         {
-            SetReward(-1f);
+            AddReward(-0.5f);
             Done();
         }
 

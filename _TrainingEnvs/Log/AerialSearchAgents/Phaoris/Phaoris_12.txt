@@ -1,0 +1,13 @@
+
+	Pentru aceasta versiune am modificat copacul , care acum contine crengi 
+	de care agentul se poate atinge . 
+
+	La coliziunea cu o astfel de creanga agentul este penaliza cu 0.5f reward si se
+	apeleaza Done(); 
+
+	Penalizare in loc de Set reward pentru ca agentul poate culege un fruct si apoi 
+	sa intre in contact cu o creanga. 
+
+	De la 6.5m de pasi vom antrena pana la 9m. 
+
+	Exista backup pentru Phaoris_11 in caz ca vrem sa pornim tot de acolo cu antrenarea
