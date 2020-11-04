@@ -26,6 +26,11 @@ public class PhaorisAgent_08 : Agent
     [Header("Spatiu de antrenare")]
     [Tooltip("Componenta transform a spatiului de antrenare")] [SerializeField] Transform trainingGround = null;
 
+    [Header("Sistem de instantiere")]
+    [Tooltip("Verifica versiunea agentului")] [SerializeField] bool isPhaoris13plus = false;
+    // Pozitiile in care agentul de v13+ poate fi instantiat
+    [Header("Pozitiile de instantiere")] [SerializeField] private Vector3[] positions = null;
+
     //  ---------------------------------------------------------- VARIABILE ----------------------------------------------------- //
 
     // Componenta rigidBody (ne permita sa aplicam manevre fizice)
@@ -254,20 +259,28 @@ public class PhaorisAgent_08 : Agent
 
     void ResetAgentPosition()
     {
-        // Resetarea pozitiei - Inaltime aleatorie (axa y) - Una dintre 3 pozitii (axele x,z) 
-        int posIndex = Random.Range(0, 3);
-        switch (posIndex)
+        if(isPhaoris13plus == false)
         {
-            case 0:
-                gameObject.transform.position = new Vector3(trainingGround.position.x - 29f, Random.Range(4.5f, 12f), trainingGround.position.z - 16.5f);
-                break;
-            case 1:
-                gameObject.transform.position = new Vector3(trainingGround.position.x - 27f, Random.Range(4.5f, 12f), trainingGround.position.z - 9f);
-                break;
-            case 2:
-                gameObject.transform.position = new Vector3(trainingGround.position.x - 27f, Random.Range(4.5f, 12f), trainingGround.position.z - 25.5f);
-                break;
+            // Resetarea pozitiei - Inaltime aleatorie (axa y) - Una dintre 3 pozitii (axele x,z) 
+            int posIndex = Random.Range(0, 3);
+            switch (posIndex)
+            {
+                case 0:
+                    gameObject.transform.position = new Vector3(trainingGround.position.x - 29f, Random.Range(4.5f, 12f), trainingGround.position.z - 16.5f);
+                    break;
+                case 1:
+                    gameObject.transform.position = new Vector3(trainingGround.position.x - 27f, Random.Range(4.5f, 12f), trainingGround.position.z - 9f);
+                    break;
+                case 2:
+                    gameObject.transform.position = new Vector3(trainingGround.position.x - 27f, Random.Range(4.5f, 12f), trainingGround.position.z - 25.5f);
+                    break;
+            }
         }
+        else
+        {
+            transform.localPosition = positions[Random.Range(0, positions.Length)];
+        }
+        
 
         // Rotatie aleatorie 
         int rotationIndex = Random.Range(0, 3); 

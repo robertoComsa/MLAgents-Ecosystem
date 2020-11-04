@@ -1,0 +1,6 @@
+
+	Pentru acest model vom continua antrenamentul de la Ph_13 inca 7m de pasi.
+
+	Am modificat sistemul de istantiere atat al agentului cat si al helperului (doar copacul ramane in mijloc)
+
+	
