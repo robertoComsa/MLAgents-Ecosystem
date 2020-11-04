@@ -1,0 +1,9 @@
+
+	Sarcina de la Phaoris_12 a fost prea complicata pentru observatiile pe care le primeste agentul
+
+	Asa ca am modificat din nou copacul:
+
+	-> Agentul nu mai poate intra in coliziune cu crengile.
+	-> Acum poate intra decat cu trunchiul copacului , care este insa mai gros . (Pentru a putea fi observat de raycasturi) 
+
+	Voi incarca modelul Phaoris_11 cu limita de antrenare (pe aceasta noua sarcina) pana la 10m de pasi.
