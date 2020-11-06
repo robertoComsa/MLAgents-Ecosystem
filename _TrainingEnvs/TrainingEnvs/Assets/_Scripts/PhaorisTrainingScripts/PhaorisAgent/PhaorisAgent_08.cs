@@ -313,9 +313,14 @@ public class PhaorisAgent_08 : Agent
             // Phaoris_10  - Reward
 
             if (beakToTargetDotValue != 0f)
-                AddReward(beakToTargetDotValue / 1000f);
+                AddReward(beakToTargetDotValue / 500f);
 
-            AddReward(-distanceToClosestTarget / (searchProximity * 1000));
+            // Adaugat pentru Phaoris_15 
+            if (gameObject.transform.position.y <= 4f)
+                AddReward(-0.01f);
+
+            // --------- Eliminat in Phaoris_15
+            // AddReward(-distanceToClosestTarget / (searchProximity * 1000));
 
             // AddReward(Mathf.Max(-distanceToClosestTarget, -40f) / 500); // Phaoris_06 -> impartim la 500 in loc de maxStep
 
@@ -380,8 +385,21 @@ public class PhaorisAgent_08 : Agent
             beakFruit.SetActive(false);
 
             // Invatare
-            AddReward(1f);
-            Done();
+            AddReward(0.1f); 
+            //Done(); - Eliminat pentru Phaoris_15
+            
+            // ------- Phaoris_15 
+
+            // Reseteaza tag 
+            ChangeTargetTag("preyFoodTree");
+            // Reseteaza pozitia helperului
+            helper.ResetPosition();
+            // Roteste copac 
+            plant.RotateFoodPlant();
+            // Reseteaza picked up fruit
+            pickedUpFruit = 0;
+            // Schimba culoarea razei
+            rayColor = Color.cyan;
         }
     }
 
@@ -405,7 +423,7 @@ public class PhaorisAgent_08 : Agent
             {
                 if (pickedUpFruit == 0)
                 {
-                    AddReward(1f);
+                    AddReward(0.1f);
                     ChangeTargetTag("helper");
                     rayColor = Color.yellow;
                     pickedUpFruit = 1;

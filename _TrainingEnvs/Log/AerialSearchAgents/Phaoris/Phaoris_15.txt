@@ -1,0 +1,22 @@
+
+
+	Pentru aceasta versiune doresc sa intaresc comportamentul agentului. Inca nu am reusit sa-l fac sa evite trunchiul copacului deci 
+	acest antrenament va rula cu trunchiul ca trigger. 
+
+	Modificari aduse:
+
+	-> Am vrut sa pun mai mult accent pe faptul ca ciocul agentului trebuie sa fie indreptat spre tinta , asadar am eliminat -reward 
+	pentru distanta fata de tinta , am intarit -rewardul pentru cioc spre tinta (crescand astfel magnitudinea) si am scazut viteza
+	de miscare a agentului pentru a petrece mai mult timp intre rezolvarea sarcinilor (cules / livrare fruct)
+
+	-> Acum nu se reseteaza episodul atunci cand agentul *livreaza* hrana , ci doar helperul este 
+	reasezat in scena iar agentul revine la cautarea hrainei. 
+
+	-> Rewardul pentru sarcini ( cules / livrare fruct ) este acum 0.1f in loc de 1f
+
+	-> De asemenea distanta de livrare redusa de la 8 la 6 + am adaugat -reward 0.01 la 0.1 s (-0.1/s) la fiecare check in care 
+	agentul este la o inaltime mai mica de 4f fata de sol (vreau sa corectez aproprierea agentului de sol atunci cand merge spre helper)
+
+	Antrenare 5m de pasi (de la 20m la 25m)
+
+	

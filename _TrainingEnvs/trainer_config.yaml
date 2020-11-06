@@ -98,4 +98,4 @@ PhaorisLearning:
     buffer_size: 10240          
     hidden_units: 256           
     num_layers: 3     
-    max_steps: 20.0e6
+    max_steps: 25.0e6
