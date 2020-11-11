@@ -149,8 +149,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3896200653237102064}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6, y: 0, z: -6}
-  m_LocalScale: {x: 0.3, y: 0.8, z: 0.3}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_Children:
   - {fileID: 5649400875648004570}
   - {fileID: 3223762255305306146}
@@ -277,6 +277,6 @@ MonoBehaviour:
   notMatedColor: {fileID: 2100000, guid: 5390b06dd5daaac48921e9165574f72f, type: 2}
   MatedColor: {fileID: 2100000, guid: 8de7a01eb4aef4e4e9e55e1b12256e17, type: 2}
   mulakPrefab: {fileID: 3896200653237102064}
-  trainingArea: {fileID: 0}
+  parentComponent: {fileID: 0}
   flowerPrefab: {fileID: 6601563190140889427, guid: 8b30768fe02a0fb4a9a4c4c4d1ad41a7,
     type: 3}

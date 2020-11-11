@@ -15,12 +15,55 @@ public class TerestrialHeliosAgent : TerestrialSearchAgent
         RenameTag("prey");
     }
 
+    Vector3 toClosestTarget = Vector3.zero;
+
     public override void CollectObservations()
     {
         base.CollectObservations();
 
-        Vector3 toClosestTarget = closestTargetPosition - gameObject.transform.localPosition;
+        toClosestTarget = closestTargetPosition - gameObject.transform.localPosition;
         // Un produs dot intre directia in care se uita agentul si directia in care se afla cea mai apropriata tinta
         AddVectorObs(Vector3.Dot(gameObject.transform.forward.normalized, toClosestTarget.normalized)); // 1 valoare float
+    }
+
+    // --- Reward system for Heliosv3_02 training in Big Environment
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if(other.gameObject.CompareTag("prey"))
+            AddReward(0.5f);
+
+        if(other.gameObject.CompareTag("boundary"))
+        {
+            AddReward(-0.5f);
+            AgentReset();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("boundary"))
+        {
+            AddReward(-0.5f);
+            AgentReset();
+        }
+    }
+
+    protected override void OptimizedCheckInRadius(Color rayColor)
+    {
+        if (Time.time - timeGap >= 0.1f)
+        {
+            CheckTargetInProximity();
+            timeGap = Time.time;
+
+            // Reward pentru directia in care se uita agentul ( 1 - maxim cand se uita direct la tinta , -1 - minim cand se uita in directia opusa)
+            AddReward(0.1f * Vector3.Dot(gameObject.transform.forward.normalized, toClosestTarget.normalized));
+
+            // Reward pentru distanta fata de tinta.
+            AddReward( -0.1f * distanceToClosestTarget/searchProximity );
+        }
+
+        if (targetedRayPos != Vector3.zero)
+            Debug.DrawLine(transform.position, targetedRayPos, rayColor);
     }
 }

@@ -13,7 +13,7 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
 
     [Header("Variabile folosite pentru reproducere")]
     [Tooltip("Prefab mulak")] [SerializeField] protected GameObject mulakPrefab = null;
-    [Tooltip("Transformul parintelui")] [SerializeField] protected Transform trainingArea = null;
+    [Tooltip("Transformul parintelui")] [SerializeField] protected Transform parentComponent = null;
 
     [Header("Prefab pentru floare (hrana Galvadon)")]
     [SerializeField] protected GameObject flowerPrefab = null;
@@ -202,7 +202,8 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
         }
         if (other.gameObject.CompareTag("predator"))
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            AgentReset();
         }
         if (other.gameObject.CompareTag("helper") && other.gameObject.GetComponent<TerestrialGalvadonAgent>().GetCarryingFood() == true)
         {
@@ -249,7 +250,7 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
     {
         yield return new WaitForSeconds(secondsToResetMating - 4f); // Vrem sa multiplicam agentul inainte ca acesta sa fie gata de imperechere
         Quaternion newRotation = Quaternion.Euler(transform.rotation.x, Random.Range(0f, 360f), transform.rotation.z);
-        GameObject mulakChild = Instantiate(mulakPrefab, gameObject.transform.position - new Vector3(0f, 0f, -1.4f), newRotation, trainingArea);
+        GameObject mulakChild = Instantiate(mulakPrefab, gameObject.transform.position - new Vector3(0f, 0f, -1.4f), newRotation, parentComponent);
         mulakChild.GetComponent<TerestrialMulakAgent>().BirthInitialize();
     }
 
@@ -260,7 +261,7 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
         float waitTime = Random.Range(2f, 4f);  // 3 si 6 initial
         yield return new WaitForSeconds(waitTime);
         Quaternion newRotation = Quaternion.Euler(transform.rotation.x, Random.Range(0f, 360f), transform.rotation.z);
-        Instantiate(flowerPrefab, gameObject.transform.position - new Vector3(0f, 0f, -1.4f), newRotation, trainingArea);
+        Instantiate(flowerPrefab, gameObject.transform.position - new Vector3(0f, 0f, -1.4f), newRotation, parentComponent);
     }
 
     // Initializare pentru agentii instantiati prin multiplicare

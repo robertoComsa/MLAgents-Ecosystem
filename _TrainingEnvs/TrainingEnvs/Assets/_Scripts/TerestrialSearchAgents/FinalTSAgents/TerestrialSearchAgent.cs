@@ -115,7 +115,7 @@ public class TerestrialSearchAgent : Agent
     // Cod aplicat la inceputul unui episod (MaxStep = 0 = infinit -> nu va mai folosi resetare)
     public override void AgentReset()
     {
-        PlaceRandomly(6f);
+        PlaceRandomly(0f);
     }
 
     // -------------------------------------------------------- METODE ------------------------------------------------------- //
@@ -179,7 +179,7 @@ public class TerestrialSearchAgent : Agent
         else
         {
             closestTargetPosition = Vector3.zero;
-            distanceToClosestTarget = 0f;
+            distanceToClosestTarget = searchProximity;
             targetedRayPos = Vector3.zero;
         }
     }

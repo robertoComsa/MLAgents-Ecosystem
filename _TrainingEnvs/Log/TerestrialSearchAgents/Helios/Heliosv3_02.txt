@@ -1,0 +1,15 @@
+
+	Acest model este antrenat prin (--load) incarcarea modelului Heliosv3_01 pe o un spatiu de antrenare mai mare , 
+	unde agentul intampina dificultati in gasirea tintei. 
+
+	Punem accent pe imbunatatirea cautarii.
+
+	Schimbarile aduse sunt la functia de reward: 
+
+	-> +0.5 la coliziunea cu un erbivor
+	-> -0.5 la coliziunea cu elemente boundary (pereti , baza copacilor)
+	-> O data la 0.1s (de 10 ori pe secunda) avem:
+		==> +0.1 * x ce apartine [-1,1] unde x ia valoarea maxima cand agentul se uita direct la tinta
+						       ia valoarea minima cand agentul se uita in directia opusa
+		
+		==> -0.1 * x ce apartine (0,1] unde x reprezinta distanta (normalizata) pana la tinta

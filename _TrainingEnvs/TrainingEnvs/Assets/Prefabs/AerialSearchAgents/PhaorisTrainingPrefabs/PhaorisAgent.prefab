@@ -971,6 +971,9 @@ MonoBehaviour:
   beakTip: {fileID: 3118564890626384546}
   beakTipRadius: 0.05
   beakFruit: {fileID: 0}
+  plant: {fileID: 0}
+  helper: {fileID: 0}
+  trainingGround: {fileID: 0}
 --- !u!114 &971475512877950635
 MonoBehaviour:
   m_ObjectHideFlags: 0
