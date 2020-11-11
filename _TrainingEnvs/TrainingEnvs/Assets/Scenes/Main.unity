@@ -124,6 +124,16 @@ PrefabInstance:
       propertyPath: maxStep
       value: 5000
       objectReference: {fileID: 0}
+    - target: {fileID: 5633133631171447427, guid: c936e83f287ecac4890ca801a22db095,
+        type: 3}
+      propertyPath: searchProximity
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5633133631171447427, guid: c936e83f287ecac4890ca801a22db095,
+        type: 3}
+      propertyPath: preysParentTransform
+      value: 
+      objectReference: {fileID: 975598955}
     - target: {fileID: 6857172273098847144, guid: c936e83f287ecac4890ca801a22db095,
         type: 3}
       propertyPath: m_Name
@@ -184,6 +194,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7055746663470240565, guid: c936e83f287ecac4890ca801a22db095,
+        type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 11400000, guid: 00593e8edcab8574d8c2ad37a3015abc,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c936e83f287ecac4890ca801a22db095, type: 3}
 --- !u!1001 &85715976
@@ -419,7 +435,7 @@ PrefabInstance:
     - target: {fileID: 3896200653237102076, guid: 3e65835305259c142b46b4c0783fdd98,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -143.6
+      value: -142.4
       objectReference: {fileID: 0}
     - target: {fileID: 3896200653237102076, guid: 3e65835305259c142b46b4c0783fdd98,
         type: 3}
@@ -474,7 +490,7 @@ PrefabInstance:
     - target: {fileID: 5612542576696612028, guid: 3e65835305259c142b46b4c0783fdd98,
         type: 3}
       propertyPath: searchProximity
-      value: 100
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 5612542576696612028, guid: 3e65835305259c142b46b4c0783fdd98,
         type: 3}
@@ -896,7 +912,7 @@ PrefabInstance:
     - target: {fileID: 5612542576696612028, guid: 3e65835305259c142b46b4c0783fdd98,
         type: 3}
       propertyPath: searchProximity
-      value: 100
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 5612542576696612028, guid: 3e65835305259c142b46b4c0783fdd98,
         type: 3}
@@ -958,6 +974,16 @@ PrefabInstance:
       propertyPath: maxStep
       value: 5000
       objectReference: {fileID: 0}
+    - target: {fileID: 5633133631171447427, guid: c936e83f287ecac4890ca801a22db095,
+        type: 3}
+      propertyPath: searchProximity
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5633133631171447427, guid: c936e83f287ecac4890ca801a22db095,
+        type: 3}
+      propertyPath: preysParentTransform
+      value: 
+      objectReference: {fileID: 975598955}
     - target: {fileID: 6857172273098847144, guid: c936e83f287ecac4890ca801a22db095,
         type: 3}
       propertyPath: m_Name
@@ -1018,6 +1044,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7055746663470240565, guid: c936e83f287ecac4890ca801a22db095,
+        type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 11400000, guid: 00593e8edcab8574d8c2ad37a3015abc,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c936e83f287ecac4890ca801a22db095, type: 3}
 --- !u!4 &546764648 stripped
@@ -1106,7 +1138,7 @@ PrefabInstance:
     - target: {fileID: 5612542576696612028, guid: 3e65835305259c142b46b4c0783fdd98,
         type: 3}
       propertyPath: searchProximity
-      value: 100
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 5612542576696612028, guid: 3e65835305259c142b46b4c0783fdd98,
         type: 3}
@@ -1288,7 +1320,7 @@ PrefabInstance:
     - target: {fileID: 5612542576696612028, guid: 3e65835305259c142b46b4c0783fdd98,
         type: 3}
       propertyPath: searchProximity
-      value: 100
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 5612542576696612028, guid: 3e65835305259c142b46b4c0783fdd98,
         type: 3}
@@ -1437,6 +1469,16 @@ PrefabInstance:
       propertyPath: maxStep
       value: 5000
       objectReference: {fileID: 0}
+    - target: {fileID: 5633133631171447427, guid: c936e83f287ecac4890ca801a22db095,
+        type: 3}
+      propertyPath: searchProximity
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5633133631171447427, guid: c936e83f287ecac4890ca801a22db095,
+        type: 3}
+      propertyPath: preysParentTransform
+      value: 
+      objectReference: {fileID: 975598955}
     - target: {fileID: 6857172273098847144, guid: c936e83f287ecac4890ca801a22db095,
         type: 3}
       propertyPath: m_Name
@@ -1497,6 +1539,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7055746663470240565, guid: c936e83f287ecac4890ca801a22db095,
+        type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 11400000, guid: 00593e8edcab8574d8c2ad37a3015abc,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c936e83f287ecac4890ca801a22db095, type: 3}
 --- !u!1 &757917317
@@ -1616,7 +1664,7 @@ PrefabInstance:
     - target: {fileID: 3896200653237102076, guid: 3e65835305259c142b46b4c0783fdd98,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -96.03001
+      value: -94.829994
       objectReference: {fileID: 0}
     - target: {fileID: 3896200653237102076, guid: 3e65835305259c142b46b4c0783fdd98,
         type: 3}
@@ -1671,7 +1719,7 @@ PrefabInstance:
     - target: {fileID: 5612542576696612028, guid: 3e65835305259c142b46b4c0783fdd98,
         type: 3}
       propertyPath: searchProximity
-      value: 100
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 5612542576696612028, guid: 3e65835305259c142b46b4c0783fdd98,
         type: 3}
@@ -1771,7 +1819,7 @@ PrefabInstance:
     - target: {fileID: 5612542576696612028, guid: 3e65835305259c142b46b4c0783fdd98,
         type: 3}
       propertyPath: searchProximity
-      value: 100
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 5612542576696612028, guid: 3e65835305259c142b46b4c0783fdd98,
         type: 3}
@@ -1871,7 +1919,7 @@ PrefabInstance:
     - target: {fileID: 5612542576696612028, guid: 3e65835305259c142b46b4c0783fdd98,
         type: 3}
       propertyPath: searchProximity
-      value: 100
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 5612542576696612028, guid: 3e65835305259c142b46b4c0783fdd98,
         type: 3}
@@ -2105,6 +2153,16 @@ PrefabInstance:
       propertyPath: maxStep
       value: 5000
       objectReference: {fileID: 0}
+    - target: {fileID: 5633133631171447427, guid: c936e83f287ecac4890ca801a22db095,
+        type: 3}
+      propertyPath: searchProximity
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5633133631171447427, guid: c936e83f287ecac4890ca801a22db095,
+        type: 3}
+      propertyPath: preysParentTransform
+      value: 
+      objectReference: {fileID: 975598955}
     - target: {fileID: 6857172273098847144, guid: c936e83f287ecac4890ca801a22db095,
         type: 3}
       propertyPath: m_Name
@@ -2165,6 +2223,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7055746663470240565, guid: c936e83f287ecac4890ca801a22db095,
+        type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 11400000, guid: 00593e8edcab8574d8c2ad37a3015abc,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c936e83f287ecac4890ca801a22db095, type: 3}
 --- !u!1 &1067819144
@@ -2408,7 +2472,7 @@ PrefabInstance:
     - target: {fileID: 5612542576696612028, guid: 3e65835305259c142b46b4c0783fdd98,
         type: 3}
       propertyPath: searchProximity
-      value: 100
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 5612542576696612028, guid: 3e65835305259c142b46b4c0783fdd98,
         type: 3}
@@ -2532,6 +2596,16 @@ PrefabInstance:
       propertyPath: maxStep
       value: 5000
       objectReference: {fileID: 0}
+    - target: {fileID: 5633133631171447427, guid: c936e83f287ecac4890ca801a22db095,
+        type: 3}
+      propertyPath: searchProximity
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5633133631171447427, guid: c936e83f287ecac4890ca801a22db095,
+        type: 3}
+      propertyPath: preysParentTransform
+      value: 
+      objectReference: {fileID: 975598955}
     - target: {fileID: 6857172273098847144, guid: c936e83f287ecac4890ca801a22db095,
         type: 3}
       propertyPath: m_Name
@@ -2592,6 +2666,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7055746663470240565, guid: c936e83f287ecac4890ca801a22db095,
+        type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 11400000, guid: 00593e8edcab8574d8c2ad37a3015abc,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c936e83f287ecac4890ca801a22db095, type: 3}
 --- !u!1001 &1176461937
@@ -2674,7 +2754,7 @@ PrefabInstance:
     - target: {fileID: 5612542576696612028, guid: 3e65835305259c142b46b4c0783fdd98,
         type: 3}
       propertyPath: searchProximity
-      value: 100
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 5612542576696612028, guid: 3e65835305259c142b46b4c0783fdd98,
         type: 3}
@@ -2854,7 +2934,7 @@ PrefabInstance:
     - target: {fileID: 5612542576696612028, guid: 3e65835305259c142b46b4c0783fdd98,
         type: 3}
       propertyPath: searchProximity
-      value: 100
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 5612542576696612028, guid: 3e65835305259c142b46b4c0783fdd98,
         type: 3}
@@ -2899,7 +2979,7 @@ PrefabInstance:
     - target: {fileID: 3896200653237102076, guid: 3e65835305259c142b46b4c0783fdd98,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -115.560005
+      value: -114.36
       objectReference: {fileID: 0}
     - target: {fileID: 3896200653237102076, guid: 3e65835305259c142b46b4c0783fdd98,
         type: 3}
@@ -2941,6 +3021,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3896200653237102078, guid: 3e65835305259c142b46b4c0783fdd98,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5612542576696612028, guid: 3e65835305259c142b46b4c0783fdd98,
         type: 3}
       propertyPath: trainingArea
@@ -2954,7 +3039,7 @@ PrefabInstance:
     - target: {fileID: 5612542576696612028, guid: 3e65835305259c142b46b4c0783fdd98,
         type: 3}
       propertyPath: searchProximity
-      value: 100
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 5612542576696612028, guid: 3e65835305259c142b46b4c0783fdd98,
         type: 3}
@@ -3372,6 +3457,16 @@ PrefabInstance:
       propertyPath: maxStep
       value: 5000
       objectReference: {fileID: 0}
+    - target: {fileID: 5633133631171447427, guid: c936e83f287ecac4890ca801a22db095,
+        type: 3}
+      propertyPath: searchProximity
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5633133631171447427, guid: c936e83f287ecac4890ca801a22db095,
+        type: 3}
+      propertyPath: preysParentTransform
+      value: 
+      objectReference: {fileID: 975598955}
     - target: {fileID: 6857172273098847144, guid: c936e83f287ecac4890ca801a22db095,
         type: 3}
       propertyPath: m_Name
@@ -3432,6 +3527,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7055746663470240565, guid: c936e83f287ecac4890ca801a22db095,
+        type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 11400000, guid: 00593e8edcab8574d8c2ad37a3015abc,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c936e83f287ecac4890ca801a22db095, type: 3}
 --- !u!4 &1980298847 stripped
@@ -3526,7 +3627,7 @@ PrefabInstance:
     - target: {fileID: 5612542576696612028, guid: 3e65835305259c142b46b4c0783fdd98,
         type: 3}
       propertyPath: searchProximity
-      value: 100
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 5612542576696612028, guid: 3e65835305259c142b46b4c0783fdd98,
         type: 3}
@@ -3558,6 +3659,16 @@ PrefabInstance:
       propertyPath: maxStep
       value: 5000
       objectReference: {fileID: 0}
+    - target: {fileID: 5633133631171447427, guid: c936e83f287ecac4890ca801a22db095,
+        type: 3}
+      propertyPath: searchProximity
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5633133631171447427, guid: c936e83f287ecac4890ca801a22db095,
+        type: 3}
+      propertyPath: preysParentTransform
+      value: 
+      objectReference: {fileID: 975598955}
     - target: {fileID: 6857172273098847144, guid: c936e83f287ecac4890ca801a22db095,
         type: 3}
       propertyPath: m_Name
@@ -3618,6 +3729,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7055746663470240565, guid: c936e83f287ecac4890ca801a22db095,
+        type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 11400000, guid: 00593e8edcab8574d8c2ad37a3015abc,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c936e83f287ecac4890ca801a22db095, type: 3}
 --- !u!4 &2125887211 stripped

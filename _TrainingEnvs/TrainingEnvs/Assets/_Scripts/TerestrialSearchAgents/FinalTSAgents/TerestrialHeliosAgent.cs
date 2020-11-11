@@ -66,4 +66,17 @@ public class TerestrialHeliosAgent : TerestrialSearchAgent
         if (targetedRayPos != Vector3.zero)
             Debug.DrawLine(transform.position, targetedRayPos, rayColor);
     }
+
+    // --- SISTEM DE REINSTANTIERE ERBIVORE 
+    /*
+    [SerializeField] Transform preysParentTransform = null; 
+
+    public override void AgentReset()
+    {
+        base.AgentReset();
+        for (int j = 0; j < preysParentTransform.childCount; j++)
+           if (preysParentTransform.GetChild(j).gameObject.activeSelf == false)
+               preysParentTransform.GetChild(j).gameObject.SetActive(true);      
+    }
+    */
 }

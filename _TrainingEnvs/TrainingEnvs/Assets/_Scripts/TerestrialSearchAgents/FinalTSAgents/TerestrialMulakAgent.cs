@@ -202,14 +202,14 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
         }
         if (other.gameObject.CompareTag("predator"))
         {
-            //Destroy(gameObject);
-            AgentReset();
+            Destroy(gameObject);
         }
         if (other.gameObject.CompareTag("helper") && other.gameObject.GetComponent<TerestrialGalvadonAgent>().GetCarryingFood() == true)
         {
             StartCoroutine(MakeFlower());
         }
     }
+
 
     // ---------------------------------------------------- METODE MULAK ------------------------------------------------ //
 
