@@ -60,7 +60,7 @@ MulakLearning:
     buffer_size: 10240          
     hidden_units: 256           
     num_layers: 4               
-    max_steps: 5.0e6
+    max_steps: 7.0e6
 
 GalvadonEatLearning:
     summary_freq: 5000         

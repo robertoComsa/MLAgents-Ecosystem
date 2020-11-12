@@ -10,6 +10,7 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
     [Header("Parametrii imperechere")]
     [Tooltip("Culoarea agentilor neimperecheati")] [SerializeField] protected Material notMatedColor = null;
     [Tooltip("Culoarea agentilor imperecheati")] [SerializeField] protected Material MatedColor = null;
+    [Tooltip("Distanta necesara pentru imperechere")] [SerializeField] protected float mateProximity = 0f;
 
     [Header("Variabile folosite pentru reproducere")]
     [Tooltip("Prefab mulak")] [SerializeField] protected GameObject mulakPrefab = null;
@@ -115,6 +116,7 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
         base.AgentReset();
         isMated = false;
         agentColor.material = notMatedColor;
+        isGrounded = true;
     }
 
     // -------------------------------------------------------- METODE (Mostenite din) TERESTRIAL SEARCH AGENT ------------------------------------------- //
@@ -166,7 +168,7 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
             else
             {
                 closestTargetPosition = Vector3.zero;
-                distanceToClosestTarget = 0f;
+                distanceToClosestTarget = searchProximity;
                 targetedRayPos = Vector3.zero;
             }
         }
@@ -179,6 +181,12 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
         {
             CheckTargetInProximity();
             timeGap = Time.time;
+
+            // Reward pentru directia in care se uita agentul ( 1 - maxim cand se uita direct la tinta , -1 - minim cand se uita in directia opusa)
+            AddReward(0.01f * Vector3.Dot(gameObject.transform.forward.normalized, toClosestTarget.normalized));
+
+            // Reward pentru distanta fata de tinta.
+            AddReward(-0.01f * distanceToClosestTarget / searchProximity);
         }
 
         if (targetedRayPos != Vector3.zero && isMated != true)
@@ -197,17 +205,22 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Ground"))
-        {
             isGrounded = true;
-        }
+
         if (other.gameObject.CompareTag("predator"))
-        {
-            Destroy(gameObject);
+        {   //Destroy(gameObject);
+            SetReward(-1f);
+            Done();
         }
+
+        if (other.gameObject.CompareTag("boundary"))
+        {
+            AddReward(-0.5f);
+            AgentReset();
+        }
+
         if (other.gameObject.CompareTag("helper") && other.gameObject.GetComponent<TerestrialGalvadonAgent>().GetCarryingFood() == true)
-        {
             StartCoroutine(MakeFlower());
-        }
     }
 
 
@@ -217,11 +230,14 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
     // Reprezinta a 3-a actiune pe care o poate lua agentul si anume de a se imperechea cu un partener *Compatibil*
     protected virtual void Mate()
     {
-        if (distanceToClosestTarget <= searchProximity && isGrounded && compatiblePartner != null && compatiblePartner.GetIsMated() == false)
+        if (distanceToClosestTarget <= mateProximity && isGrounded && compatiblePartner != null && compatiblePartner.GetIsMated() == false)
         {
             compatiblePartner.GetMated();
             GetMated();
+            AddReward(1f);
         }
+        else AddReward(-0.1f);
+        
     }
 
     // Metoda apelata cand un alt agent ia actiunea de imperechere asupra acestui agent.

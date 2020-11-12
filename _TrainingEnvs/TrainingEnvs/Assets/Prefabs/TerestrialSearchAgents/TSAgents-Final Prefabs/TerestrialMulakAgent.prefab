@@ -47,10 +47,10 @@ MonoBehaviour:
   detectableTags:
   - boundary
   - predator
-  raysPerDirection: 5
+  raysPerDirection: 7
   maxRayDegrees: 80
   sphereCastRadius: 0.5
-  rayLength: 50
+  rayLength: 150
   rayLayerMask:
     serializedVersion: 2
     m_Bits: 4294967291
@@ -106,10 +106,10 @@ MonoBehaviour:
   sensorName: RayPerceptionSensorBehind
   detectableTags:
   - predator
-  raysPerDirection: 5
+  raysPerDirection: 7
   maxRayDegrees: 80
-  sphereCastRadius: 0.4
-  rayLength: 50
+  sphereCastRadius: 0.5
+  rayLength: 150
   rayLayerMask:
     serializedVersion: 2
     m_Bits: 4294967291
@@ -276,6 +276,7 @@ MonoBehaviour:
   searchProximity: 35
   notMatedColor: {fileID: 2100000, guid: 5390b06dd5daaac48921e9165574f72f, type: 2}
   MatedColor: {fileID: 2100000, guid: 8de7a01eb4aef4e4e9e55e1b12256e17, type: 2}
+  mateProximity: 12
   mulakPrefab: {fileID: 3896200653237102064}
   parentComponent: {fileID: 0}
   flowerPrefab: {fileID: 6601563190140889427, guid: 8b30768fe02a0fb4a9a4c4c4d1ad41a7,

@@ -1,0 +1,49 @@
+
+	Acest antrenament este realizat pe o scena mai mare. Apar mici probleme de overfitting pe spatiile de antrenare  mici.
+
+	==== Modificari aduse la functia de reward:
+
+	-> Mate() apelata corect : +0.5f 
+			  gresit : -0.1f
+
+	<-(Systemul de corectare a directiei)->
+	 
+	-> O data la 0.1s (de 10 ori pe secunda) avem:
+		==> +0.1 * x ce apartine [-1,1] unde x ia valoarea maxima cand agentul se uita direct la tinta
+						       ia valoarea minima cand agentul se uita in directia opusa
+
+	-> Atins de un pradator: -0.25f
+	
+	-> Contact cu boundary: -0.5f
+
+ 	=== Modificari aduse la sistemul raycast:
+
+	-> Ambele seturi de raze au acum 7 (in loc de 5) raze/directie + lungimea de la 50 la 150
+
+	=== TrainerConfig 
+
+	MulakLearning:
+    		summary_freq: 5000         
+    		time_horizon: 256           
+    		beta: 1.0e-2                
+    		batch_size: 2048            
+    		buffer_size: 10240          
+    		hidden_units: 256           
+    		num_layers: 4               
+    		max_steps: 7.0e6
+
+	=== Sarcini 
+
+	-> Prima sarcina antrenata este de imperechere 
+	-> 200k pasi , agenti se imperecheaza cu succes; mutam agentii in colturi indepartate ale hartii pentru a pune accent pe imbunatatirea
+functiei de cautare. De asemenea dupa ce s-au imperechat agentii sunt reinstantiati inapoi in zona de unde au inceput.
+	-> 400k pasi , am introdus si agentii carnivori 
+	-> 1.6m de pasi -> am salvat modelul , in continuare vom face ca agentul sa nu mai fie reinstantiat in zona de unde a plecat (o strategie folosita este de a sta 
+	fata in fata,pentru a aduna reward si imperechere atunci cand apare carnivorul , pentru ca imperecherea muta agentii )
+	-> La 2m de pasi am scazut magnitudinea importantei in sistemul de corectare a directiei (0.01 in loc de 0.1) si am crescut rewardul pentru imperechere pentru a motiva agentul sa 
+	renunte la strategie.
+	-> 2.8m (pauza verificare rezultate)
+
+
+
+

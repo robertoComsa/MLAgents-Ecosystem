@@ -15,8 +15,6 @@ public class TerestrialHeliosAgent : TerestrialSearchAgent
         RenameTag("prey");
     }
 
-    Vector3 toClosestTarget = Vector3.zero;
-
     public override void CollectObservations()
     {
         base.CollectObservations();

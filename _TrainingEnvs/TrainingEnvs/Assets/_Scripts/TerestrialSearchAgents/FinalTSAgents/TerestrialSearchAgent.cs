@@ -32,6 +32,9 @@ public class TerestrialSearchAgent : Agent
     // Tag-ul tintei
     protected string tagName = "";
 
+    // Directia spre cea mai apropriata tinta
+    protected Vector3 toClosestTarget = Vector3.zero;
+
     // ------------------------------------------------- METODE (Mostenite din) AGENT ---------------------------------------- //
 
     // Initializarea agentului; apelata o singura data 
@@ -52,7 +55,7 @@ public class TerestrialSearchAgent : Agent
 
         AddVectorObs(distanceToClosestTarget / searchProximity); // 1 valoare float; impartim la searchProximity (valoarea maxima pe care o poate lua distance to closestPrey pentru normalizare)
 
-        Vector3 toClosestTarget = closestTargetPosition - gameObject.transform.localPosition;
+        toClosestTarget = closestTargetPosition - gameObject.transform.localPosition;
         AddVectorObs(toClosestTarget.normalized); // 1 Vector3 = 3 valori float
 
         // Total: 10 + Observatiile de tip raycast
@@ -115,7 +118,7 @@ public class TerestrialSearchAgent : Agent
     // Cod aplicat la inceputul unui episod (MaxStep = 0 = infinit -> nu va mai folosi resetare)
     public override void AgentReset()
     {
-        PlaceRandomly(0f);
+        PlaceRandomly(10f);
     }
 
     // -------------------------------------------------------- METODE ------------------------------------------------------- //

@@ -66,7 +66,7 @@
 		Sunt multumit de modul in care agentii actioneaza (chiar si cand sunt mai multi) , chiar iau in considerare distanta pana la cel mai apropriat partener COMPATIBIL.
 
 		
-	Antrenament final:
+	Mulakv1_02:
 
 		Acum trecem la etapa urmatoare , antrenarea acestui model sa rezolve aceasta sarcina + sa fuga de pradator.
 
