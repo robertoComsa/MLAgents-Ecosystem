@@ -12,6 +12,8 @@
 		==> +0.1 * x ce apartine [-1,1] unde x ia valoarea maxima cand agentul se uita direct la tinta
 						       ia valoarea minima cand agentul se uita in directia opusa
 
+		==> -0.1 * x ce apartine (0,1] unde x reprezinta distanta (normalizata) pana la tinta
+
 	-> Atins de un pradator: -0.25f
 	
 	-> Contact cu boundary: -0.5f

@@ -255,7 +255,7 @@ Transform:
   m_GameObject: {fileID: 844517960213069560}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_Children:
   - {fileID: 844517959528209307}
   - {fileID: 844517959858562119}
@@ -342,11 +342,11 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   maxStep: 0
-  moveSpeed: 5
+  moveSpeed: 10
   yRotSpeed: 100
   xRotSpeed: 100
-  searchProximity: 40
-  deliveryDistanceRequired: 6
+  searchProximity: 300
+  deliveryDistanceRequired: 10
   beakTip: {fileID: 6290518077768160540}
   beakTipRadius: 0.2
   beakFruit: {fileID: 7981425905634179358}

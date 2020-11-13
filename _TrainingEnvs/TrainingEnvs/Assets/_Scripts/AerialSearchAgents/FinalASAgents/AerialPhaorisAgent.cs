@@ -93,6 +93,9 @@ public class AerialPhaorisAgent : Agent
         // Reseteaza fortele aplicate asupra agentului
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
+
+        // Replaseaza la inaltimea corecta 
+        gameObject.transform.position =new Vector3 (gameObject.transform.position.x, 13.7f,gameObject.transform.position.z);
     }
 
     // Observatiile numerice oferite agentului
@@ -243,6 +246,12 @@ public class AerialPhaorisAgent : Agent
 
             // Verificam daca agentul a terminat sarcina
             CheckIfFoodWasDelivered();
+
+            // Reward pentru directia in care se uita agentul ( 1 - maxim cand se uita direct la tinta , -1 - minim cand se uita in directia opusa)
+            AddReward(0.01f * beakToTargetDotValue);
+
+            // Reward pentru distanta fata de tinta.
+            AddReward(-0.01f * distanceToClosestTarget / searchProximity);
         }
 
         if (targetedRayPos != Vector3.zero)
@@ -302,6 +311,10 @@ public class AerialPhaorisAgent : Agent
             pickedUpFruit = 0;
             // Schimba culoarea razei
             rayColor = Color.cyan;
+
+
+            // Reward pentru livrarea fructului 
+            AddReward(1f);
         }
     }
 
@@ -319,7 +332,21 @@ public class AerialPhaorisAgent : Agent
                 rayColor = Color.yellow;
                 pickedUpFruit = 1;
                 beakFruit.SetActive(true);
+
+
+                // Reward pentru culegerea fructului 
+                AddReward(1f);         
             }
+        }
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        // Penalizare pentru coliziuni
+        if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("boundary"))
+        {
+            SetReward(-1f);
+            Done();
         }
     }
 }

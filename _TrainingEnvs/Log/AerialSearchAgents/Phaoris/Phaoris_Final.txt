@@ -1,0 +1,20 @@
+
+	Phaoris_Final incarca modelul Phaoris_14 pe un spatiu mai mare.
+
+	==== Modificari aduse la functia de reward:
+
+	<-(Systemul de corectare a directiei)->
+	 
+	-> O data la 0.1s (de 10 ori pe secunda) avem:
+		==> +0.01 * x ce apartine [-1,1] unde x ia valoarea maxima cand agentul se uita direct la tinta
+						       ia valoarea minima cand agentul se uita in directia opusa
+
+		==> -0.01 * x ce apartine (0,1] unde x reprezinta distanta (normalizata) pana la tinta
+
+	-> +1 reward pentru culegerea/livrarea fructului
+
+	-> -1 reward + Done() + Resetarea inaltimii la coliziunea cu pamantul / boundary
+
+	MaxSteps : 30m . 
+
+	Pauza la 27.4m 

@@ -208,15 +208,16 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
             isGrounded = true;
 
         if (other.gameObject.CompareTag("predator"))
-        {   //Destroy(gameObject);
-            SetReward(-1f);
-            Done();
+        {
+            Destroy(gameObject);
+            //SetReward(-1f);
+            //Done();
         }
 
         if (other.gameObject.CompareTag("boundary"))
         {
             AddReward(-0.5f);
-            AgentReset();
+            //AgentReset();
         }
 
         if (other.gameObject.CompareTag("helper") && other.gameObject.GetComponent<TerestrialGalvadonAgent>().GetCarryingFood() == true)
