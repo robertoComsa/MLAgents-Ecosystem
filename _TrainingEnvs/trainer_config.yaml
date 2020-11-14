@@ -90,7 +90,7 @@ Galvadon2Learning:
     buffer_size: 10240          
     hidden_units: 256           
     num_layers: 2         
-    max_steps: 4.0e6
+    max_steps: 6.0e6
     
 PhaorisLearning:       
     time_horizon: 256

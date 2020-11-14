@@ -249,7 +249,7 @@ MonoBehaviour:
     vectorActionSize: 020000000300000002000000
     vectorActionDescriptions: []
     vectorActionSpaceType: 0
-  m_Model: {fileID: 11400000, guid: 8a08f23bc791690488708b9acf1d0a1d, type: 3}
+  m_Model: {fileID: 11400000, guid: 2da450908f0e7964687ae315a771a120, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: MulakLearning

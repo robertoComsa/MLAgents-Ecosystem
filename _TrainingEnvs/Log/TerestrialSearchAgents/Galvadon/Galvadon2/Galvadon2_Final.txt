@@ -1,0 +1,21 @@
+	
+
+	Acest antrenament este realizat pe o scena mai mare. Apar mici probleme de overfitting pe spatiile de antrenare  mici.
+	Folosim agenti Mulak (inference) pentru antrenarea acestor Agenti
+
+	==== Modificari aduse la functia de reward:
+
+	<-(Systemul de corectare a directiei)->
+	 
+	-> O data la 0.1s (de 10 ori pe secunda) avem:
+		==> +0.01 * x ce apartine [-1,1] unde x ia valoarea maxima cand agentul se uita direct la tinta
+						       ia valoarea minima cand agentul se uita in directia opusa
+
+		==> -0.01 * x ce apartine (0,1] unde x reprezinta distanta (normalizata) pana la tinta
+
+	-> +0.5f la incheierea sarcinii actuale
+
+	-> Contact cu boundary: -0.5f
+
+
+	

@@ -250,7 +250,7 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
         isGrounded = false;
         secondsToResetMating = Random.Range(7f, 11f);
         StartCoroutine(ResetMated());
-        StartCoroutine(GiveBirth());
+        //StartCoroutine(GiveBirth());
     }
 
     // Metoda care asteapta un anumit interval de timp inainte de a reseta posibilitatea de imperechere a agentului

@@ -145,7 +145,7 @@ MonoBehaviour:
     vectorActionSize: 0200000003000000
     vectorActionDescriptions: []
     vectorActionSpaceType: 0
-  m_Model: {fileID: 11400000, guid: 740ccc25a83b6da41af43d93eed76f88, type: 3}
+  m_Model: {fileID: 11400000, guid: ea6f4167ab9dc26448ac32d49f38ae7e, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: Galvadon2Learning
@@ -166,7 +166,7 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  maxStep: 0
+  maxStep: 5000
   moveSpeed: 11
   rotationSpeed: 220
   searchProximity: 300
