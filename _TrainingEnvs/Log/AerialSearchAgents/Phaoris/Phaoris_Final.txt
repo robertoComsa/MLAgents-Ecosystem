@@ -18,3 +18,10 @@
 	MaxSteps : 30m . 
 
 	Pauza la 27.4m 
+
+	. 
+
+	Phaoris_Final2
+
+	Ultimii 2.5m de pasi vor fi continuati pe o scena pregatita in care agentul Phaoris trebuie sa livreze hrana 
+	unor agenti Galvadon activi (se vor misca)

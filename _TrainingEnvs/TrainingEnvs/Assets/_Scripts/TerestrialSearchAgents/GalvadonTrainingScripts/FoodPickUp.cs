@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class FoodPickUp : MonoBehaviour
 {
-    // VARIABILE
+    // VARIABILE VIZIBILE
 
     [SerializeField] private bool needsRandomPosition = false;
+    [SerializeField] float destroyTimeAfterDrop = 0f;
+
+    // VARIABILE
 
     // Pozitia de start
     private Vector3 startingPosition = Vector3.zero;
@@ -38,6 +41,9 @@ public class FoodPickUp : MonoBehaviour
     {
         helper = other;
         isPickedUp = true;
+
+        // Nu mai vrem sa distrugem fructul daca a fost ridicat
+        StopCoroutine(DestroyFruit());
     }
 
     // Metoda de resetare
@@ -62,4 +68,19 @@ public class FoodPickUp : MonoBehaviour
         else gameObject.transform.position = startingPosition;
 
     }
+
+    // Sistem ce face ca fructul sa dispara la x timp dupa ce a atins pamantul 
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+            StartCoroutine(DestroyFruit());
+    }
+
+    IEnumerator DestroyFruit()
+    {
+        yield return new WaitForSeconds(destroyTimeAfterDrop);
+        Destroy(gameObject);
+    }
+
 }

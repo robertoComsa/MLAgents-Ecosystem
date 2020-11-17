@@ -24,12 +24,27 @@ public class TerestrialHeliosAgent : TerestrialSearchAgent
         AddVectorObs(Vector3.Dot(gameObject.transform.forward.normalized, toClosestTarget.normalized)); // 1 valoare float
     }
 
+    // -- Pauza (inlocuitor animatie , atunci cand prinde un erbivor)
+
+    IEnumerator EatingPause()
+    {
+        float aux = moveSpeed;
+        moveSpeed = 0;
+        rb.freezeRotation = true;
+        yield return new WaitForSeconds(2.5F);
+        rb.freezeRotation = false;
+        moveSpeed = aux;
+    }
+
     // --- Reward system for Heliosv3_02 training in Big Environment
 
     private void OnCollisionEnter(Collision other)
     {
-        if(other.gameObject.CompareTag("prey"))
+        if (other.gameObject.CompareTag("prey"))
+        {
             AddReward(0.5f);
+            StartCoroutine(EatingPause());
+        }
 
         if(other.gameObject.CompareTag("boundary"))
         {

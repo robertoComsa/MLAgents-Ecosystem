@@ -169,6 +169,19 @@ public class TerestrialGalvadonAgent : TerestrialSearchAgent
             // Reward
             AddReward(0.5f);
         }
+    }
+
+    // Coliziunea cu obiecte din scena 
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("prey") && carryingFood == true && target == 2)
+        {
+            StartCoroutine(WaitToGiveFood());
+            target = 0;
+
+            // Reward 
+            AddReward(0.5f);
+        }
 
         // Daca ne lovim de mancarea erbivorilor 
         if (other.gameObject.CompareTag("preyFood") && carryingFood == false && target == 1)
@@ -179,21 +192,6 @@ public class TerestrialGalvadonAgent : TerestrialSearchAgent
             target = 2;
 
             // Reward
-            AddReward(0.5f);
-        }
-    }
-
-    // Coliziunea cu obiecte din scena 
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.CompareTag("prey") && carryingFood == true && target == 2)
-        {
-            // In viitor -  Detroy(preyFood.gameObject);
-            preyFood.ResetFood();
-            StartCoroutine(WaitToGiveFood());
-            target = 0;
-
-            // Reward 
             AddReward(0.5f);
         }
     }

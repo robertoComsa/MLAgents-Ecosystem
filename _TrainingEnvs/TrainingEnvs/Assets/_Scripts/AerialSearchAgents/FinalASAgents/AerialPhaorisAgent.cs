@@ -19,8 +19,8 @@ public class AerialPhaorisAgent : Agent
     [Tooltip("Radiusul in care este acceptata coliziunea cu ciocul")] [SerializeField] float beakTipRadius = 0.05f;
     [Tooltip("Obiect copil al agentului")] [SerializeField] GameObject beakFruit = null;
 
-    //[Header("Spatiu parinte")]
-    //[Tooltip("Componenta transform a spatiului parinte")] [SerializeField] Transform parentComponent = null;
+    [Header("Fruct")]
+    [Tooltip("Fructul ce trebuie aruncat in jurul agentilor galvadon")] [SerializeField] GameObject dropFruit = null;
 
     //  ---------------------------------------------------------- VARIABILE ----------------------------------------------------- //
 
@@ -56,6 +56,9 @@ public class AerialPhaorisAgent : Agent
 
     // Valoarea vectorului dot dintre cioc si tinta 
     float beakToTargetDotValue = 0f;
+
+    // Daca cel mai apropriat galvadon are deja mancare sau nu 
+    bool isGalvadonCarryingFood = false;
 
     // ------------------------------------------------- METODE (Mostenite din) AGENT -------------------------------------------- //
 
@@ -274,11 +277,15 @@ public class AerialPhaorisAgent : Agent
             float distance = Vector3.Distance(transform.position, target.transform.position);
 
             if (distance < nearestDistance && distance < searchProximity) // fara a 2-a conditie ar primi distanta fata de cel mai apropriat pradator din toata scena
-            {
+            {              
                 targetInRadius = true;
                 nearestDistance = distance;
                 closestTarget = target;
-            }
+                
+                // Folosit pentru a verifica daca agentul galvadon cara deja un fruct sau nu
+                if(targetTagName == "helper")
+                    isGalvadonCarryingFood = target.GetComponent<TerestrialGalvadonAgent>().GetCarryingFood();              
+            }   
         }
 
         if (targetInRadius)
@@ -301,7 +308,7 @@ public class AerialPhaorisAgent : Agent
     // O functie predefinita va da drop la mancare in viitor
     void CheckIfFoodWasDelivered()
     {
-        if (targetTagName == "helper" && distanceToClosestTarget <= deliveryDistanceRequired)
+        if (targetTagName == "helper" && distanceToClosestTarget <= deliveryDistanceRequired && isGalvadonCarryingFood == false)
         {
             // Agent
             beakFruit.SetActive(false);
@@ -312,6 +319,8 @@ public class AerialPhaorisAgent : Agent
             // Schimba culoarea razei
             rayColor = Color.cyan;
 
+            // Da drumul la fruct
+            Instantiate(dropFruit, beakFruit.transform.position,Quaternion.identity);
 
             // Reward pentru livrarea fructului 
             AddReward(1f);

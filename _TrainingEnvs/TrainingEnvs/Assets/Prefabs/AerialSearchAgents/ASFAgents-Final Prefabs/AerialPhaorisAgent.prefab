@@ -305,7 +305,7 @@ MonoBehaviour:
     vectorActionSize: 05000000
     vectorActionDescriptions: []
     vectorActionSpaceType: 1
-  m_Model: {fileID: 11400000, guid: cb911493495b1dd4ea278a3840684782, type: 3}
+  m_Model: {fileID: 11400000, guid: c9be010fda9716043beee9d145ed6b54, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: PhaorisLearning
@@ -346,10 +346,12 @@ MonoBehaviour:
   yRotSpeed: 100
   xRotSpeed: 100
   searchProximity: 300
-  deliveryDistanceRequired: 10
+  deliveryDistanceRequired: 9
   beakTip: {fileID: 6290518077768160540}
   beakTipRadius: 0.2
   beakFruit: {fileID: 7981425905634179358}
+  dropFruit: {fileID: 6601563190140889427, guid: 74b12099dd57f7943b8036f2b9762747,
+    type: 3}
 --- !u!1 &844517961241667103
 GameObject:
   m_ObjectHideFlags: 0
