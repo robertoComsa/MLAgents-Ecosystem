@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 950, y: 474}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -46,7 +46,7 @@ MonoBehaviour:
     y: 0
     width: 1536
     height: 781
-  m_MinSize: {x: 950, y: 474}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &3
 MonoBehaviour:
@@ -113,10 +113,10 @@ MonoBehaviour:
     y: 30
     width: 1536
     height: 731
-  m_MinSize: {x: 679, y: 424}
-  m_MaxSize: {x: 18002, y: 14024}
+  m_MinSize: {x: 683, y: 424}
+  m_MaxSize: {x: 18008, y: 14048}
   vertical: 0
-  controlID: 12839
+  controlID: 51
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 424}
   m_MaxSize: {x: 4002, y: 8024}
   vertical: 1
-  controlID: 12750
+  controlID: 52
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -242,10 +242,10 @@ MonoBehaviour:
     y: 0
     width: 460
     height: 731
-  m_MinSize: {x: 277, y: 324}
-  m_MaxSize: {x: 10000, y: 14024}
+  m_MinSize: {x: 277, y: 348}
+  m_MaxSize: {x: 10002, y: 14048}
   vertical: 1
-  controlID: 12840
+  controlID: 104
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -410,9 +410,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 18.202738, y: 88.50812, z: -190.40103}
+    m_Target: {x: 218, y: 122.5, z: 0}
     speed: 2
-    m_Value: {x: 18.202738, y: 88.50812, z: -190.40103}
+    m_Value: {x: 218, y: 122.5, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -432,21 +432,21 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
     yGrid:
-      m_Target: 1
+      m_Target: 0
       speed: 2
-      m_Value: 1
+      m_Value: 0
     zGrid:
       m_Target: 0
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: 0.10335737, y: 0.23229668, z: -0.024833798, w: 0.9668194}
+    m_Target: {x: 0.049936756, y: 0.8007547, z: -0.067422144, w: 0.59308726}
     speed: 2
-    m_Value: {x: 0.103357315, y: 0.23229657, z: -0.024833787, w: 0.9668189}
+    m_Value: {x: 0.049936756, y: 0.8007547, z: -0.067422144, w: 0.59308726}
   m_Size:
-    m_Target: 207.32907
+    m_Target: 127.17315
     speed: 2
-    m_Value: 207.32907
+    m_Value: 127.17315
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -551,9 +551,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 7e35ffff
-      m_LastClickedID: -51842
-      m_ExpandedIDs: f03affff5c3cffffb64cffffe65effff6673ffffde86ffff8494ffff9094ffff3696ffff1addffff9cebffffdefbffffae620000ec83000006840000188400003284000084840000
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: eee9ffff10eaffffeef9ffff16faffffdefbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -650,20 +650,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes/MainGame
+    - Assets/_Scripts/App/Main Menu
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Scenes/MainGame
+  - Assets/_Scripts/App/Main Menu
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\HP 830 G5\Desktop\Licenta - ML Agents\Git Repo\MLAgents-Ecosystem\_TrainingEnvs\TrainingEnvs
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 8c310000
-    m_LastClickedID: 12684
-    m_ExpandedIDs: 00000000642900002a2a0000742b0000422c00003e2d0000782d0000a25d000000ca9a3b
+    m_SelectedIDs: 462d0000
+    m_LastClickedID: 11590
+    m_ExpandedIDs: 000000007c290000e62900004c2a0000a62b0000082c00008e2c00009a2d0000a82d0000dc2d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -691,7 +691,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000064290000ca2900002a2a0000742b0000422c00003e2d0000782d0000a25d000000ca9a3b
+    m_ExpandedIDs: 000000007c290000e62900004c2a0000a62b0000082c00008e2c00009a2d0000a82d0000dc2d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
