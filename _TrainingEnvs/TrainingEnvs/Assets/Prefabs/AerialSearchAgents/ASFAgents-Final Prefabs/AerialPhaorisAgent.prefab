@@ -238,6 +238,7 @@ GameObject:
   - component: {fileID: 4053379929514485847}
   - component: {fileID: 3365153754703114323}
   - component: {fileID: 114195634430476216}
+  - component: {fileID: 2191564850363170527}
   m_Layer: 2
   m_Name: AerialPhaorisAgent
   m_TagString: Untagged
@@ -336,6 +337,19 @@ MonoBehaviour:
   beakFruit: {fileID: 7981425905634179358}
   dropFruit: {fileID: 6601563190140889427, guid: 74b12099dd57f7943b8036f2b9762747,
     type: 3}
+--- !u!65 &2191564850363170527
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844517960213069560}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.5, y: 0.7, z: 2.7}
+  m_Center: {x: 0, y: 0.1, z: 0.6}
 --- !u!1 &844517961241667103
 GameObject:
   m_ObjectHideFlags: 0

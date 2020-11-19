@@ -44,6 +44,9 @@ public class TerestrialSearchAgent : Agent
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = Vector3.zero;
         rb.inertiaTensorRotation = Quaternion.identity;
+
+        // Disabling collision for placement purposes 
+        rb.isKinematic = true;
     }
 
     // Observatiile numerice oferite agentului
@@ -136,7 +139,11 @@ public class TerestrialSearchAgent : Agent
         // Acum este apelata de 10 ori . 
         OptimizedCheckInRadius(Color.red);
         if (GameManager.Instance.CanAgentsRequestDecisions == true)
-            RequestDecision(); 
+        {
+            RequestDecision();
+            rb.isKinematic = false;
+            rb.detectCollisions = true;
+        }
     }
 
     // Optimizeaza (reduce numarul de utilizari) ale metodei de cautare in proximitate ( metoda foarte "grea" )
@@ -201,5 +208,24 @@ public class TerestrialSearchAgent : Agent
         transform.position = new Vector3(startingPosition.x + Random.Range(-value, value), startingPosition.y, startingPosition.z + Random.Range(-value, value));
         Quaternion newRotation = Quaternion.Euler(transform.rotation.x, Random.Range(0f, 360f), transform.rotation.z);
         transform.rotation = newRotation;
+    }
+
+    // ------ METODE FOLOSITE IN SISTEMUL DE PLASARE AL AGENTILOR IN SCENA DE CATRE UN UTILIZATOR UMAN
+
+    // Functie de verificare a colliderului folosita la amplasarea agentilor
+    protected bool CheckColliderTag(Collider other)
+    {
+        if (other.CompareTag("predator") || other.CompareTag("prey") || other.CompareTag("helper") || other.CompareTag("Untagged") || other.CompareTag("boundary"))
+            return true;
+
+        return false;
+    }
+
+    // Metoda care verifica daca suntem in modul de amplasare si permite/interzice amplasarea agentilor in functie de coliziuni cu obiecte
+    protected void CheckIfAgentIsPlaceable(bool allowPlacement, Collider other)
+    {
+        if (GameManager.Instance.CanAgentsRequestDecisions == false && CheckColliderTag(other) == true) // Inseamna ca e in placing mode
+            // permitem sau interzicem amplasarea
+            PlacementController.Instance.CanPlaceAgents = allowPlacement;
     }
 }

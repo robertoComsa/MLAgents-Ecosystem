@@ -12,7 +12,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
             Destroy(this);
         else
         {
-            DontDestroyOnLoad(this);
+            //DontDestroyOnLoad(this);
             instance = (T)FindObjectOfType(typeof(T)); 
         }
     }

@@ -197,7 +197,11 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
     {
         OptimizedCheckInRadius(rayColor: Color.yellow);
         if (isGrounded && GameManager.Instance.CanAgentsRequestDecisions == true)
+        {
             RequestDecision(); // Nu vrem ca agentul sa ia decizii cand este in aer 
+            rb.isKinematic = false;
+            rb.detectCollisions = true;
+        }
     }
 
 
@@ -222,6 +226,27 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
 
         if (other.gameObject.CompareTag("helper") && other.gameObject.GetComponent<TerestrialGalvadonAgent>().GetCarryingFood() == true)
             StartCoroutine(MakeFlower());
+
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // Verifica daca a intrat intr-o coliziune ; daca da interzice amplasarea
+        CheckIfAgentIsPlaceable(false, other);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        // Verifica daca agentul este intr-o coliziune ; daca da interzice amplasarea
+        CheckIfAgentIsPlaceable(false, other);
+    }
+
+    // Folosit la amplasarea agentilor
+    private void OnTriggerExit(Collider other)
+    {
+        // Verifica daca agentul a iesit din coliziuni ( OnTriggerStay nu va permite amplasarea pana cand nu se parasesc toate coliziunile)
+        CheckIfAgentIsPlaceable(true, other);
     }
 
 

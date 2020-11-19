@@ -51,7 +51,11 @@ public class TerestrialGalvadonAgent : TerestrialSearchAgent
     {
         OptimizedCheckInRadius(rayColor);
         if (GameManager.Instance.CanAgentsRequestDecisions == true)
+        {
             RequestDecision();
+            rb.isKinematic = false;
+            rb.detectCollisions = true;
+        }
     }
 
     // Optimizeaza (reduce numarul de utilizari) ale metodei de cautare in proximitate ( metoda foarte "grea" )
@@ -171,6 +175,21 @@ public class TerestrialGalvadonAgent : TerestrialSearchAgent
             // Reward
             AddReward(0.5f);
         }
+
+        // Verifica daca a intrat intr-o coliziune ; daca da interzice amplasarea
+        CheckIfAgentIsPlaceable(false, other);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        // Verifica daca agentul este intr-o coliziune ; daca da interzice amplasarea
+        CheckIfAgentIsPlaceable(false, other);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        // Verifica daca agentul a iesit din coliziuni ( OnTriggerStay nu va permite amplasarea pana cand nu se parasesc toate coliziunile)
+        CheckIfAgentIsPlaceable(true, other);
     }
 
     // Coliziunea cu obiecte din scena 

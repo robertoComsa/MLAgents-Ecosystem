@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MLAgents;
 
-public class PlacementController : MonoBehaviour
+public class PlacementController : Singleton<PlacementController>
 {
     // ------------------------------------------------ VARIABILE VIZIBILE IN EDITOR --------------------------------------------- //
 
@@ -19,10 +19,15 @@ public class PlacementController : MonoBehaviour
     int agentsNumber = 0;
     float mouseWheelRotation = 0f;
 
+    public bool CanPlaceAgents{ get; set; } = true;
+
+    //
+
     // ------------------------------------------------------------- METODE ------------------------------------------------------- // 
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         agentsNumber = placeableAgentsPrefabs.Length;
     }
 
@@ -78,7 +83,7 @@ public class PlacementController : MonoBehaviour
     // Metoda care plaseaza agentul 
     void OnClickRelease()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && CanPlaceAgents == true)
             currentPlaceableObject = null;
     }
 }

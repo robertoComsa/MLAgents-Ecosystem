@@ -99,6 +99,9 @@ public class AerialPhaorisAgent : Agent
 
         // Replaseaza la inaltimea corecta 
         gameObject.transform.position =new Vector3 (gameObject.transform.position.x, 13.7f,gameObject.transform.position.z);
+
+        // Dezactivam coliziunile pentru amplasarea agentilor in scena
+        rb.isKinematic = true;
     }
 
     // Observatiile numerice oferite agentului
@@ -237,7 +240,11 @@ public class AerialPhaorisAgent : Agent
         // Sistem de cautare - cu optimizare . (apelata de 10 ori pe secunda)
         OptimizedCheckInRadius(rayColor);
         if (GameManager.Instance.CanAgentsRequestDecisions == true)
-            RequestDecision(); 
+        {
+            RequestDecision();
+            rb.isKinematic = false;
+            rb.detectCollisions = true;
+        }
     }
 
     // Optimizeaza (reduce numarul de utilizari) ale metodei de cautare in proximitate ( metoda foarte "grea" )
@@ -349,6 +356,22 @@ public class AerialPhaorisAgent : Agent
                 AddReward(1f);         
             }
         }
+
+        // Verifica daca a intrat intr-o coliziune ; daca da interzice amplasarea
+        CheckIfAgentIsPlaceable(false, other);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        // Verifica daca agentul este intr-o coliziune ; daca da interzice amplasarea
+        CheckIfAgentIsPlaceable(false, other);
+    }
+
+    // Folosit la amplasarea agentilor
+    private void OnTriggerExit(Collider other)
+    {
+        // Verifica daca agentul a iesit din coliziuni ( OnTriggerStay nu va permite amplasarea pana cand nu se parasesc toate coliziunile)
+        CheckIfAgentIsPlaceable(true, other);
     }
 
     private void OnCollisionEnter(Collision other)
@@ -359,5 +382,24 @@ public class AerialPhaorisAgent : Agent
             SetReward(-1f);
             Done();
         }
+    }
+
+    // ------ METODE FOLOSITE IN SISTEMUL DE PLASARE AL AGENTILOR IN SCENA DE CATRE UN UTILIZATOR UMAN
+
+    // Functie de verificare a colliderului folosita la amplasarea agentilor
+    protected bool CheckColliderTag(Collider other)
+    {
+        if (other.CompareTag("predator") || other.CompareTag("prey") || other.CompareTag("helper") || other.CompareTag("Untagged") || other.CompareTag("boundary"))
+            return true;
+
+        return false;
+    }
+
+    // Metoda care verifica daca suntem in modul de amplasare si permite/interzice amplasarea agentilor in functie de coliziuni cu obiecte
+    protected void CheckIfAgentIsPlaceable(bool allowPlacement, Collider other)
+    {
+        if (GameManager.Instance.CanAgentsRequestDecisions == false && CheckColliderTag(other) == true) // Inseamna ca e in placing mode
+            // permitem sau interzicem amplasarea
+            PlacementController.Instance.CanPlaceAgents = allowPlacement;
     }
 }
