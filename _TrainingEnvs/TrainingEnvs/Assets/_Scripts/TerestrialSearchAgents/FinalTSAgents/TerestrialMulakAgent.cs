@@ -14,7 +14,6 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
 
     [Header("Variabile folosite pentru reproducere")]
     [Tooltip("Prefab mulak")] [SerializeField] protected GameObject mulakPrefab = null;
-    [Tooltip("Transformul parintelui")] [SerializeField] protected Transform parentComponent = null;
 
     [Header("Prefab pentru floare (hrana Galvadon)")]
     [SerializeField] protected GameObject flowerPrefab = null;
@@ -250,7 +249,7 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
         isGrounded = false;
         secondsToResetMating = Random.Range(7f, 11f);
         StartCoroutine(ResetMated());
-        //StartCoroutine(GiveBirth());
+        StartCoroutine(GiveBirth());
     }
 
     // Metoda care asteapta un anumit interval de timp inainte de a reseta posibilitatea de imperechere a agentului
@@ -267,7 +266,7 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
     {
         yield return new WaitForSeconds(secondsToResetMating - 4f); // Vrem sa multiplicam agentul inainte ca acesta sa fie gata de imperechere
         Quaternion newRotation = Quaternion.Euler(transform.rotation.x, Random.Range(0f, 360f), transform.rotation.z);
-        GameObject mulakChild = Instantiate(mulakPrefab, gameObject.transform.position - new Vector3(0f, 0f, -1.4f), newRotation, parentComponent);
+        GameObject mulakChild = Instantiate(mulakPrefab, gameObject.transform.position - new Vector3(0f, 0f, -1.4f), newRotation, gameObject.transform.parent.transform);
         mulakChild.GetComponent<TerestrialMulakAgent>().BirthInitialize();
     }
 
@@ -278,7 +277,7 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
         float waitTime = Random.Range(2f, 4f);  // 3 si 6 initial
         yield return new WaitForSeconds(waitTime);
         Quaternion newRotation = Quaternion.Euler(transform.rotation.x, Random.Range(0f, 360f), transform.rotation.z);
-        Instantiate(flowerPrefab, gameObject.transform.position - new Vector3(0f, 0f, -1.4f), newRotation, parentComponent);
+        Instantiate(flowerPrefab, gameObject.transform.position - new Vector3(0f, 0f, -1.4f), newRotation, gameObject.transform.parent.transform);
     }
 
     // Initializare pentru agentii instantiati prin multiplicare

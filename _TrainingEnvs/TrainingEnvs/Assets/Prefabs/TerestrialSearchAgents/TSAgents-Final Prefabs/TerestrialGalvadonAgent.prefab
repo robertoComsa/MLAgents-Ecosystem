@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1047600857019683461}
   - component: {fileID: 212543739923983246}
   - component: {fileID: 114859422487634314}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TerestrialGalvadonAgent
   m_TagString: helper
   m_Icon: {fileID: 0}
@@ -166,8 +166,8 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  maxStep: 5000
-  moveSpeed: 11
+  maxStep: 0
+  moveSpeed: 12
   rotationSpeed: 220
   searchProximity: 300
 --- !u!1 &8862841607337231285
@@ -180,7 +180,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4198893578885193238}
   - component: {fileID: 1799727681748921483}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FrontalRays
   m_TagString: Untagged
   m_Icon: {fileID: 0}

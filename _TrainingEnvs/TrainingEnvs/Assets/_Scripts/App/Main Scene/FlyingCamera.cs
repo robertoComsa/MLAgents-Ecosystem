@@ -30,7 +30,7 @@ public class FlyingCamera : MonoBehaviour
 
     void Start()
     {
-        Cursor.visible = false;
+        //Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -68,11 +68,11 @@ public class FlyingCamera : MonoBehaviour
         if (Input.GetKey(KeyCode.Q)) { transform.position += transform.up * verticalSpeed * Time.deltaTime; }
         if (Input.GetKey(KeyCode.E)) { transform.position -= transform.up * verticalSpeed * Time.deltaTime; }
 
-        /*
+        
         if (Input.GetKeyDown(KeyCode.End))
         {
-            Screen.lockCursor = (Screen.lockCursor == false) ? true : false;
+            Cursor.lockState = CursorLockMode.None;
         }
-        */
+        
     }
 }

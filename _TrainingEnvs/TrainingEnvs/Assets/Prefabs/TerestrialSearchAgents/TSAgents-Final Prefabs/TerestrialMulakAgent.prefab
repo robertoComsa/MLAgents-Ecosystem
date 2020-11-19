@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5649400875648004570}
   - component: {fileID: 568270468053467211}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FrontalRays
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3223762255305306146}
   - component: {fileID: 5983227651515932970}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BehindRays
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 2041568823}
   - component: {fileID: 8512936811485544308}
   - component: {fileID: 5612542576696612028}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TerestrialMulakAgent
   m_TagString: prey
   m_Icon: {fileID: 0}
@@ -278,6 +278,5 @@ MonoBehaviour:
   MatedColor: {fileID: 2100000, guid: 8de7a01eb4aef4e4e9e55e1b12256e17, type: 2}
   mateProximity: 12
   mulakPrefab: {fileID: 3896200653237102064}
-  parentComponent: {fileID: 0}
   flowerPrefab: {fileID: 6601563190140889427, guid: 8b30768fe02a0fb4a9a4c4c4d1ad41a7,
     type: 3}

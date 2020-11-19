@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4798001361735913835}
   - component: {fileID: 6068664738250360298}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: WideRays
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 1047600857019683461}
   - component: {fileID: 7055746663470240565}
   - component: {fileID: 5633133631171447427}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TerestrialHeliosAgent
   m_TagString: predator
   m_Icon: {fileID: 0}
@@ -228,7 +228,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   maxStep: 0
-  moveSpeed: 20
+  moveSpeed: 12
   rotationSpeed: 220
   searchProximity: 100
 --- !u!1 &8862841607337231285
@@ -241,7 +241,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4198893578885193238}
   - component: {fileID: 1799727681748921483}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: HuntRays
   m_TagString: Untagged
   m_Icon: {fileID: 0}
