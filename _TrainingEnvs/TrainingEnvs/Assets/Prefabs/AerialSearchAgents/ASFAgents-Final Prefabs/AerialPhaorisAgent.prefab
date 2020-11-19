@@ -237,7 +237,6 @@ GameObject:
   - component: {fileID: 844517960213069561}
   - component: {fileID: 4053379929514485847}
   - component: {fileID: 3365153754703114323}
-  - component: {fileID: 8174149007570211093}
   - component: {fileID: 114195634430476216}
   m_Layer: 2
   m_Name: AerialPhaorisAgent
@@ -311,21 +310,6 @@ MonoBehaviour:
   m_BehaviorName: PhaorisLearning
   m_TeamID: 0
   m_UseChildSensors: 1
---- !u!114 &8174149007570211093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 844517960213069560}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DecisionPeriod: 1
-  RepeatAction: 1
-  offsetStep: 0
 --- !u!114 &114195634430476216
 MonoBehaviour:
   m_ObjectHideFlags: 0

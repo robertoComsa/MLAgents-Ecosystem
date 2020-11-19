@@ -236,6 +236,8 @@ public class AerialPhaorisAgent : Agent
     {
         // Sistem de cautare - cu optimizare . (apelata de 10 ori pe secunda)
         OptimizedCheckInRadius(rayColor);
+        if (GameManager.Instance.CanAgentsRequestDecisions == true)
+            RequestDecision(); 
     }
 
     // Optimizeaza (reduce numarul de utilizari) ale metodei de cautare in proximitate ( metoda foarte "grea" )

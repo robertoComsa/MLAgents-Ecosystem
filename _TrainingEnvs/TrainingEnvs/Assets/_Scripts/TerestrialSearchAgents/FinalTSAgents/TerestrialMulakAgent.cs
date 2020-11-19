@@ -196,7 +196,8 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
     protected override void FixedUpdate()
     {
         OptimizedCheckInRadius(rayColor: Color.yellow);
-        if (isGrounded) RequestDecision(); // Nu vrem ca agentul sa ia decizii cand este in aer 
+        if (isGrounded && GameManager.Instance.CanAgentsRequestDecisions == true)
+            RequestDecision(); // Nu vrem ca agentul sa ia decizii cand este in aer 
     }
 
 

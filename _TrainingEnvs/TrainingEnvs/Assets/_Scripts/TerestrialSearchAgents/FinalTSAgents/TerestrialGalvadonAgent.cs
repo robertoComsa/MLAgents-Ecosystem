@@ -50,6 +50,8 @@ public class TerestrialGalvadonAgent : TerestrialSearchAgent
     protected override void FixedUpdate()
     {
         OptimizedCheckInRadius(rayColor);
+        if (GameManager.Instance.CanAgentsRequestDecisions == true)
+            RequestDecision();
     }
 
     // Optimizeaza (reduce numarul de utilizari) ale metodei de cautare in proximitate ( metoda foarte "grea" )

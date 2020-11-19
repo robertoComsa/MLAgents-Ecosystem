@@ -135,6 +135,8 @@ public class TerestrialSearchAgent : Agent
         // Inainte CheckPartnerInProximity ar fi fost apelata aici de 50 de ori pe secunda
         // Acum este apelata de 10 ori . 
         OptimizedCheckInRadius(Color.red);
+        if (GameManager.Instance.CanAgentsRequestDecisions == true)
+            RequestDecision(); 
     }
 
     // Optimizeaza (reduce numarul de utilizari) ale metodei de cautare in proximitate ( metoda foarte "grea" )
