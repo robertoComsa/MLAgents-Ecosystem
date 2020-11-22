@@ -234,6 +234,13 @@ public class AerialPhaorisAgent : Agent
     // Redenumire a tagului pentru tinta agentului
     void ChangeTargetTag(string newTagName) => targetTagName = newTagName;
 
+    private void Update()
+    {   
+        // Daca simularea s-a incheiat distrugem acest agent
+        if (GameManager.Instance.SimulationEnded)
+            Destroy(gameObject);
+    }
+
     // FixedUpdate - Apelata de 50 de ori pe secunda (nu tine cont de frameRate-ul aplicatiei ; Buna pentru componente fizice)
     private void FixedUpdate()
     {

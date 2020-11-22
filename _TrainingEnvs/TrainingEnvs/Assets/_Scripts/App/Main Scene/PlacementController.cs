@@ -21,8 +21,6 @@ public class PlacementController : Singleton<PlacementController>
 
     public bool CanPlaceAgents{ get; set; } = true;
 
-    //
-
     // ------------------------------------------------------------- METODE ------------------------------------------------------- // 
 
     protected override void Awake()
@@ -33,7 +31,7 @@ public class PlacementController : Singleton<PlacementController>
 
     private void Update()
     {
-        HandleNewObjectHotkey();
+        if(CanPlaceAgents) HandleNewObjectHotkey();
 
         if (currentPlaceableObject != null)
         {
@@ -54,7 +52,7 @@ public class PlacementController : Singleton<PlacementController>
                 if(currentPlaceableObject == null)
                     currentPlaceableObject = Instantiate(placeableAgentsPrefabs[i], parentTransform);
             }  
-            else if (Input.GetMouseButtonDown(1))
+            else if (Input.GetMouseButtonDown(1) || CanPlaceAgents == false)
                 Destroy(currentPlaceableObject);
         }
     }

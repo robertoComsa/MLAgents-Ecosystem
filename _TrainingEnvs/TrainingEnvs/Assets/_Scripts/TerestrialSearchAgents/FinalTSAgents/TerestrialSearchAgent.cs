@@ -132,6 +132,13 @@ public class TerestrialSearchAgent : Agent
         startingPosition = gameObject.transform.position;
     }
 
+    private void Update()
+    {
+        // Daca simularea s-a incheiat distrugem acest agent
+        if (GameManager.Instance.SimulationEnded)
+            Destroy(gameObject);
+    }
+
     // FixedUpdate este apelata o data la 0.02 secunde (50 de apeluri pe secunda; independent de fps)
     protected virtual void FixedUpdate()
     {

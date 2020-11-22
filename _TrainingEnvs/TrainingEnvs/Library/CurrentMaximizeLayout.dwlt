@@ -23,9 +23,9 @@ MonoBehaviour:
     width: 1536
     height: 731
   m_MinSize: {x: 679, y: 424}
-  m_MaxSize: {x: 18004, y: 14048}
+  m_MaxSize: {x: 18002, y: 14024}
   vertical: 0
-  controlID: 7710
+  controlID: 5460
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 424}
   m_MaxSize: {x: 4002, y: 8024}
   vertical: 1
-  controlID: 7711
+  controlID: 5373
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -385,7 +385,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: e4ceffffb4e0fffff4efffffdefbffff082f0000
+      m_ExpandedIDs: defbffff202f0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -430,10 +430,10 @@ MonoBehaviour:
     y: 0
     width: 388
     height: 731
-  m_MinSize: {x: 277, y: 348}
-  m_MaxSize: {x: 10002, y: 14048}
+  m_MinSize: {x: 277, y: 324}
+  m_MaxSize: {x: 10000, y: 14024}
   vertical: 1
-  controlID: 7607
+  controlID: 5461
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -514,8 +514,8 @@ MonoBehaviour:
     y: 395
     width: 388
     height: 336
-  m_MinSize: {x: 230, y: 250}
-  m_MaxSize: {x: 10000, y: 10000}
+  m_MinSize: {x: 232, y: 274}
+  m_MaxSize: {x: 10002, y: 10024}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -559,20 +559,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs/TerestrialSearchAgents/TSAgents-Final Prefabs
+    - Assets/_Scripts/AerialSearchAgents/FinalASAgents
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Prefabs/TerestrialSearchAgents/TSAgents-Final Prefabs
+  - Assets/_Scripts/AerialSearchAgents/FinalASAgents
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\HP 830 G5\Desktop\Licenta - ML Agents\Git Repo\MLAgents-Ecosystem\_TrainingEnvs\TrainingEnvs
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 37}
-    m_SelectedIDs: dc290000
-    m_LastClickedID: 10716
-    m_ExpandedIDs: 0000000082290000022a0000122a0000522a0000ac2b00000e2c00008a2c0000942c0000a02d0000e22d000000ca9a3b
+    m_SelectedIDs: 9e2c0000
+    m_LastClickedID: 11422
+    m_ExpandedIDs: 0000000084290000042a0000142a0000542a0000f22a0000ae2b00008c2c0000962c0000a22d0000b02d0000e42d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -600,7 +600,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000082290000022a0000122a0000522a0000ac2b00000e2c00008a2c0000942c0000a02d0000e22d000000ca9a3b
+    m_ExpandedIDs: 0000000084290000042a0000142a0000542a0000f22a0000ae2b00008c2c0000962c0000a22d0000b02d0000e42d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -625,8 +625,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 6ee3ffff
-    m_LastClickedInstanceID: -7314
+    m_SelectedInstanceIDs: 842f0000
+    m_LastClickedInstanceID: 12164
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: 9c2a0000ce2a0000b62d000000000000
     m_RenameOverlay:
