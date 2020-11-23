@@ -215,7 +215,7 @@ MonoBehaviour:
   maxStep: 0
   moveSpeed: 12
   rotationSpeed: 220
-  searchProximity: 100
+  searchProximity: 300
 --- !u!65 &4497610941058241348
 BoxCollider:
   m_ObjectHideFlags: 0

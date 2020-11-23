@@ -127,6 +127,13 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
         RenameTag("prey");
     }
 
+    // Metoda de initializare a agentilor cu parametri alesi de utilizator
+    public  void Initialize(int ms, int rs, int sp, int mp)
+    {
+        base.Initialize(ms, rs, sp);
+        mateProximity = mp;
+    }
+
     /// <summary>
     /// Verifica daca exista tinta intr-un radius setat in jurul agentului (( SI )) daca nu este imperecheat deja.
     /// Daca da , colecteaza pentru observatii distanta pana la acesta si pozitia sa , de asemenea salveaza-l 

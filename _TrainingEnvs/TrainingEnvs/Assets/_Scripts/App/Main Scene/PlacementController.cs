@@ -49,13 +49,58 @@ public class PlacementController : Singleton<PlacementController>
         {
             if (Input.GetKeyDown(placeAgentHotkey[i]))
             {
-                if(currentPlaceableObject == null)
+                if (currentPlaceableObject == null)
+                {
                     currentPlaceableObject = Instantiate(placeableAgentsPrefabs[i], parentTransform);
+
+                    // Initializare agent cu parametrii selectati de utilizator
+                    switch (i)
+                    {
+                        // Helios
+                        case 0:
+                            currentPlaceableObject.gameObject.GetComponent<TerestrialHeliosAgent>().Initialize(
+                                GameManager.Instance.HeliosParameters.MoveSpeed,
+                                GameManager.Instance.HeliosParameters.RotationSpeed,
+                                GameManager.Instance.HeliosParameters.SearchProximity
+                                );
+                            break;
+                        // Mulak
+                        case 1:
+                            currentPlaceableObject.gameObject.GetComponent<TerestrialMulakAgent>().Initialize(
+                                GameManager.Instance.MulakParameters.MoveSpeed,
+                                GameManager.Instance.MulakParameters.RotationSpeed,
+                                GameManager.Instance.MulakParameters.SearchProximity,
+                                GameManager.Instance.MulakParameters.MateProximity
+                                );
+                            break;
+                        // Galvadon
+                        case 2:
+                            currentPlaceableObject.gameObject.GetComponent<TerestrialGalvadonAgent>().Initialize(
+                                GameManager.Instance.GalvadonParameters.MoveSpeed,
+                                GameManager.Instance.GalvadonParameters.RotationSpeed,
+                                GameManager.Instance.GalvadonParameters.SearchProximity
+                                );
+                            break;
+                        // Phaoris
+                        case 3:
+                            currentPlaceableObject.gameObject.GetComponent<AerialPhaorisAgent>().Initialize(
+                                GameManager.Instance.PhaorisParameters.MoveSpeed,
+                                GameManager.Instance.PhaorisParameters.Y_RotationSpeed,
+                                GameManager.Instance.PhaorisParameters.X_RotationSpeed,
+                                GameManager.Instance.PhaorisParameters.SearchProximity,
+                                GameManager.Instance.PhaorisParameters.DeliveryDistance
+                                );
+                            break;
+                    }
+
+                    
+                }
             }  
             else if (Input.GetMouseButtonDown(1) || CanPlaceAgents == false)
                 Destroy(currentPlaceableObject);
         }
     }
+    
 
     // Metoda care muta agentul dupa mouse
     void MovePlaceableObjectToMouse()

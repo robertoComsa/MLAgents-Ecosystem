@@ -15,6 +15,24 @@ public class TerestrialHeliosAgent : TerestrialSearchAgent
         RenameTag("prey");
     }
 
+    protected override void OptimizedCheckInRadius(Color rayColor)
+    {
+        if (Time.time - timeGap >= 0.1f)
+        {
+            CheckTargetInProximity();
+            timeGap = Time.time;
+
+            // Reward pentru directia in care se uita agentul ( 1 - maxim cand se uita direct la tinta , -1 - minim cand se uita in directia opusa)
+            AddReward(0.1f * Vector3.Dot(gameObject.transform.forward.normalized, toClosestTarget.normalized));
+
+            // Reward pentru distanta fata de tinta.
+            AddReward(-0.1f * distanceToClosestTarget / searchProximity);
+        }
+
+        if (targetedRayPos != Vector3.zero)
+            Debug.DrawLine(transform.position, targetedRayPos, rayColor);
+    }
+
     public override void CollectObservations()
     {
         base.CollectObservations();
@@ -23,6 +41,8 @@ public class TerestrialHeliosAgent : TerestrialSearchAgent
         // Un produs dot intre directia in care se uita agentul si directia in care se afla cea mai apropriata tinta
         AddVectorObs(Vector3.Dot(gameObject.transform.forward.normalized, toClosestTarget.normalized)); // 1 valoare float
     }
+
+    // ------------------------------------------------------------- METODE -------------------------------------------------- //
 
     // -- Pauza (inlocuitor animatie , atunci cand prinde un erbivor)
 
@@ -76,23 +96,5 @@ public class TerestrialHeliosAgent : TerestrialSearchAgent
     {
         // Verifica daca agentul a iesit din coliziuni ( OnTriggerStay nu va permite amplasarea pana cand nu se parasesc toate coliziunile)
         CheckIfAgentIsPlaceable(true, other);
-    }
-
-    protected override void OptimizedCheckInRadius(Color rayColor)
-    {
-        if (Time.time - timeGap >= 0.1f)
-        {
-            CheckTargetInProximity();
-            timeGap = Time.time;
-
-            // Reward pentru directia in care se uita agentul ( 1 - maxim cand se uita direct la tinta , -1 - minim cand se uita in directia opusa)
-            AddReward(0.1f * Vector3.Dot(gameObject.transform.forward.normalized, toClosestTarget.normalized));
-
-            // Reward pentru distanta fata de tinta.
-            AddReward( -0.1f * distanceToClosestTarget/searchProximity );
-        }
-
-        if (targetedRayPos != Vector3.zero)
-            Debug.DrawLine(transform.position, targetedRayPos, rayColor);
     }
 }

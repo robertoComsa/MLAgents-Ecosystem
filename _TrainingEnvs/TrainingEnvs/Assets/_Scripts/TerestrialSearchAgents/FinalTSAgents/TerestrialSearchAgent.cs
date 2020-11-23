@@ -139,6 +139,14 @@ public class TerestrialSearchAgent : Agent
             Destroy(gameObject);
     }
 
+    // Metoda de initializare a agentilor cu parametri alesi de utilizator/
+    public virtual void Initialize(int ms, int rs, int sp)
+    {
+        moveSpeed = ms;
+        rotationSpeed = rs;
+        searchProximity = sp;
+    }
+
     // FixedUpdate este apelata o data la 0.02 secunde (50 de apeluri pe secunda; independent de fps)
     protected virtual void FixedUpdate()
     {

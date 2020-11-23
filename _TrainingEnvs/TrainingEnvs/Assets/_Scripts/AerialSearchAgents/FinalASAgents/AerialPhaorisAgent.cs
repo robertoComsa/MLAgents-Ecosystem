@@ -231,6 +231,16 @@ public class AerialPhaorisAgent : Agent
 
     // -------------------------------------------------------- METODE ----------------------------------------------------------- //
 
+    // Metoda de initializare a agentilor cu parametri alesi de utilizator/
+    public virtual void Initialize(int ms , int y_s , int x_s , int sp , int dd)
+    {
+        moveSpeed = ms;
+        yRotSpeed = y_s;
+        xRotSpeed = x_s;
+        searchProximity = sp;
+        deliveryDistanceRequired = dd;
+    }
+
     // Redenumire a tagului pentru tinta agentului
     void ChangeTargetTag(string newTagName) => targetTagName = newTagName;
 
