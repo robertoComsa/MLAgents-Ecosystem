@@ -25,7 +25,7 @@ MonoBehaviour:
   m_MinSize: {x: 677, y: 448}
   m_MaxSize: {x: 18004, y: 14024}
   vertical: 0
-  controlID: 2616
+  controlID: 3605
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 448}
   m_MaxSize: {x: 4002, y: 8048}
   vertical: 1
-  controlID: 2596
+  controlID: 3585
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -223,9 +223,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: -0.019494532, y: 0.020994887, z: 0.00040925332, w: 0.9995895}
   m_Size:
-    m_Target: 207.75247
+    m_Target: 198.40361
     speed: 2
-    m_Value: 207.75247
+    m_Value: 198.40361
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -256,8 +256,8 @@ MonoBehaviour:
     y: 507
     width: 872
     height: 224
-  m_MinSize: {x: 202, y: 224}
-  m_MaxSize: {x: 4002, y: 4024}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 2}
   m_Panes:
   - {fileID: 2}
@@ -385,7 +385,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 54faffffcefbffffba300000c43000001a310000d83100009c3200008e330000
+      m_ExpandedIDs: defbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -433,7 +433,7 @@ MonoBehaviour:
   m_MinSize: {x: 275, y: 324}
   m_MaxSize: {x: 10002, y: 14024}
   vertical: 1
-  controlID: 2617
+  controlID: 3572
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -453,8 +453,8 @@ MonoBehaviour:
     y: 0
     width: 388
     height: 395
-  m_MinSize: {x: 277, y: 74}
-  m_MaxSize: {x: 4002, y: 4024}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 12}
   m_Panes:
   - {fileID: 12}
@@ -559,20 +559,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/_Scripts/App/Main Scene
+    - Assets/Prefabs/TerestrialSearchAgents/GalvadonTrainingPrefabs
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/_Scripts/App/Main Scene
+  - Assets/Prefabs/TerestrialSearchAgents/GalvadonTrainingPrefabs
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\HP 830 G5\Desktop\Licenta - ML Agents\Git Repo\MLAgents-Ecosystem\_TrainingEnvs\TrainingEnvs
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 322c0000
-    m_LastClickedID: 11314
-    m_ExpandedIDs: 000000008e290000f82900005e2a0000b82b00001a2c0000962c0000a02c0000ac2d0000ba2d0000ee2d000000ca9a3b
+    scrollPos: {x: 0, y: 133}
+    m_SelectedIDs: ce290000
+    m_LastClickedID: 10702
+    m_ExpandedIDs: 0000000086290000062a0000162a0000562a0000b22a0000b02b00008e2c0000982c0000a42d0000b22d0000e62d0000f22d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -600,7 +600,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000008e290000f82900005e2a0000b82b00001a2c0000962c0000a02c0000ac2d0000ba2d0000ee2d000000ca9a3b
+    m_ExpandedIDs: 0000000086290000062a0000162a0000562a0000b22a0000b02b00008e2c0000982c0000a42d0000b22d0000e62d0000f22d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -625,9 +625,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_SelectedInstanceIDs: ee2d0000
+    m_LastClickedInstanceID: 11758
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: 9c2a0000ce2a0000b62d000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0

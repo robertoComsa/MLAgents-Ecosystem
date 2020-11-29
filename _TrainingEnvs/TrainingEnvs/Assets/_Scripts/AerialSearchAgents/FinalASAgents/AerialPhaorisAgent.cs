@@ -330,7 +330,7 @@ public class AerialPhaorisAgent : Agent
         }
     }
 
-    // Verifica daca a intr-at intr-un anumit radius fata de helper pentru a "livra" mancarea
+    // Verifica daca a intrat intr-un anumit radius fata de helper pentru a "livra" mancarea
     // O functie predefinita va da drop la mancare in viitor
     void CheckIfFoodWasDelivered()
     {

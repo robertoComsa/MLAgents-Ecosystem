@@ -166,16 +166,6 @@ public class TerestrialGalvadonAgent : TerestrialSearchAgent
             AgentReset();
         }
 
-        // Daca ne lovim de mancarea agentului
-        if (other.gameObject.CompareTag("galvadonFood") && target == 0)
-        {
-            Destroy(other.gameObject);
-            target = 1;
-
-            // Reward
-            AddReward(0.5f);
-        }
-
         // Verifica daca a intrat intr-o coliziune ; daca da interzice amplasarea
         CheckIfAgentIsPlaceable(false, other);
     }
@@ -194,13 +184,26 @@ public class TerestrialGalvadonAgent : TerestrialSearchAgent
 
     // Coliziunea cu obiecte din scena 
     private void OnCollisionEnter(Collision other)
-    {
+    { 
         if (other.gameObject.CompareTag("prey") && carryingFood == true && target == 2)
         {
             StartCoroutine(WaitToGiveFood());
             target = 0;
 
+            // Distruge fructul pe care il cara atunci cand hraneste agentul erbivor
+            Destroy(preyFood.gameObject);
+
             // Reward 
+            AddReward(0.5f);
+        }
+
+        // Daca ne lovim de mancarea agentului
+        if (other.gameObject.CompareTag("galvadonFood") && target == 0)
+        {
+            Destroy(other.gameObject);
+            target = 1;
+
+            // Reward
             AddReward(0.5f);
         }
 

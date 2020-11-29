@@ -16,6 +16,14 @@ public class FoodRespawn : MonoBehaviour
         //StartCoroutine(Destroy());
     }
 
+    private void Update()
+    {
+        // Daca simularea s-a incheiat distrugem acest obiect
+        if (GameManager.Instance.SimulationEnded)
+            Destroy(gameObject);
+    }
+
+    // --------------- METODE folosite in antrenamente nu si in scena finala ----- 
     IEnumerator Destroy()
     {
         yield return new WaitForSeconds(10f);

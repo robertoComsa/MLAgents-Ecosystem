@@ -29,6 +29,11 @@ public class FoodPickUp : MonoBehaviour
     // Apelata in fiecare frame
     private void Update()
     {
+        // Daca simularea s-a incheiat distrugem acest obiect
+        if (GameManager.Instance.SimulationEnded)
+            Destroy(gameObject);
+
+        // Asigura efectul de *picked up* 
         if (isPickedUp)
         {
             // Pozitia este mereu deasupra agentului helper, cand mancarea este culeasa de acesta
@@ -41,10 +46,24 @@ public class FoodPickUp : MonoBehaviour
     {
         helper = other;
         isPickedUp = true;
-
-        // Nu mai vrem sa distrugem fructul daca a fost ridicat
-        StopCoroutine(DestroyFruit());
     }
+   
+    // Sistem ce face ca fructul sa dispara la x timp dupa ce a atins pamantul 
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+           StartCoroutine(DestroyFruit(destroyTimeAfterDrop));
+    }
+
+    IEnumerator DestroyFruit(float timeToWait)
+    {
+        yield return new WaitForSeconds(timeToWait);
+        if(isPickedUp==false)
+            Destroy(gameObject);
+    }
+
+    // -------------------------------  Metode resetare - Folosite in antrenamente nu si in scena finala
 
     // Metoda de resetare
     public void ResetFood()
@@ -67,20 +86,6 @@ public class FoodPickUp : MonoBehaviour
         }
         else gameObject.transform.position = startingPosition;
 
-    }
-
-    // Sistem ce face ca fructul sa dispara la x timp dupa ce a atins pamantul 
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-            StartCoroutine(DestroyFruit());
-    }
-
-    IEnumerator DestroyFruit()
-    {
-        yield return new WaitForSeconds(destroyTimeAfterDrop);
-        Destroy(gameObject);
     }
 
 }
