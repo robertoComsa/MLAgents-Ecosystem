@@ -168,6 +168,10 @@ MonoBehaviour:
   moveSpeed: 12
   rotationSpeed: 220
   searchProximity: 300
+  useStarving: 1
+  timeBetweenHungerTicks: 0
+  hungerTickValue: 0
+  hungerFactor: 0
 --- !u!1 &8862841607337231285
 GameObject:
   m_ObjectHideFlags: 0

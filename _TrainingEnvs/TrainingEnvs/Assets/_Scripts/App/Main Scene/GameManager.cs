@@ -165,23 +165,47 @@ public class GameManager : Singleton<GameManager>
     // Metoda care seteaza parametrii agentilor atunci cand ne mutam in zona de simulare
     private void SetParametersBeforePlacing()
     {
-        // Setare parametri Helios
+        // ----------------------------- Setare parametri Helios ---------------------------------------- //
+
+        // Deplasare
         HeliosParameters.MoveSpeed = int.Parse(heliosParametersText[0].text);
         HeliosParameters.RotationSpeed = int.Parse(heliosParametersText[1].text);
         HeliosParameters.SearchProximity = int.Parse(heliosParametersText[2].text);
 
-        // Setare parametri Mulak
+        // Infometare
+        HeliosParameters.hungerFactor = int.Parse(heliosParametersText[3].text);
+        HeliosParameters.hungerTickValue = int.Parse(heliosParametersText[4].text);
+        HeliosParameters.timeBetweenHungerTicks = int.Parse(heliosParametersText[5].text);
+
+        // ------------------------------- Setare parametri Mulak ------------------------------------ // 
+
+        // Deplasare
         MulakParameters.MoveSpeed = int.Parse(mulakParametersText[0].text);
         MulakParameters.RotationSpeed = int.Parse(mulakParametersText[1].text);
         MulakParameters.SearchProximity = int.Parse(mulakParametersText[2].text);
+
+        // Imperechere
         MulakParameters.MateProximity = int.Parse(mulakParametersText[3].text);
 
-        // Setare parametri Galvadon
+        // Infometare
+        MulakParameters.hungerFactor = int.Parse(mulakParametersText[4].text);
+        MulakParameters.hungerTickValue = int.Parse(mulakParametersText[5].text);
+        MulakParameters.timeBetweenHungerTicks = int.Parse(mulakParametersText[6].text);
+
+        // ------------------------------- Setare parametri Galvadon ---------------------------------- // 
+
+        // Deplasare
         GalvadonParameters.MoveSpeed = int.Parse(galvadonParametersText[0].text);
         GalvadonParameters.RotationSpeed = int.Parse(galvadonParametersText[1].text);
         GalvadonParameters.SearchProximity = int.Parse(galvadonParametersText[2].text);
 
-        //Setare parametri Phaoris
+        // Infometare
+        GalvadonParameters.hungerFactor = int.Parse(galvadonParametersText[3].text);
+        GalvadonParameters.hungerTickValue = int.Parse(galvadonParametersText[4].text);
+        GalvadonParameters.timeBetweenHungerTicks = int.Parse(galvadonParametersText[5].text);
+
+        // ------------------------------- Setare parametri Phaoris ------------------------------------ //
+
         PhaorisParameters.MoveSpeed = int.Parse(phaorisParametersText[0].text);
         PhaorisParameters.Y_RotationSpeed = int.Parse(phaorisParametersText[1].text);
         PhaorisParameters.X_RotationSpeed = int.Parse(phaorisParametersText[2].text);

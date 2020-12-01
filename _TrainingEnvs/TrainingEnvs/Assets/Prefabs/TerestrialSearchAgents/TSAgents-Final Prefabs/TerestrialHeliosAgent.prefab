@@ -216,6 +216,10 @@ MonoBehaviour:
   moveSpeed: 12
   rotationSpeed: 220
   searchProximity: 300
+  useStarving: 1
+  timeBetweenHungerTicks: 3
+  hungerTickValue: 25
+  hungerFactor: 100
 --- !u!65 &4497610941058241348
 BoxCollider:
   m_ObjectHideFlags: 0

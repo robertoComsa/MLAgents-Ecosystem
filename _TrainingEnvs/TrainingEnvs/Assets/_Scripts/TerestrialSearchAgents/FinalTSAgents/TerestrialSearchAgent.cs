@@ -13,6 +13,12 @@ public class TerestrialSearchAgent : Agent
     [Tooltip("Viteza de rotatie")] [SerializeField] protected float rotationSpeed = 0f;
     [Tooltip("Distanta in care agentul cauta tinte")] [SerializeField] protected float searchProximity = 0f;
 
+    [Header("Parametrii infometare")]
+    [Tooltip("Daca folosim sau nu infometarea")] [SerializeField] protected bool useStarving = false;
+    [Tooltip("O data la cat timp scade factorul de infometare (secunde)")] [SerializeField] protected float timeBetweenHungerTicks = 0f;
+    [Tooltip("Valoarea cu care scade factorul de infometare")] [SerializeField] protected float hungerTickValue = 0f;
+    [Tooltip("Factorul de infometare")] [SerializeField] protected float hungerFactor = 0f;
+
     //  ---------------------------------------------------------- VARIABILE ---------------------------------------------------- //
 
     // Pozitia de start (folosita in reasezarea agentului in scena)
@@ -25,7 +31,7 @@ public class TerestrialSearchAgent : Agent
     protected float distanceToClosestTarget = 0f;
 
     // Folosita pentru a optimiza (mai putine utilizari) ale metodei de cautare in proximitate
-    protected float timeGap = 0f;
+    protected float proximitySearchTimeGap = 0f;
     // Agentilor le-am oferit localPosition , dar noi vrem sa tragem raycasturi pana la position  
     protected Vector3 targetedRayPos = Vector3.zero;
 
@@ -34,6 +40,15 @@ public class TerestrialSearchAgent : Agent
 
     // Directia spre cea mai apropriata tinta
     protected Vector3 toClosestTarget = Vector3.zero;
+
+    // Factorul de infometare initial 
+    protected float initialHungerFactor = 0f;
+
+    // boolean ce verifica daca a inceput simularea 
+    protected bool simStarted = false;
+
+    // Folosit pentru a infometa agentul
+    protected float hungerTimeGap = 0f;
 
     // ------------------------------------------------- METODE (Mostenite din) AGENT ---------------------------------------- //
 
@@ -47,6 +62,11 @@ public class TerestrialSearchAgent : Agent
 
         // Disabling collision for placement purposes 
         rb.isKinematic = true;
+
+        // Initializare a factorului de infomatare intial
+        initialHungerFactor = hungerFactor;
+
+        hungerFactor += 25f;
     }
 
     // Observatiile numerice oferite agentului
@@ -140,11 +160,17 @@ public class TerestrialSearchAgent : Agent
     }
 
     // Metoda de initializare a agentilor cu parametri alesi de utilizator/
-    public virtual void Initialize(int ms, int rs, int sp)
+    public virtual void Initialize(int ms, int rs, int sp , float hF , float hTv , float tBHT)
     {
+        // Deplasare
         moveSpeed = ms;
         rotationSpeed = rs;
         searchProximity = sp;
+
+        // Infometare
+        hungerFactor = hF;
+        hungerTickValue = hTv;
+        timeBetweenHungerTicks = tBHT;
     }
 
     // FixedUpdate este apelata o data la 0.02 secunde (50 de apeluri pe secunda; independent de fps)
@@ -153,21 +179,30 @@ public class TerestrialSearchAgent : Agent
         // Inainte CheckPartnerInProximity ar fi fost apelata aici de 50 de ori pe secunda
         // Acum este apelata de 10 ori . 
         OptimizedCheckInRadius(Color.red);
+
+        // Permitem agentului sa ia decizii 
         if (GameManager.Instance.CanAgentsRequestDecisions == true)
         {
             RequestDecision();
-            rb.isKinematic = false;
-            rb.detectCollisions = true;
+            if (simStarted == false)
+            {
+                rb.isKinematic = false;
+                rb.detectCollisions = true;
+                simStarted = true;
+            }
         }
+
+        // Proces infometare
+        StarvingProcess();
     }
 
     // Optimizeaza (reduce numarul de utilizari) ale metodei de cautare in proximitate ( metoda foarte "grea" )
     protected virtual void OptimizedCheckInRadius(Color rayColor)
     {
-        if (Time.time - timeGap >= 0.1f)
+        if (Time.time - proximitySearchTimeGap >= 0.1f)
         {
             CheckTargetInProximity();
-            timeGap = Time.time;
+            proximitySearchTimeGap = Time.time;
         }
 
         if (targetedRayPos != Vector3.zero)
@@ -225,7 +260,7 @@ public class TerestrialSearchAgent : Agent
         transform.rotation = newRotation;
     }
 
-    // ------ METODE FOLOSITE IN SISTEMUL DE PLASARE AL AGENTILOR IN SCENA DE CATRE UN UTILIZATOR UMAN
+    // --------------------- METODE FOLOSITE IN SISTEMUL DE PLASARE AL AGENTILOR IN SCENA DE CATRE UN UTILIZATOR UMAN -------------------------------- //
 
     // Functie de verificare a colliderului folosita la amplasarea agentilor
     protected bool CheckColliderTag(Collider other)
@@ -243,4 +278,22 @@ public class TerestrialSearchAgent : Agent
             // permitem sau interzicem amplasarea
             PlacementController.Instance.CanPlaceAgents = allowPlacement;
     }
+
+    // ------------------------- METODE FOLOSITE PENTRU PROCESUL DE INFOMETARE / HRANIRE ------------------------------------- //
+
+    // Metoda ce infometeaza agentul o data cu trecerea timpului
+    protected void StarvingProcess()
+    {
+        if (Time.time - hungerTimeGap >= timeBetweenHungerTicks && useStarving == true && simStarted == true) // O data la timeBetweenHungerTicks secunde
+        {   
+            hungerFactor -= hungerTickValue;
+            //Debug.Log("Factorul de infometare: " + hungerFactor);
+            hungerTimeGap = Time.time;
+        }
+
+        if(hungerFactor <= 0f) { Destroy(gameObject); }
+    }
+
+    // Dupa ce mananca agentul se satura (revine la valoarea maxima a factorului de infometare)
+    protected void Eat() { hungerFactor = initialHungerFactor; }
 }

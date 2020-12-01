@@ -4,6 +4,10 @@ using UnityEngine;
 
 public struct AgentParameters
 {
+    // Parametri infometare 
+    public float timeBetweenHungerTicks;
+    public float hungerTickValue;
+    public float hungerFactor;
 
     // Helios, Mulak, Galvadon & Phaoris
     public int MoveSpeed;

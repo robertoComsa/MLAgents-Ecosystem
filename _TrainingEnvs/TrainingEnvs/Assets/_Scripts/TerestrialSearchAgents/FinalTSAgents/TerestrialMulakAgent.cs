@@ -128,9 +128,9 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
     }
 
     // Metoda de initializare a agentilor cu parametri alesi de utilizator
-    public  void Initialize(int ms, int rs, int sp, int mp)
+    public  void Initialize(int ms, int rs, int sp, int mp , float hF , float hTv , float tBHT)
     {
-        base.Initialize(ms, rs, sp);
+        base.Initialize(ms, rs, sp , hF , hTv , tBHT);
         mateProximity = mp;
     }
 
@@ -183,10 +183,10 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
     // Optimizeaza (reduce numarul de utilizari) ale metodei de cautare in proximitate ( metoda foarte "grea" )
     protected override void OptimizedCheckInRadius(Color rayColor)
     {
-        if (Time.time - timeGap >= 0.1f)
+        if (Time.time - proximitySearchTimeGap >= 0.1f)
         {
             CheckTargetInProximity();
-            timeGap = Time.time;
+            proximitySearchTimeGap = Time.time;
 
             // Reward pentru directia in care se uita agentul ( 1 - maxim cand se uita direct la tinta , -1 - minim cand se uita in directia opusa)
             AddReward(0.01f * Vector3.Dot(gameObject.transform.forward.normalized, toClosestTarget.normalized));
@@ -202,13 +202,23 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
     // FixedUpdate este apelata o data la 0.02 secunde (50 de apeluri pe secunda; independent de fps)
     protected override void FixedUpdate()
     {
+        // Cautam si alegem cea mai apropriata tinta din proximitatea aleasa
         OptimizedCheckInRadius(rayColor: Color.yellow);
-        if (isGrounded && GameManager.Instance.CanAgentsRequestDecisions == true)
+
+        // Permitem agentului sa ia decizii 
+        if (isGrounded == true && GameManager.Instance.CanAgentsRequestDecisions == true)
         {
-            RequestDecision(); // Nu vrem ca agentul sa ia decizii cand este in aer 
-            rb.isKinematic = false;
-            rb.detectCollisions = true;
+            RequestDecision();
+            if (simStarted == false)
+            {
+                rb.isKinematic = false;
+                rb.detectCollisions = true;
+                simStarted = true;
+            }
         }
+
+        // Proces infometare
+        StarvingProcess();
     }
 
 
@@ -232,8 +242,11 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
         }
 
         if (other.gameObject.CompareTag("helper") && other.gameObject.GetComponent<TerestrialGalvadonAgent>().GetCarryingFood() == true)
+        {
             StartCoroutine(MakeFlower());
-
+            // Mananca (starving system)
+            Eat();
+        }
 
     }
 

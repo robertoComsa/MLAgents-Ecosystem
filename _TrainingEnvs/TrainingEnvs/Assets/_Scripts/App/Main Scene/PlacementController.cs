@@ -59,26 +59,42 @@ public class PlacementController : Singleton<PlacementController>
                         // Helios
                         case 0:
                             currentPlaceableObject.gameObject.GetComponent<TerestrialHeliosAgent>().Initialize(
+                                // Deplasare
                                 GameManager.Instance.HeliosParameters.MoveSpeed,
                                 GameManager.Instance.HeliosParameters.RotationSpeed,
-                                GameManager.Instance.HeliosParameters.SearchProximity
+                                GameManager.Instance.HeliosParameters.SearchProximity,
+                                // Infometare
+                                GameManager.Instance.HeliosParameters.hungerFactor,
+                                GameManager.Instance.HeliosParameters.hungerTickValue,
+                                GameManager.Instance.HeliosParameters.timeBetweenHungerTicks
                                 );
                             break;
                         // Mulak
                         case 1:
                             currentPlaceableObject.gameObject.GetComponent<TerestrialMulakAgent>().Initialize(
+                                // Deplasare
                                 GameManager.Instance.MulakParameters.MoveSpeed,
                                 GameManager.Instance.MulakParameters.RotationSpeed,
                                 GameManager.Instance.MulakParameters.SearchProximity,
-                                GameManager.Instance.MulakParameters.MateProximity
+                                // Imperechere
+                                GameManager.Instance.MulakParameters.MateProximity,
+                                // Infometare
+                                GameManager.Instance.MulakParameters.hungerFactor,
+                                GameManager.Instance.MulakParameters.hungerTickValue,
+                                GameManager.Instance.MulakParameters.timeBetweenHungerTicks
                                 );
                             break;
                         // Galvadon
                         case 2:
                             currentPlaceableObject.gameObject.GetComponent<TerestrialGalvadonAgent>().Initialize(
+                                // Deplasare
                                 GameManager.Instance.GalvadonParameters.MoveSpeed,
                                 GameManager.Instance.GalvadonParameters.RotationSpeed,
-                                GameManager.Instance.GalvadonParameters.SearchProximity
+                                GameManager.Instance.GalvadonParameters.SearchProximity,
+                                // Infometare
+                                GameManager.Instance.GalvadonParameters.hungerFactor,
+                                GameManager.Instance.GalvadonParameters.hungerTickValue,
+                                GameManager.Instance.GalvadonParameters.timeBetweenHungerTicks
                                 );
                             break;
                         // Phaoris

@@ -49,22 +49,33 @@ public class TerestrialGalvadonAgent : TerestrialSearchAgent
 
     protected override void FixedUpdate()
     {
+        // Cautam si alegem cea mai apropriata tinta din proximitatea aleasa
         OptimizedCheckInRadius(rayColor);
+
+
+        // Permitem agentului sa ia decizii 
         if (GameManager.Instance.CanAgentsRequestDecisions == true)
         {
             RequestDecision();
-            rb.isKinematic = false;
-            rb.detectCollisions = true;
+            if (simStarted == false)
+            {
+                rb.isKinematic = false;
+                rb.detectCollisions = true;
+                simStarted = true;
+            }
         }
+
+        // Proces infometare
+        StarvingProcess();
     }
 
     // Optimizeaza (reduce numarul de utilizari) ale metodei de cautare in proximitate ( metoda foarte "grea" )
     protected override void OptimizedCheckInRadius(Color rayColor)
     {
-        if (Time.time - timeGap >= 0.1f)
+        if (Time.time - proximitySearchTimeGap >= 0.1f)
         {
             CheckTargetInProximity();
-            timeGap = Time.time;
+            proximitySearchTimeGap = Time.time;
 
             // Reward pentru directia in care se uita agentul ( 1 - maxim cand se uita direct la tinta , -1 - minim cand se uita in directia opusa)
             AddReward(0.1f * Vector3.Dot(gameObject.transform.forward.normalized, toClosestTarget.normalized));
@@ -205,6 +216,9 @@ public class TerestrialGalvadonAgent : TerestrialSearchAgent
 
             // Reward
             AddReward(0.5f);
+
+            // Mananca (starving system)
+            Eat();
         }
 
         // Daca ne lovim de mancarea erbivorilor 

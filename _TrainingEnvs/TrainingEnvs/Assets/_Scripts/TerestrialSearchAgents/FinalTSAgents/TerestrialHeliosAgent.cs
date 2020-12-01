@@ -17,10 +17,10 @@ public class TerestrialHeliosAgent : TerestrialSearchAgent
 
     protected override void OptimizedCheckInRadius(Color rayColor)
     {
-        if (Time.time - timeGap >= 0.1f)
+        if (Time.time - proximitySearchTimeGap >= 0.1f)
         {
             CheckTargetInProximity();
-            timeGap = Time.time;
+            proximitySearchTimeGap = Time.time;
 
             // Reward pentru directia in care se uita agentul ( 1 - maxim cand se uita direct la tinta , -1 - minim cand se uita in directia opusa)
             AddReward(0.1f * Vector3.Dot(gameObject.transform.forward.normalized, toClosestTarget.normalized));
@@ -64,6 +64,9 @@ public class TerestrialHeliosAgent : TerestrialSearchAgent
         {
             AddReward(0.5f);
             StartCoroutine(EatingPause());
+
+            // Mananca (starving system)
+            Eat();
         }
 
         if(other.gameObject.CompareTag("boundary"))
