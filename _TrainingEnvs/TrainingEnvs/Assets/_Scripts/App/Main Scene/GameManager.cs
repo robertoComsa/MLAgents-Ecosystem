@@ -154,6 +154,8 @@ public class GameManager : Singleton<GameManager>
             CanAgentsRequestDecisions = false;
             // Afisam statisticile
             EnableOrDisableElement(statisticsOutput, true);
+            // Setam corect statisticile
+            StatisticsManager.Instance.SetSimDataTxt();
             // Deblocam mouse-ul
             Cursor.lockState = CursorLockMode.None;
             // Blocam camera
@@ -191,6 +193,8 @@ public class GameManager : Singleton<GameManager>
         EnableOrDisableElement(statisticsOutput, false);
         // Deblocam mouse-ul
         Cursor.lockState = CursorLockMode.None;
+        // Resetam datele simularii 
+        StatisticsManager.Instance.ModifySimData("reset");
     }
 
     // Rutina ce distruge agentii inainte de a dezactiva scena

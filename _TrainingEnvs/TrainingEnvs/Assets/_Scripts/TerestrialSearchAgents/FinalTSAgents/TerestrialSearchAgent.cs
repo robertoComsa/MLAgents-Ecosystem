@@ -282,7 +282,7 @@ public class TerestrialSearchAgent : Agent
     // ------------------------- METODE FOLOSITE PENTRU PROCESUL DE INFOMETARE / HRANIRE ------------------------------------- //
 
     // Metoda ce infometeaza agentul o data cu trecerea timpului
-    protected void StarvingProcess()
+    protected virtual void StarvingProcess()
     {
         if (Time.time - hungerTimeGap >= timeBetweenHungerTicks && useStarving == true && simStarted == true) // O data la timeBetweenHungerTicks secunde
         {   
@@ -290,8 +290,6 @@ public class TerestrialSearchAgent : Agent
             //Debug.Log("Factorul de infometare: " + hungerFactor);
             hungerTimeGap = Time.time;
         }
-
-        if(hungerFactor <= 0f) { Destroy(gameObject); }
     }
 
     // Dupa ce mananca agentul se satura (revine la valoarea maxima a factorului de infometare)

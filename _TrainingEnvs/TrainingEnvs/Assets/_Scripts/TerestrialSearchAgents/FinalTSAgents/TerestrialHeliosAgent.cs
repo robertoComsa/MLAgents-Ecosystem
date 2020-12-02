@@ -44,6 +44,17 @@ public class TerestrialHeliosAgent : TerestrialSearchAgent
 
     // ------------------------------------------------------------- METODE -------------------------------------------------- //
 
+    protected override void StarvingProcess()
+    {
+        base.StarvingProcess();
+   
+        if (hungerFactor <= 0f)
+        {
+            Destroy(gameObject);
+            StatisticsManager.Instance.ModifySimData("heliosStarved");
+        }
+    }
+
     // -- Pauza (inlocuitor animatie , atunci cand prinde un erbivor)
 
     IEnumerator EatingPause()
@@ -67,6 +78,8 @@ public class TerestrialHeliosAgent : TerestrialSearchAgent
 
             // Mananca (starving system)
             Eat();
+            // Noteaza in simData
+            StatisticsManager.Instance.ModifySimData("mulaksEaten");
         }
 
         if(other.gameObject.CompareTag("boundary"))

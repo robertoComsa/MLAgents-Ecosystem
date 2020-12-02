@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 950, y: 474}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -46,7 +46,7 @@ MonoBehaviour:
     y: 0
     width: 1536
     height: 781
-  m_MinSize: {x: 950, y: 474}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &3
 MonoBehaviour:
@@ -113,10 +113,10 @@ MonoBehaviour:
     y: 30
     width: 1536
     height: 731
-  m_MinSize: {x: 677, y: 424}
-  m_MaxSize: {x: 18004, y: 14024}
+  m_MinSize: {x: 681, y: 448}
+  m_MaxSize: {x: 18008, y: 14024}
   vertical: 0
-  controlID: 5428
+  controlID: 1611
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -138,10 +138,10 @@ MonoBehaviour:
     y: 0
     width: 872
     height: 731
-  m_MinSize: {x: 202, y: 424}
-  m_MaxSize: {x: 4002, y: 8024}
+  m_MinSize: {x: 202, y: 448}
+  m_MaxSize: {x: 4002, y: 8048}
   vertical: 1
-  controlID: 5463
+  controlID: 1612
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -245,7 +245,7 @@ MonoBehaviour:
   m_MinSize: {x: 275, y: 324}
   m_MaxSize: {x: 10002, y: 14024}
   vertical: 1
-  controlID: 5429
+  controlID: 1630
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -553,7 +553,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 88e7ffffdefbffff7e300000
+      m_ExpandedIDs: defbffffb22f00008a300000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -650,20 +650,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/_Scripts/App/Main Scene
+    - Assets/_Scripts/TerestrialSearchAgents/FinalTSAgents
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/_Scripts/App/Main Scene
+  - Assets/_Scripts/TerestrialSearchAgents/FinalTSAgents
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\HP 830 G5\Desktop\Licenta - ML Agents\Git Repo\MLAgents-Ecosystem\_TrainingEnvs\TrainingEnvs
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 2a2c0000
-    m_LastClickedID: 11306
-    m_ExpandedIDs: 0000000086290000162a0000562a0000b22a0000b02b0000122c00008e2c0000982c0000a42d0000b22d0000e62d0000f22d000000ca9a3b
+    m_SelectedIDs: 282b0000
+    m_LastClickedID: 11048
+    m_ExpandedIDs: 0000000088290000182a0000582a0000b42a0000b22b0000142c0000902c00009a2c0000a62d0000b42d0000e82d0000f42d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -691,7 +691,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000086290000162a0000562a0000b22a0000b02b0000122c00008e2c0000982c0000a42d0000b22d0000e62d0000f22d000000ca9a3b
+    m_ExpandedIDs: 0000000088290000182a0000582a0000b42a0000b22b0000142c0000902c00009a2c0000a62d0000b42d0000e82d0000f42d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

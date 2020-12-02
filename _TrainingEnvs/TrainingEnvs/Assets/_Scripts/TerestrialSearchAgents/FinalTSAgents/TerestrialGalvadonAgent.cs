@@ -47,6 +47,17 @@ public class TerestrialGalvadonAgent : TerestrialSearchAgent
 
     // ----------------------------------------- METODE (Mostenite din) TERESTRIAL SEARCH AGENT ------------------------------------- //
 
+    protected override void StarvingProcess()
+    {
+        base.StarvingProcess();
+
+        if (hungerFactor <= 0f)
+        {
+            Destroy(gameObject);
+            StatisticsManager.Instance.ModifySimData("galvadonStarved");
+        }
+    }
+
     protected override void FixedUpdate()
     {
         // Cautam si alegem cea mai apropriata tinta din proximitatea aleasa

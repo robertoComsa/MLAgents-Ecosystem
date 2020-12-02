@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StatisticsManager : Singleton<StatisticsManager>
 {
     // -------------------------------------------------- VARIABILE VIZIBILE IN EDITOR --------------------------------------- //
 
     //[Tooltip("Daca folosim managerul de statistici")] [SerializeField] private bool useThis = false;
+    [Tooltip("Componenta text a statisticilor")] [SerializeField] private Text simData = null;
 
     // --------------------------------------------- VARIABILE & METODE GESTIONARE VARIABILE ----------------------------------------------------- //
 
@@ -167,5 +169,28 @@ public class StatisticsManager : Singleton<StatisticsManager>
         initialHeliosNumber = HeliosAgentsNumber;
         initialMulakNumber = MulakAgentsNumber;
         initialGalvadonNumber = GalvadonAgentsNumber;
+    }
+
+
+    // ------------------ Setarea simData text ------------- //s
+    public void SetSimDataTxt()
+    {
+        simData.text = "Au fost instantiati: \n" 
+            // Instantierea initiala
+            + initialHeliosNumber + " agenti Helios \n"
+            + initialMulakNumber + " agenti Mulak \n"
+            + initialGalvadonNumber + " agenti Galvadon \n\n"
+
+            // Mulak (mancati / nascuti)
+            +mulaksCreated + " agenti Mulak au fost creati (prin multiplicare) \n"
+            +mulaksEaten + " angenti Mulak au fost mancati \n\n"
+
+            // Decese din cauza infometarii
+            +"Au murit de foame: \n"
+            +heliosStarved + " agenti Helios\n"
+            +mulakStarved + " agenti Mulak\n"
+            +galvadonStarved + " agenti Galvadon"
+            
+            ;
     }
 }

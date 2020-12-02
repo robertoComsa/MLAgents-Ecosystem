@@ -199,6 +199,17 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
             Debug.DrawLine(transform.position, targetedRayPos, Color.yellow);
     }
 
+    protected override void StarvingProcess()
+    {
+        base.StarvingProcess();
+
+        if (hungerFactor <= 0f)
+        {
+            Destroy(gameObject);
+            StatisticsManager.Instance.ModifySimData("mulakStarved");
+        }
+    }
+
     // FixedUpdate este apelata o data la 0.02 secunde (50 de apeluri pe secunda; independent de fps)
     protected override void FixedUpdate()
     {
@@ -314,6 +325,9 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
         Quaternion newRotation = Quaternion.Euler(transform.rotation.x, Random.Range(0f, 360f), transform.rotation.z);
         GameObject mulakChild = Instantiate(mulakPrefab, gameObject.transform.position - new Vector3(0f, 0f, -1.4f), newRotation, gameObject.transform.parent.transform);
         mulakChild.GetComponent<TerestrialMulakAgent>().BirthInitialize();
+
+        // 
+        StatisticsManager.Instance.ModifySimData("mulaksCreated");
     }
 
     // !!!!! De adaugat un bool daca a fost hranit , si daca da sa lase o floare inainte de a fi mancat 
