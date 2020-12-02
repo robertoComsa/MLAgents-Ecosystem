@@ -26,11 +26,14 @@ public class FlyingCamera : MonoBehaviour
     private float rotationX = 0.0f;
     private float rotationY = 0.0f;
 
+    // Proprietate bool care ne permite/interzice miscarea
+    public bool CanMoveCamera { get; set; } = true;
+
     // ------------------------------------------------------------ METODE ------------------------------------------------------ //
 
     void Update()
     {
-        ApplyMovement();
+        if(CanMoveCamera) ApplyMovement();
     }
 
     void ApplyMovement()

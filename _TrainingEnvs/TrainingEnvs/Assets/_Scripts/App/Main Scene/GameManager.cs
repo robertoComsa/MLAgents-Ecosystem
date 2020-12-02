@@ -20,6 +20,9 @@ public class GameManager : Singleton<GameManager>
     [Tooltip("Parametri Galvadon")] [SerializeField] Text[] galvadonParametersText = null;
     [Tooltip("Parametri Phaoris")] [SerializeField] Text[] phaorisParametersText = null;
 
+    [Header("Camera din spatiul de simulare")]
+    [Tooltip("Camera")] [SerializeField] FlyingCamera simulationAreaCamera = null;
+
     // -------- SRTRUCTURI ------- //
 
     public AgentParameters HeliosParameters;
@@ -30,14 +33,17 @@ public class GameManager : Singleton<GameManager>
     // Transformul actionbar-ului (element GUI)
     Transform actionBar = null;
 
-    // Transformul meniului de editare
+    // Transformul meniului de editare (element GUI)
     Transform parameterEditorMenu = null;
+
+    // Transformul statisticilor simularii (element GUI)
+    Transform statisticsOutput = null;
 
     // ------ PROPRIETATI ------- //
 
     public bool CanAgentsRequestDecisions { get; set; } = false;
 
-    public int GetSceneState { get; set; } = 0; // 0 - Zona de editare , 1 - Zona de simulare
+    public int GetSceneState { get; set; } = 0; // 0 - Zona de editare , 1 - Amplasarea agentilor , 2 - Simulare 
 
     public bool SimulationEnded { get; set; } = false;
 
@@ -55,6 +61,9 @@ public class GameManager : Singleton<GameManager>
         // Initializam meniul de editare
         parameterEditorMenu = canvas.transform.Find("ParameterEditorMenu");
 
+        // Initializam afisarea statisticilor
+        statisticsOutput = canvas.transform.Find("StatisticsOutput");
+
         // Constructor parametri agenti
         HeliosParameters = new AgentParameters();
         MulakParameters = new AgentParameters();
@@ -68,8 +77,8 @@ public class GameManager : Singleton<GameManager>
         // Verificam in fiecare frame daca dam drumul la simulare
         StartSimulation();
 
-        // Verificam in fiecare frame daca incheiem simularea si revenim la meniul de editare
-        EndSimulation();
+        // Verificam in fiecare frame daca punem pauza la simulare
+        PauseOnEscape();
     }
 
     // --------------------------------------------------------------------- METODE ------------------------------------------------------------------- //
@@ -88,11 +97,20 @@ public class GameManager : Singleton<GameManager>
         // Activate agents after placement
         if (Input.GetKeyDown(KeyCode.M) && GetSceneState == 1)
         {
+            // Agenti pot lua decizii 
             CanAgentsRequestDecisions = true;
+
+            // Dezactivam bara de selectare a agentilor
             EnableOrDisableElement(actionBar, false);
+
+            // Tranzitionam starea scenei
+            GetSceneState = 2;
 
             // Interzicem amplasarea agentilor
             PlacementController.Instance.CanPlaceAgents = false;
+
+            // Setam numarul initial de agenti (pentru statistici)
+            StatisticsManager.Instance.SetInitialAgentNumbers();
         }
     }
 
@@ -118,19 +136,61 @@ public class GameManager : Singleton<GameManager>
         // Blocam mouse-ul
         Cursor.lockState = CursorLockMode.Locked;
 
+        // Permitem miscarea camerei
+        simulationAreaCamera.CanMoveCamera = true;
+
         // Setam parametrii agentilor
         SetParametersBeforePlacing();
     }
 
-    // Metoda de incheiere a simularii ce ne intoarce l 
-    private void EndSimulation()
+    // <>--<> GESTIONARE SIMULARE <>--<>
+
+    // Metoda de pauza a simularii 
+    public void PauseOnEscape()
     {
-        if (GetSceneState == 1 && Input.GetKeyDown(KeyCode.Escape))
+        if (GetSceneState == 2 && Input.GetKeyDown(KeyCode.Escape))
+        {
+            // Agentii nu mai pot lua decizii
+            CanAgentsRequestDecisions = false;
+            // Afisam statisticile
+            EnableOrDisableElement(statisticsOutput, true);
+            // Deblocam mouse-ul
+            Cursor.lockState = CursorLockMode.None;
+            // Blocam camera
+            simulationAreaCamera.CanMoveCamera = false;
+        }
+        else if(GetSceneState == 1 && Input.GetKeyDown(KeyCode.Escape))
         {
             StartCoroutine(DestroyAgentsThenSwapScene(0.1f));
             // Deblocam mouse-ul
             Cursor.lockState = CursorLockMode.None;
         }
+    }
+
+    // Metoda de reluare a simularii
+    public void ResumeSimulationButton()
+    {
+        // Agentii pot lua decizii
+        CanAgentsRequestDecisions = true;
+        // Dezactivam afisarea statisticilor
+        EnableOrDisableElement(statisticsOutput, false);
+        // Blocam mouse-ul
+        Cursor.lockState = CursorLockMode.Locked;
+       // Permitem miscarea camerei
+        simulationAreaCamera.CanMoveCamera = true; 
+    }
+
+    // Metoda de incheiere a simularii ce ne intoarce l 
+    public void EndSimulationButton()
+    {
+        // Eliminam agentii din scena
+        StartCoroutine(DestroyAgentsThenSwapScene(0.1f));
+        // Deblocam mouse-ul
+        Cursor.lockState = CursorLockMode.None;
+        // Dezactivam afisarea statisticilor
+        EnableOrDisableElement(statisticsOutput, false);
+        // Deblocam mouse-ul
+        Cursor.lockState = CursorLockMode.None;
     }
 
     // Rutina ce distruge agentii inainte de a dezactiva scena

@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 950, y: 498}
+  m_MinSize: {x: 950, y: 474}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -46,7 +46,7 @@ MonoBehaviour:
     y: 0
     width: 1536
     height: 781
-  m_MinSize: {x: 950, y: 498}
+  m_MinSize: {x: 950, y: 474}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &3
 MonoBehaviour:
@@ -113,10 +113,10 @@ MonoBehaviour:
     y: 30
     width: 1536
     height: 731
-  m_MinSize: {x: 681, y: 448}
-  m_MaxSize: {x: 18008, y: 14024}
+  m_MinSize: {x: 677, y: 424}
+  m_MaxSize: {x: 18004, y: 14024}
   vertical: 0
-  controlID: 19679
+  controlID: 5428
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -138,10 +138,10 @@ MonoBehaviour:
     y: 0
     width: 872
     height: 731
-  m_MinSize: {x: 202, y: 448}
-  m_MaxSize: {x: 4002, y: 8048}
+  m_MinSize: {x: 202, y: 424}
+  m_MaxSize: {x: 4002, y: 8024}
   vertical: 1
-  controlID: 19849
+  controlID: 5463
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -245,7 +245,7 @@ MonoBehaviour:
   m_MinSize: {x: 275, y: 324}
   m_MaxSize: {x: 10002, y: 14024}
   vertical: 1
-  controlID: 19680
+  controlID: 5429
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -265,8 +265,8 @@ MonoBehaviour:
     y: 0
     width: 388
     height: 395
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 277, y: 74}
+  m_MaxSize: {x: 4002, y: 4024}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -551,9 +551,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 5c830200
-      m_LastClickedID: 164700
-      m_ExpandedIDs: 546dffff766dfffff46effffcc6fffffc27bffffc67bffffc87bffffd27bffffd67bffffd87bffff04a4ffff0ca4ffff14a4ffff64cbffff6acbffff70cbffffdefbffff762e0000f62e0000002f00000e2f0000202f0000562f0000802f00008a2f0000143000004a3000006a30000084300000ac300000d8300000e63000005a310000a0310000be310000ca31000016780200b07802002c7e0200c67f0200
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 88e7ffffdefbffff7e300000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -650,20 +650,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs/TerestrialSearchAgents/TSAgents-Final Prefabs
+    - Assets/_Scripts/App/Main Scene
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Prefabs/TerestrialSearchAgents/TSAgents-Final Prefabs
+  - Assets/_Scripts/App/Main Scene
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\HP 830 G5\Desktop\Licenta - ML Agents\Git Repo\MLAgents-Ecosystem\_TrainingEnvs\TrainingEnvs
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 69}
-    m_SelectedIDs: e0290000
-    m_LastClickedID: 10720
-    m_ExpandedIDs: 0000000086290000062a0000162a0000562a0000b22a0000b02b00008e2c0000982c0000a42d0000e62d0000f22d000000ca9a3b
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 2a2c0000
+    m_LastClickedID: 11306
+    m_ExpandedIDs: 0000000086290000162a0000562a0000b22a0000b02b0000122c00008e2c0000982c0000a42d0000b22d0000e62d0000f22d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -691,7 +691,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000086290000062a0000162a0000562a0000b22a0000b02b00008e2c0000982c0000a42d0000e62d0000f22d000000ca9a3b
+    m_ExpandedIDs: 0000000086290000162a0000562a0000b22a0000b02b0000122c00008e2c0000982c0000a42d0000b22d0000e62d0000f22d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

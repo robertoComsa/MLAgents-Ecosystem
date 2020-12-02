@@ -19,7 +19,12 @@ public class PlacementController : Singleton<PlacementController>
     int agentsNumber = 0;
     float mouseWheelRotation = 0f;
 
+    // Daca putem plasa agenti sau nu
     public bool CanPlaceAgents{ get; set; } = true;
+
+    // Agentul care este plasat
+    private string agentInstantiated = "";
+
 
     // ------------------------------------------------------------- METODE ------------------------------------------------------- // 
 
@@ -58,6 +63,7 @@ public class PlacementController : Singleton<PlacementController>
                     {
                         // Helios
                         case 0:
+                            // Instantiaza agentul cu parametri selectati de utilizator
                             currentPlaceableObject.gameObject.GetComponent<TerestrialHeliosAgent>().Initialize(
                                 // Deplasare
                                 GameManager.Instance.HeliosParameters.MoveSpeed,
@@ -68,9 +74,14 @@ public class PlacementController : Singleton<PlacementController>
                                 GameManager.Instance.HeliosParameters.hungerTickValue,
                                 GameManager.Instance.HeliosParameters.timeBetweenHungerTicks
                                 );
+
+                            // Folosit pentru StatisticsManager (a contoriza numarul de agenti instantiati de fiecare tip)
+                            agentInstantiated = "helios";
+
                             break;
                         // Mulak
                         case 1:
+                            // Instantiaza agentul cu parametri selectati de utilizator
                             currentPlaceableObject.gameObject.GetComponent<TerestrialMulakAgent>().Initialize(
                                 // Deplasare
                                 GameManager.Instance.MulakParameters.MoveSpeed,
@@ -83,9 +94,14 @@ public class PlacementController : Singleton<PlacementController>
                                 GameManager.Instance.MulakParameters.hungerTickValue,
                                 GameManager.Instance.MulakParameters.timeBetweenHungerTicks
                                 );
+
+                            // Folosit pentru StatisticsManager (a contoriza numarul de agenti instantiati de fiecare tip)
+                            agentInstantiated = "mulak";
+
                             break;
                         // Galvadon
                         case 2:
+                            // Instantiaza agentul cu parametri selectati de utilizator
                             currentPlaceableObject.gameObject.GetComponent<TerestrialGalvadonAgent>().Initialize(
                                 // Deplasare
                                 GameManager.Instance.GalvadonParameters.MoveSpeed,
@@ -96,9 +112,14 @@ public class PlacementController : Singleton<PlacementController>
                                 GameManager.Instance.GalvadonParameters.hungerTickValue,
                                 GameManager.Instance.GalvadonParameters.timeBetweenHungerTicks
                                 );
+
+                            // Folosit pentru StatisticsManager (a contoriza numarul de agenti instantiati de fiecare tip)
+                            agentInstantiated = "galvadon";
+
                             break;
                         // Phaoris
                         case 3:
+                            // Instantiaza agentul cu parametri selectati de utilizator
                             currentPlaceableObject.gameObject.GetComponent<AerialPhaorisAgent>().Initialize(
                                 GameManager.Instance.PhaorisParameters.MoveSpeed,
                                 GameManager.Instance.PhaorisParameters.Y_RotationSpeed,
@@ -143,6 +164,23 @@ public class PlacementController : Singleton<PlacementController>
     void OnClickRelease()
     {
         if (Input.GetMouseButton(0) && CanPlaceAgents == true)
+        {
             currentPlaceableObject = null;
+            switch (agentInstantiated)
+            {
+                case "helios":
+                    StatisticsManager.Instance.ModifyAgentsNumber("add", "Helios");
+                    break;
+
+                case "mulak":
+                    StatisticsManager.Instance.ModifyAgentsNumber("add", "Mulak");
+                    break;
+
+                case "galvadon":
+                    StatisticsManager.Instance.ModifyAgentsNumber("add", "Galvadon");
+                    break;
+            }
+
+        }
     }
 }
