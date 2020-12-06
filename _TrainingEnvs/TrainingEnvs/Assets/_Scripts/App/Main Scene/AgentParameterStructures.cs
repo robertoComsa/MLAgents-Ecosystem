@@ -4,7 +4,7 @@ using UnityEngine;
 
 public struct AgentParameters
 {
-    // Parametri infometare 
+    // Parametri infometare (Comuni intre agentii terestri)
     public float timeBetweenHungerTicks;
     public float hungerTickValue;
     public float hungerFactor;

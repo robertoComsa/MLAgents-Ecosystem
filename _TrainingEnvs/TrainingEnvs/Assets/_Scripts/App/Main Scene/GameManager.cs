@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -23,7 +24,10 @@ public class GameManager : Singleton<GameManager>
     [Header("Camera din spatiul de simulare")]
     [Tooltip("Camera")] [SerializeField] FlyingCamera simulationAreaCamera = null;
 
-    // -------- SRTRUCTURI ------- //
+    [Header("Buton")]
+    [Tooltip("Butonul de resume a simularii")] [SerializeField] Button resumeButton = null;
+
+    // -------- STRUCTURI ------- //
 
     public AgentParameters HeliosParameters;
     public AgentParameters MulakParameters;
@@ -47,7 +51,12 @@ public class GameManager : Singleton<GameManager>
 
     public bool SimulationEnded { get; set; } = false;
 
+    public bool gamePaused { get; set; } = false;
+
     // --------------------------------------------------------------- METODE SISTEM ------------------------------------------------------------------- //
+
+    // Back button from PrepareSimulation
+    public void BackToMainMenu() { SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1); }
 
     // Prima metoda apelata ( o singura data )
     protected override void Awake()
@@ -160,6 +169,8 @@ public class GameManager : Singleton<GameManager>
             Cursor.lockState = CursorLockMode.None;
             // Blocam camera
             simulationAreaCamera.CanMoveCamera = false;
+            // Punem pauza 
+            gamePaused = true;
         }
         else if(GetSceneState == 1 && Input.GetKeyDown(KeyCode.Escape))
         {
@@ -167,6 +178,24 @@ public class GameManager : Singleton<GameManager>
             // Deblocam mouse-ul
             Cursor.lockState = CursorLockMode.None;
         }
+    }
+
+    // Incheie simularea atunci cand nu mai sunt agenti
+    public void EndSimulationOnAgentsDeath()
+    {
+        // Agentii nu mai pot lua decizii
+        CanAgentsRequestDecisions = false;
+        // Afisam statisticile
+        EnableOrDisableElement(statisticsOutput, true);
+        // Setam corect statisticile
+        StatisticsManager.Instance.SetSimDataTxt();
+        // Deblocam mouse-ul
+        Cursor.lockState = CursorLockMode.None;
+        // Blocam camera
+        simulationAreaCamera.CanMoveCamera = false;
+
+        // Blocam butonul de resume simulare
+        resumeButton.interactable = false;
     }
 
     // Metoda de reluare a simularii
@@ -178,8 +207,10 @@ public class GameManager : Singleton<GameManager>
         EnableOrDisableElement(statisticsOutput, false);
         // Blocam mouse-ul
         Cursor.lockState = CursorLockMode.Locked;
-       // Permitem miscarea camerei
-        simulationAreaCamera.CanMoveCamera = true; 
+        // Permitem miscarea camerei
+        simulationAreaCamera.CanMoveCamera = true;
+        // Incheiem pauza
+        gamePaused = false;
     }
 
     // Metoda de incheiere a simularii ce ne intoarce l 

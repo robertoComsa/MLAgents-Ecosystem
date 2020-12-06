@@ -50,8 +50,12 @@ public class TerestrialHeliosAgent : TerestrialSearchAgent
    
         if (hungerFactor <= 0f)
         {
+            // Distrugem acest agent (moare de foame)
             Destroy(gameObject);
+
+            // Modificam datele simularii
             StatisticsManager.Instance.ModifySimData("heliosStarved");
+            StatisticsManager.Instance.ModifyAgentsNumber("remove" , "Helios");
         }
     }
 

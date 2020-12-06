@@ -22,10 +22,10 @@ MonoBehaviour:
     y: 30
     width: 1536
     height: 731
-  m_MinSize: {x: 681, y: 448}
-  m_MaxSize: {x: 18008, y: 14024}
+  m_MinSize: {x: 683, y: 424}
+  m_MaxSize: {x: 18008, y: 14048}
   vertical: 0
-  controlID: 1463
+  controlID: 5646
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -127,10 +127,10 @@ MonoBehaviour:
     y: 0
     width: 872
     height: 731
-  m_MinSize: {x: 202, y: 448}
-  m_MaxSize: {x: 4002, y: 8048}
+  m_MinSize: {x: 202, y: 424}
+  m_MaxSize: {x: 4002, y: 8024}
   vertical: 1
-  controlID: 1446
+  controlID: 5647
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -189,9 +189,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 217.42822, y: 148.16293, z: 27.318628}
+    m_Target: {x: 217.53165, y: 119.797295, z: 29.156252}
     speed: 2
-    m_Value: {x: 217.42822, y: 148.16293, z: 27.318628}
+    m_Value: {x: 217.53165, y: 119.797295, z: 29.156252}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -223,9 +223,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: -0.019494532, y: 0.020994887, z: 0.00040925332, w: 0.9995895}
   m_Size:
-    m_Target: 187.56476
+    m_Target: 233.73982
     speed: 2
-    m_Value: 187.56476
+    m_Value: 233.73982
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -385,7 +385,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: defbffffb22f00008a300000
+      m_ExpandedIDs: d4c1ffffdefbffff5a2f0000ba2f000092300000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -430,10 +430,10 @@ MonoBehaviour:
     y: 0
     width: 388
     height: 731
-  m_MinSize: {x: 275, y: 324}
-  m_MaxSize: {x: 10002, y: 14024}
+  m_MinSize: {x: 277, y: 348}
+  m_MaxSize: {x: 10002, y: 14048}
   vertical: 1
-  controlID: 1464
+  controlID: 5634
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -514,8 +514,8 @@ MonoBehaviour:
     y: 395
     width: 388
     height: 336
-  m_MinSize: {x: 232, y: 274}
-  m_MaxSize: {x: 10002, y: 10024}
+  m_MinSize: {x: 230, y: 250}
+  m_MaxSize: {x: 10000, y: 10000}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -559,20 +559,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/_Scripts/TerestrialSearchAgents/FinalTSAgents
+    - Assets/_Scripts/App/Main Menu
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/_Scripts/TerestrialSearchAgents/FinalTSAgents
+  - Assets/_Scripts/App/Main Menu
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\HP 830 G5\Desktop\Licenta - ML Agents\Git Repo\MLAgents-Ecosystem\_TrainingEnvs\TrainingEnvs
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 282b0000
-    m_LastClickedID: 11048
-    m_ExpandedIDs: 0000000088290000182a0000582a0000b42a0000b22b0000142c0000902c00009a2c0000a62d0000b42d0000e82d0000f42d000000ca9a3b
+    m_SelectedIDs: 542d0000
+    m_LastClickedID: 11604
+    m_ExpandedIDs: 000000008a2900000a2a00001a2a00005a2a0000b62a0000b42b0000162c0000922c00009c2c0000a82d0000b62d0000ea2d0000f62d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -600,7 +600,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000088290000182a0000582a0000b42a0000b22b0000142c0000902c00009a2c0000a62d0000b42d0000e82d0000f42d000000ca9a3b
+    m_ExpandedIDs: 000000008a2900000a2a00001a2a00005a2a0000b62a0000b42b0000162c0000922c00009c2c0000a82d0000b62d0000ea2d0000f62d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

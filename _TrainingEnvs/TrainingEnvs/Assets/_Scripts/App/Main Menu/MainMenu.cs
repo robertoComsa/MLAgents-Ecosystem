@@ -6,12 +6,15 @@ using MLAgents;
 
 public class MainMenu : MonoBehaviour
 {
+
+    // Prepare simulation
     public void LoadPrepareSimulation()
     {
         Academy.Instance.Dispose();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    // Quit application
     public void QuitApplication()
     {
         Application.Quit();

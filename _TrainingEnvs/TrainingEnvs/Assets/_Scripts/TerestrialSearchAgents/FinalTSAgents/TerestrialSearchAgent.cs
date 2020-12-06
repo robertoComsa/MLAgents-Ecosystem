@@ -6,7 +6,7 @@ using MLAgents;
 [System.Serializable]
 public class TerestrialSearchAgent : Agent
 {
-    // ------------------------------------------------ VARIABILE VIZIBILE IN EDITOR --------------------------------------------- //
+    // <>--<> VARIABILE VIZIBILE IN EDITOR <>--<>
 
     [Header("Parametrii deplasare")]
     [Tooltip("Viteza de inaintare")] [SerializeField] protected float moveSpeed = 0f;
@@ -19,7 +19,7 @@ public class TerestrialSearchAgent : Agent
     [Tooltip("Valoarea cu care scade factorul de infometare")] [SerializeField] protected float hungerTickValue = 0f;
     [Tooltip("Factorul de infometare")] [SerializeField] protected float hungerFactor = 0f;
 
-    //  ---------------------------------------------------------- VARIABILE ---------------------------------------------------- //
+    // <>--<> VARIABILE <>--<>
 
     // Pozitia de start (folosita in reasezarea agentului in scena)
     protected Vector3 startingPosition = Vector3.zero;
@@ -144,19 +144,19 @@ public class TerestrialSearchAgent : Agent
         PlaceRandomly(10f);
     }
 
-    // -------------------------------------------------------- METODE ------------------------------------------------------- //
-
-    // Apelata o singura data inainte de start.
-    protected virtual void Awake()
-    {
-        startingPosition = gameObject.transform.position;
-    }
+    // -------------------------------------------------------- METODE TERESTRIAL SEARCH AGENT ------------------------------------------------------- //
 
     private void Update()
     {
         // Daca simularea s-a incheiat distrugem acest agent
         if (GameManager.Instance.SimulationEnded)
             Destroy(gameObject);
+    }
+
+    // Apelata o singura data inainte de start.
+    protected virtual void Awake()
+    {
+        startingPosition = gameObject.transform.position;
     }
 
     // Metoda de initializare a agentilor cu parametri alesi de utilizator/
@@ -260,7 +260,13 @@ public class TerestrialSearchAgent : Agent
         transform.rotation = newRotation;
     }
 
-    // --------------------- METODE FOLOSITE IN SISTEMUL DE PLASARE AL AGENTILOR IN SCENA DE CATRE UN UTILIZATOR UMAN -------------------------------- //
+    //
+    //
+    //
+    // <>--<> METODE FOLOSITE IN SISTEMUL DE PLASARE AL AGENTILOR IN SCENA DE CATRE UN UTILIZATOR UMAN  <>--<>
+    //
+    //
+    //
 
     // Functie de verificare a colliderului folosita la amplasarea agentilor
     protected bool CheckColliderTag(Collider other)
@@ -279,16 +285,26 @@ public class TerestrialSearchAgent : Agent
             PlacementController.Instance.CanPlaceAgents = allowPlacement;
     }
 
-    // ------------------------- METODE FOLOSITE PENTRU PROCESUL DE INFOMETARE / HRANIRE ------------------------------------- //
+    //
+    //
+    //
+    // <>--<> METODE FOLOSITE PENTRU PROCESUL DE INFOMETARE / HRANIRE  <>--<>
+    //
+    //
+    //
 
     // Metoda ce infometeaza agentul o data cu trecerea timpului
     protected virtual void StarvingProcess()
     {
         if (Time.time - hungerTimeGap >= timeBetweenHungerTicks && useStarving == true && simStarted == true) // O data la timeBetweenHungerTicks secunde
-        {   
-            hungerFactor -= hungerTickValue;
-            //Debug.Log("Factorul de infometare: " + hungerFactor);
-            hungerTimeGap = Time.time;
+        {
+            // Verificam daca nu este pauza pusa
+            if (GameManager.Instance.gamePaused == false)
+            {
+                hungerFactor -= hungerTickValue;
+                //Debug.Log("Factorul de infometare: " + hungerFactor);
+                hungerTimeGap = Time.time;
+            }
         }
     }
 

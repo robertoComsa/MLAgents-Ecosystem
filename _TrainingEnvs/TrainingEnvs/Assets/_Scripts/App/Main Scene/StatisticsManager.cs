@@ -10,6 +10,23 @@ public class StatisticsManager : Singleton<StatisticsManager>
     //[Tooltip("Daca folosim managerul de statistici")] [SerializeField] private bool useThis = false;
     [Tooltip("Componenta text a statisticilor")] [SerializeField] private Text simData = null;
 
+    // ------------------------------------------------------ METODE --------------------------------------------------------- //
+
+    private void Update()
+    {
+        if (ReturnAgentsNumber() <= 0 && GameManager.Instance.CanAgentsRequestDecisions == true)
+        {
+            GameManager.Instance.EndSimulationOnAgentsDeath();
+        }
+            
+    }
+
+    // Returneaza (momentan) numarul agentilor TSA (in caz ca toti mor , incheiem simularea)
+    private int ReturnAgentsNumber()
+    {
+        return HeliosAgentsNumber + MulakAgentsNumber + GalvadonAgentsNumber;
+    }
+
     // --------------------------------------------- VARIABILE & METODE GESTIONARE VARIABILE ----------------------------------------------------- //
 
     // Numarul de agenti Helios
@@ -154,6 +171,9 @@ public class StatisticsManager : Singleton<StatisticsManager>
 
     }
 
+    // <>--<> SETAREA DATELOR INITIALE <>--<>
+
+
     // Numar de agenti Helios initial
     private int initialHeliosNumber = 0;
 
@@ -170,6 +190,8 @@ public class StatisticsManager : Singleton<StatisticsManager>
         initialMulakNumber = MulakAgentsNumber;
         initialGalvadonNumber = GalvadonAgentsNumber;
     }
+
+    // <>--<> SETAREA TEXTULUI LEGAT DE DATELE SIMULARII  <>--<>
 
 
     // ------------------ Setarea simData text ------------- //s
