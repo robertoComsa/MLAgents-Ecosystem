@@ -154,9 +154,8 @@ public class TerestrialGalvadonAgent : TerestrialSearchAgent
         }
         else
         {
-            closestTargetPosition = Vector3.zero;
-            distanceToClosestTarget = 0f;
-            targetedRayPos = Vector3.zero;
+            // Give random pos through a function that checksif 10s passed and then gives a new random target positioN
+            RandomTargetPositionGenerator();
         }
     }
 

@@ -173,9 +173,8 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
 
             else
             {
-                closestTargetPosition = Vector3.zero;
-                distanceToClosestTarget = searchProximity;
-                targetedRayPos = Vector3.zero;
+                // Give random pos through a function that checksif 10s passed and then gives a new random target positioN
+                RandomTargetPositionGenerator();
             }
         }
     }
@@ -308,7 +307,11 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
         isMated = true;
         rb.AddForce(Vector3.up * 2f, ForceMode.Impulse);
         isGrounded = false;
+
+        
         secondsToResetMating = Random.Range(7f, 11f);
+
+
         StartCoroutine(ResetMated());
         StartCoroutine(GiveBirth());
     }
@@ -317,9 +320,12 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
     IEnumerator ResetMated()
     {
         agentColor.material = MatedColor;
+
         yield return new WaitForSeconds(secondsToResetMating);
+
         agentColor.material = notMatedColor;
         isMated = false;
+
     }
 
     // Metoda care asteapta un anumit interval de timp inainte de a da nastere / a se multiplica
@@ -333,13 +339,13 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
         mulakChild.GetComponent<TerestrialMulakAgent>().BirthInitialize();
 
         // Modificam datele simularii
-        StatisticsManager.Instance.ModifySimData("mulaksCreated");     
+        StatisticsManager.Instance.ModifySimData("mulaksCreated");
+        StatisticsManager.Instance.ModifySimData("MulakAgentsNumber");
     }
 
     // !!!!! De adaugat un bool daca a fost hranit , si daca da sa lase o floare inainte de a fi mancat 
-
     IEnumerator MakeFlower()
-    {
+    { 
         float waitTime = Random.Range(2f, 4f);  // 3 si 6 initial
         yield return new WaitForSeconds(waitTime);
         Quaternion newRotation = Quaternion.Euler(transform.rotation.x, Random.Range(0f, 360f), transform.rotation.z);

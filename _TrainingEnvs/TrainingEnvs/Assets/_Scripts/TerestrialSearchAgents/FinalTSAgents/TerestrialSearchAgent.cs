@@ -50,6 +50,8 @@ public class TerestrialSearchAgent : Agent
     // Folosit pentru a infometa agentul
     protected float hungerTimeGap = 0f;
 
+    //
+    protected float randomTargetTimeGap = 0f;
     // ------------------------------------------------- METODE (Mostenite din) AGENT ---------------------------------------- //
 
     // Initializarea agentului; apelata o singura data 
@@ -240,9 +242,21 @@ public class TerestrialSearchAgent : Agent
         }
         else
         {
-            closestTargetPosition = Vector3.zero;
-            distanceToClosestTarget = searchProximity;
-            targetedRayPos = Vector3.zero;
+            // Give random pos through a function that checksif 10s passed and then gives a new random target positioN
+            RandomTargetPositionGenerator();
+        }
+    }
+
+    // O data la 10s daca agentul nu are o tinta acesta primeste aleatoriu un loc din spatiul de antrenare ca tinta
+    protected virtual void RandomTargetPositionGenerator()
+    {
+        if (Time.time - randomTargetTimeGap >= 10f)
+        {
+            randomTargetTimeGap = Time.time;
+
+            closestTargetPosition = new Vector3(Random.Range(-180f, 180f), transform.position.y, Random.Range(-180f,180f));
+            distanceToClosestTarget = Vector3.Distance(transform.position, closestTargetPosition);
+            targetedRayPos = closestTargetPosition;
         }
     }
 

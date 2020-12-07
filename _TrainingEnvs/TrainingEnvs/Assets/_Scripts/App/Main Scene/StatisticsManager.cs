@@ -130,6 +130,12 @@ public class StatisticsManager : Singleton<StatisticsManager>
         {
             case "reset":
 
+                // Numarul de agenti
+                HeliosAgentsNumber = 0;
+                MulakAgentsNumber = 0;
+                GalvadonAgentsNumber = 0;
+
+                //
                 mulaksCreated = 0;
                 mulaksEaten = 0;
                 mulakStarved = 0;
@@ -141,6 +147,12 @@ public class StatisticsManager : Singleton<StatisticsManager>
             case "mulaksCreated":
 
                 mulaksCreated++;
+
+                break;
+
+            case "MulakAgentsNumber":
+
+                MulakAgentsNumber++;
 
                 break;
 
@@ -184,11 +196,29 @@ public class StatisticsManager : Singleton<StatisticsManager>
     private int initialGalvadonNumber = 0;
 
     // Metoda de setare a numarului de agenti instantiati
-    public void SetInitialAgentNumbers()
+    public void SetInitialAgentNumbers(string action)
     {
-        initialHeliosNumber = HeliosAgentsNumber;
-        initialMulakNumber = MulakAgentsNumber;
-        initialGalvadonNumber = GalvadonAgentsNumber;
+        switch (action)
+        {
+            case "set":
+
+                initialHeliosNumber = HeliosAgentsNumber;
+                initialMulakNumber = MulakAgentsNumber;
+                initialGalvadonNumber = GalvadonAgentsNumber;
+
+                break;
+
+            case "reset":
+
+                initialHeliosNumber = 0;
+                initialMulakNumber = 0;
+                initialGalvadonNumber = 0;
+
+                break;
+
+        }
+
+        
     }
 
     // <>--<> SETAREA TEXTULUI LEGAT DE DATELE SIMULARII  <>--<>

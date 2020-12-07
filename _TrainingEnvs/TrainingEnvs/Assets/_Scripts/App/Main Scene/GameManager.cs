@@ -119,7 +119,7 @@ public class GameManager : Singleton<GameManager>
             PlacementController.Instance.CanPlaceAgents = false;
 
             // Setam numarul initial de agenti (pentru statistici)
-            StatisticsManager.Instance.SetInitialAgentNumbers();
+            StatisticsManager.Instance.SetInitialAgentNumbers("set");
         }
     }
 
@@ -150,6 +150,10 @@ public class GameManager : Singleton<GameManager>
 
         // Setam parametrii agentilor
         SetParametersBeforePlacing();
+
+        // Resetam datele pentru statistici
+        StatisticsManager.Instance.SetInitialAgentNumbers("reset");
+        StatisticsManager.Instance.ModifySimData("reset");
     }
 
     // <>--<> GESTIONARE SIMULARE <>--<>
@@ -171,6 +175,8 @@ public class GameManager : Singleton<GameManager>
             simulationAreaCamera.CanMoveCamera = false;
             // Punem pauza 
             gamePaused = true;
+            // Inghetam timpul pentru a opri Coroutinele Agentilor
+            Time.timeScale = 0;
         }
         else if(GetSceneState == 1 && Input.GetKeyDown(KeyCode.Escape))
         {
@@ -211,11 +217,15 @@ public class GameManager : Singleton<GameManager>
         simulationAreaCamera.CanMoveCamera = true;
         // Incheiem pauza
         gamePaused = false;
+        // Dezghetam timpul pentru a opri Coroutinele 
+        Time.timeScale = 1;
     }
 
     // Metoda de incheiere a simularii ce ne intoarce l 
     public void EndSimulationButton()
     {
+        // Dezghetam timpul pentru a opri Coroutinele 
+        Time.timeScale = 1;
         // Eliminam agentii din scena
         StartCoroutine(DestroyAgentsThenSwapScene(0.1f));
         // Deblocam mouse-ul
@@ -223,9 +233,7 @@ public class GameManager : Singleton<GameManager>
         // Dezactivam afisarea statisticilor
         EnableOrDisableElement(statisticsOutput, false);
         // Deblocam mouse-ul
-        Cursor.lockState = CursorLockMode.None;
-        // Resetam datele simularii 
-        StatisticsManager.Instance.ModifySimData("reset");
+        Cursor.lockState = CursorLockMode.None;    
     }
 
     // Rutina ce distruge agentii inainte de a dezactiva scena
