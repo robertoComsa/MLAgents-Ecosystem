@@ -41,6 +41,10 @@ public class StatisticsManager : Singleton<StatisticsManager>
     private int GalvadonAgentsNumber = 0;
     public int GetGalvadonAgentsNumber() { return GalvadonAgentsNumber; }
 
+    // Numarul de agenti Phaoris
+    private int PhaorisAgentsNumber = 0;
+    public int GetPhaorisAgentsNumber() { return PhaorisAgentsNumber; }
+
     // Metoda publica ce gestioneaza numarul de agenti pentru fiecare agenti in parte.
     // action poate fi: set (seteaza numarul) , add (adauga) , remove (scade)
     // agent poate fi: Helios , Mulak , Galvadon
@@ -61,6 +65,9 @@ public class StatisticsManager : Singleton<StatisticsManager>
                     case "Galvadon":
                         GalvadonAgentsNumber = value;
                         break;
+                    case "Phaoris":
+                        PhaorisAgentsNumber = value;
+                        break;
                 }
                 
                 break;
@@ -80,6 +87,9 @@ public class StatisticsManager : Singleton<StatisticsManager>
                     case "Galvadon":
                         GalvadonAgentsNumber += value;
                         break;
+                    case "Phaoris":
+                        PhaorisAgentsNumber += value;
+                        break;
                 }
 
                 break;
@@ -98,6 +108,9 @@ public class StatisticsManager : Singleton<StatisticsManager>
                         break;
                     case "Galvadon":
                         GalvadonAgentsNumber -= value;
+                        break;
+                    case "Phaoris":
+                        PhaorisAgentsNumber = -value;
                         break;
                 }
 
@@ -134,6 +147,7 @@ public class StatisticsManager : Singleton<StatisticsManager>
                 HeliosAgentsNumber = 0;
                 MulakAgentsNumber = 0;
                 GalvadonAgentsNumber = 0;
+                PhaorisAgentsNumber = 0;
 
                 //
                 mulaksCreated = 0;
@@ -189,11 +203,14 @@ public class StatisticsManager : Singleton<StatisticsManager>
     // Numar de agenti Helios initial
     private int initialHeliosNumber = 0;
 
-    // Numar de agenti Helios initial
+    // Numar de agenti Mulak initial
     private int initialMulakNumber = 0;
 
-    // Numar de agenti Helios initial
+    // Numar de agenti Galvadon initial
     private int initialGalvadonNumber = 0;
+
+    // Numar de agenti Phaoris initial
+    private int initialPhaorisNumber = 0;
 
     // Metoda de setare a numarului de agenti instantiati
     public void SetInitialAgentNumbers(string action)
@@ -205,6 +222,7 @@ public class StatisticsManager : Singleton<StatisticsManager>
                 initialHeliosNumber = HeliosAgentsNumber;
                 initialMulakNumber = MulakAgentsNumber;
                 initialGalvadonNumber = GalvadonAgentsNumber;
+                initialPhaorisNumber = PhaorisAgentsNumber;
 
                 break;
 
@@ -213,12 +231,10 @@ public class StatisticsManager : Singleton<StatisticsManager>
                 initialHeliosNumber = 0;
                 initialMulakNumber = 0;
                 initialGalvadonNumber = 0;
+                initialPhaorisNumber = 0;
 
                 break;
-
-        }
-
-        
+        }     
     }
 
     // <>--<> SETAREA TEXTULUI LEGAT DE DATELE SIMULARII  <>--<>
@@ -231,7 +247,8 @@ public class StatisticsManager : Singleton<StatisticsManager>
             // Instantierea initiala
             + initialHeliosNumber + " agenti Helios \n"
             + initialMulakNumber + " agenti Mulak \n"
-            + initialGalvadonNumber + " agenti Galvadon \n\n"
+            + initialGalvadonNumber + " agenti Galvadon \n"
+            + initialPhaorisNumber + " agenti Phaoris \n\n"
 
             // Mulak (mancati / nascuti)
             +mulaksCreated + " agenti Mulak au fost creati (prin multiplicare) \n"

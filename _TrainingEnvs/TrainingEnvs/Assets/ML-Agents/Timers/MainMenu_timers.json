@@ -1,1 +1,1 @@
-{"count":1,"gauges":{},"self":4.0077696,"total":4.0077697,"children":null}
+{"count":1,"gauges":{"MulakLearning.CumulativeReward":{"count":1,"max":0,"min":0,"value":0,"weightedAverage":0}},"self":3.6816176,"total":3.6846650999999997,"children":{"AgentSendState":{"count":69,"self":0.0010529,"total":0.0010529,"children":null},"DecideAction":{"count":69,"self":0,"total":0,"children":null},"AgentAct":{"count":69,"self":0,"total":0,"children":null}}}

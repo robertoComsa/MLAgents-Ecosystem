@@ -64,11 +64,6 @@ public class TerestrialSearchAgent : Agent
 
         // Disabling collision for placement purposes 
         rb.isKinematic = true;
-
-        // Initializare a factorului de infomatare intial
-        initialHungerFactor = hungerFactor;
-
-        hungerFactor += 25f;
     }
 
     // Observatiile numerice oferite agentului
@@ -173,6 +168,10 @@ public class TerestrialSearchAgent : Agent
         hungerFactor = hF;
         hungerTickValue = hTv;
         timeBetweenHungerTicks = tBHT;
+
+        // Initializare a factorului de infomatare intial
+        initialHungerFactor = hungerFactor;
+        hungerFactor += hungerTickValue;
     }
 
     // FixedUpdate este apelata o data la 0.02 secunde (50 de apeluri pe secunda; independent de fps)
@@ -316,7 +315,7 @@ public class TerestrialSearchAgent : Agent
             if (GameManager.Instance.gamePaused == false)
             {
                 hungerFactor -= hungerTickValue;
-                //Debug.Log("Factorul de infometare: " + hungerFactor);
+                //Debug.Log(hungerFactor);
                 hungerTimeGap = Time.time;
             }
         }

@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needsRandomPosition: 1
-  destroyTimeAfterDrop: 5
+  destroyTimeAfterDrop: 20
 --- !u!54 &4483552666086888967
 Rigidbody:
   m_ObjectHideFlags: 0

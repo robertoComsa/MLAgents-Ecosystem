@@ -233,7 +233,10 @@ public class GameManager : Singleton<GameManager>
         // Dezactivam afisarea statisticilor
         EnableOrDisableElement(statisticsOutput, false);
         // Deblocam mouse-ul
-        Cursor.lockState = CursorLockMode.None;    
+        Cursor.lockState = CursorLockMode.None;
+        // Deblocam butonul de resume simulare
+        resumeButton.interactable = true;
+
     }
 
     // Rutina ce distruge agentii inainte de a dezactiva scena

@@ -155,7 +155,12 @@ public class TerestrialGalvadonAgent : TerestrialSearchAgent
         else
         {
             // Give random pos through a function that checksif 10s passed and then gives a new random target positioN
-            RandomTargetPositionGenerator();
+            // - Momentan este greu de prins de catre agentii Phaoris.
+            // RandomTargetPositionGenerator(); 
+
+            closestTargetPosition = Vector3.zero;
+            distanceToClosestTarget = searchProximity;
+            targetedRayPos = Vector3.zero;
         }
     }
 

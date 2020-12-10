@@ -127,7 +127,13 @@ public class PlacementController : Singleton<PlacementController>
                                 GameManager.Instance.PhaorisParameters.SearchProximity,
                                 GameManager.Instance.PhaorisParameters.DeliveryDistance
                                 );
+
+                            // Folosit pentru StatisticsManager (a contoriza numarul de agenti instantiati de fiecare tip)
+                            agentInstantiated = "phaoris";
+
                             break;
+
+                           
                     }
 
                     
@@ -178,6 +184,10 @@ public class PlacementController : Singleton<PlacementController>
 
                 case "galvadon":
                     StatisticsManager.Instance.ModifyAgentsNumber("add", "Galvadon");
+                    break;
+
+                case "phaoris":
+                    StatisticsManager.Instance.ModifyAgentsNumber("add", "Phaoris");
                     break;
             }
 

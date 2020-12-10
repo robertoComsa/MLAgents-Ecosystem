@@ -31,6 +31,8 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
     protected float secondsToResetMating = 0f;
     // Partenerul compatibil
     protected TerestrialMulakAgent compatiblePartner = null;
+    // Bool ce verifica daca agentul a fost hranit
+    bool wasFed = false;
 
     // ------------------------------------------------- METODE (Mostenite din) AGENT ---------------------------------------- //
 
@@ -247,6 +249,15 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
             Destroy(gameObject);
             //SetReward(-1f);
             //Done();
+
+            // If was fed - release flower 
+            if (wasFed)
+            {
+                Quaternion newRotation = Quaternion.Euler(transform.rotation.x, Random.Range(0f, 360f), transform.rotation.z);
+                Instantiate(flowerPrefab, gameObject.transform.position - new Vector3(0f, 0f, -1.4f), newRotation, gameObject.transform.parent.transform);
+                wasFed = false;
+            }
+            
         }
 
         if (other.gameObject.CompareTag("boundary"))
@@ -260,6 +271,9 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
             StartCoroutine(MakeFlower());
             // Mananca (starving system)
             Eat();
+
+            // Agentul tocmai a fost hranit
+            wasFed = true;
         }
 
     }
@@ -348,6 +362,7 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
     { 
         float waitTime = Random.Range(2f, 4f);  // 3 si 6 initial
         yield return new WaitForSeconds(waitTime);
+        // Instantiaza floarea 
         Quaternion newRotation = Quaternion.Euler(transform.rotation.x, Random.Range(0f, 360f), transform.rotation.z);
         Instantiate(flowerPrefab, gameObject.transform.position - new Vector3(0f, 0f, -1.4f), newRotation, gameObject.transform.parent.transform);
     }
