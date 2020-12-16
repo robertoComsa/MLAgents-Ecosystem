@@ -47,6 +47,12 @@ public class FoodPickUp : MonoBehaviour
         helper = other;
         isPickedUp = true;
     }
+
+    // Apelata cand agentul care cara bucata moare de foame 
+    public void GetDroppedDown()
+    {
+        isPickedUp = false;
+    }
    
     // Sistem ce face ca fructul sa dispara la x timp dupa ce a atins pamantul 
 

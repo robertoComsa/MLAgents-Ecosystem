@@ -53,6 +53,9 @@ public class TerestrialGalvadonAgent : TerestrialSearchAgent
 
         if (hungerFactor <= 0f)
         {
+            if (carryingFood == true)
+                preyFood.GetDroppedDown();
+
             // Distrugem acest agent (moare de foame)
             Destroy(gameObject);
 
