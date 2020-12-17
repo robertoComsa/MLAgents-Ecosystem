@@ -62,6 +62,16 @@ MulakLearning:
     num_layers: 4               
     max_steps: 7.0e6
 
+Mulak2Learning:
+    summary_freq: 10000         
+    time_horizon: 256           
+    beta: 1.0e-2                
+    batch_size: 2048            
+    buffer_size: 10240          
+    hidden_units: 256           
+    num_layers: 4               
+    max_steps: 15.0e6
+
 GalvadonEatLearning:
     summary_freq: 5000         
     time_horizon: 128           

@@ -138,7 +138,7 @@ public class TerestrialSearchAgent : Agent
     // Cod aplicat la inceputul unui episod (MaxStep = 0 = infinit -> nu va mai folosi resetare)
     public override void AgentReset()
     {
-        PlaceRandomly(10f);
+        PlaceRandomly(30f);
     }
 
     // -------------------------------------------------------- METODE TERESTRIAL SEARCH AGENT ------------------------------------------------------- //
@@ -182,7 +182,7 @@ public class TerestrialSearchAgent : Agent
         OptimizedCheckInRadius(Color.red);
 
         // Permitem agentului sa ia decizii 
-        if (GameManager.Instance.CanAgentsRequestDecisions == true)
+       if (GameManager.Instance.CanAgentsRequestDecisions == true)
         {
             RequestDecision();
             if (simStarted == false)
@@ -194,7 +194,7 @@ public class TerestrialSearchAgent : Agent
         }
 
         // Proces infometare
-        StarvingProcess();
+        if (useStarving) StarvingProcess();
     }
 
     // Optimizeaza (reduce numarul de utilizari) ale metodei de cautare in proximitate ( metoda foarte "grea" )
@@ -253,7 +253,7 @@ public class TerestrialSearchAgent : Agent
         {
             randomTargetTimeGap = Time.time;
 
-            closestTargetPosition = new Vector3(Random.Range(-180f, 180f), transform.position.y, Random.Range(-180f,180f));
+            closestTargetPosition = new Vector3(Random.Range(-180f, 180f), transform.position.y, Random.Range(-180f, 180f));
             distanceToClosestTarget = Vector3.Distance(transform.position, closestTargetPosition);
             targetedRayPos = closestTargetPosition;
         }

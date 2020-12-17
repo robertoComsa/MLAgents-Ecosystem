@@ -82,8 +82,10 @@ public class TerestrialHeliosAgent : TerestrialSearchAgent
 
             // Mananca (starving system)
             Eat();
+
             // Noteaza in simData
             StatisticsManager.Instance.ModifySimData("mulaksEaten");
+            StatisticsManager.Instance.ModifyAgentsNumber("remove", "Mulak");
         }
 
         if(other.gameObject.CompareTag("boundary"))

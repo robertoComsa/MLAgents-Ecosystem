@@ -84,7 +84,7 @@ public class TerestrialGalvadonAgent : TerestrialSearchAgent
         }
 
         // Proces infometare
-        StarvingProcess();
+        if(useStarving) StarvingProcess();
     }
 
     // Optimizeaza (reduce numarul de utilizari) ale metodei de cautare in proximitate ( metoda foarte "grea" )

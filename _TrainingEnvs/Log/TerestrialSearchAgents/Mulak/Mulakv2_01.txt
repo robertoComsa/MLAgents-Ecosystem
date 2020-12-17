@@ -1,0 +1,47 @@
+
+	
+	
+	Agentul Mulak nu este are un comportament optim pe scena mare. Am decis sa reiau acest agent si sa-l antrenez.
+
+	Problema apare la evitarea agentului carnivor. 
+
+	O solutie pentru imbunatatirea comportamentului este sa oferim agentului ca observatie closestPredator.position si sa 
+	ne folosim de distanta pana la acest pradator pentru a invata agentul ca e bine sa fie la distanta cat mai mare de acest obiect.
+
+	Nu este o solutie optima insa pentru ca o functie de cautare in scena a obiectelor este destul de costisitoare iar agentul
+	deja foloseste una pentru a depista cel mai apropriat partener. 
+
+	In acest caz ne ramane ca solutie intarirea observatiilor de tip raycast. 
+
+	[ 
+
+
+	Modificari aduse la raycast
+	
+
+	] 
+
+	(==) Strategie de antrenare (==) 
+
+	I. Imperechere:
+
+	Vom aseza agentii in grupe de cate 2 apropriati pentru a ii invata sa se imperecheze. 
+
+	3.6M DE PASI suficienti . - Stage 1
+
+	Crestem distanta intre care sunt asezati agentii  - Stage 2 / 3 (10 m pasi)
+
+	
+	III. Supravietuire: 
+
+	Aveam nevoie ca agentul sa ajunga la punctele alese aleatoriu pentru ca vrem sa antrenam cate 1 agent erbivor pe spatiul
+	de antrenare , in timp ce fuge de n pradatori. Pentru a intari calitatile agentului de a se deplasa spre tinta dorita si de a
+	evita agentii carnivori. (Metoda de alegere a unei tinte aleatorii in scena este utila )
+
+
+
+
+
+
+
+

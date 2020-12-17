@@ -234,7 +234,7 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
         }
 
         // Proces infometare
-        StarvingProcess();
+        if(useStarving) StarvingProcess();
     }
 
 
@@ -247,8 +247,10 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
         if (other.gameObject.CompareTag("predator"))
         {
             Destroy(gameObject);
-            //SetReward(-1f);
-            //Done();
+
+            // Functie de reward
+            SetReward(-1f);
+            Done();
 
             // If was fed - release flower 
             if (wasFed)
@@ -262,8 +264,8 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
 
         if (other.gameObject.CompareTag("boundary"))
         {
-            AddReward(-0.5f);
-            //AgentReset();
+            SetReward(-1f);
+            Done();
         }
 
         if (other.gameObject.CompareTag("helper") && other.gameObject.GetComponent<TerestrialGalvadonAgent>().GetCarryingFood() == true)
@@ -308,7 +310,10 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
         {
             compatiblePartner.GetMated();
             GetMated();
+
+            // Functia de reward / antrnare 
             AddReward(1f);
+            //AgentReset();
         }
         else AddReward(-0.1f);
         
@@ -317,15 +322,16 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
     // Metoda apelata cand un alt agent ia actiunea de imperechere asupra acestui agent.
     protected virtual void GetMated()
     {
-        closestTargetPosition = Vector3.zero;
         isMated = true;
-        rb.AddForce(Vector3.up * 2f, ForceMode.Impulse);
         isGrounded = false;
 
-        
+        rb.AddForce(Vector3.up * 2f, ForceMode.Impulse);
+
+        // Functia de reward / antrnare 
+        //AddReward(1f);
+        //AgentReset();
+
         secondsToResetMating = Random.Range(7f, 11f);
-
-
         StartCoroutine(ResetMated());
         StartCoroutine(GiveBirth());
     }
@@ -352,6 +358,7 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
         GameObject mulakChild = Instantiate(mulakPrefab, gameObject.transform.position - new Vector3(0f, 0f, -1.4f), newRotation, gameObject.transform.parent.transform);
         mulakChild.GetComponent<TerestrialMulakAgent>().BirthInitialize();
 
+     
         // Modificam datele simularii
         StatisticsManager.Instance.ModifySimData("mulaksCreated");
         StatisticsManager.Instance.ModifySimData("MulakAgentsNumber");
