@@ -133,15 +133,22 @@ public class PlacementController : Singleton<PlacementController>
 
                             break;
 
-                           
+
                     }
 
-                    
+
                 }
-            }  
+            }
             else if (Input.GetMouseButtonDown(1) || CanPlaceAgents == false)
-                Destroy(currentPlaceableObject);
+                DestroyCurrentPlaceableObject();
         }
+    }
+
+    // Metoda pentru distrugerea obiectului curent
+    public void DestroyCurrentPlaceableObject()
+    {
+        if(currentPlaceableObject != null)
+            Destroy(currentPlaceableObject);
     }
     
 
@@ -171,22 +178,29 @@ public class PlacementController : Singleton<PlacementController>
     {
         if (Input.GetMouseButton(0) && CanPlaceAgents == true)
         {
-            currentPlaceableObject = null;
+            
             switch (agentInstantiated)
             {
                 case "helios":
+                    currentPlaceableObject = null;
                     StatisticsManager.Instance.ModifyAgentsNumber("add", "Helios");
                     break;
 
                 case "mulak":
-                    StatisticsManager.Instance.ModifyAgentsNumber("add", "Mulak");
+                    if (StatisticsManager.Instance.GetMulakAgentsNumber() < GameManager.Instance.GetMulakMaxAgentsNumberValue())
+                    {
+                        currentPlaceableObject = null;
+                        StatisticsManager.Instance.ModifyAgentsNumber("add", "Mulak");
+                    }
                     break;
 
                 case "galvadon":
+                    currentPlaceableObject = null;
                     StatisticsManager.Instance.ModifyAgentsNumber("add", "Galvadon");
                     break;
 
                 case "phaoris":
+                    currentPlaceableObject = null;
                     StatisticsManager.Instance.ModifyAgentsNumber("add", "Phaoris");
                     break;
             }

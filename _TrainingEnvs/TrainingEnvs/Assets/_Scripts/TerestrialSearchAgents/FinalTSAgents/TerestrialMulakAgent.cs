@@ -354,14 +354,16 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
         yield return new WaitForSeconds(secondsToResetMating - 4f); // Vrem sa multiplicam agentul inainte ca acesta sa fie gata de imperechere
 
         // Multiplicare
-        Quaternion newRotation = Quaternion.Euler(transform.rotation.x, Random.Range(0f, 360f), transform.rotation.z);
-        GameObject mulakChild = Instantiate(mulakPrefab, gameObject.transform.position - new Vector3(0f, 0f, -1.4f), newRotation, gameObject.transform.parent.transform);
-        mulakChild.GetComponent<TerestrialMulakAgent>().BirthInitialize();
+        if (StatisticsManager.Instance.GetMulakAgentsNumber() < GameManager.Instance.GetMulakMaxAgentsNumberValue())
+        {
+            Quaternion newRotation = Quaternion.Euler(transform.rotation.x, Random.Range(0f, 360f), transform.rotation.z);
+            GameObject mulakChild = Instantiate(mulakPrefab, gameObject.transform.position - new Vector3(0f, 0f, -1.4f), newRotation, gameObject.transform.parent.transform);
+            mulakChild.GetComponent<TerestrialMulakAgent>().BirthInitialize();
 
-     
-        // Modificam datele simularii
-        StatisticsManager.Instance.ModifySimData("mulaksCreated");
-        StatisticsManager.Instance.ModifySimData("MulakAgentsNumber");
+            // Modificam datele simularii
+            StatisticsManager.Instance.ModifySimData("mulaksCreated");
+            StatisticsManager.Instance.ModifySimData("MulakAgentsNumber");
+        }
     }
 
     // !!!!! De adaugat un bool daca a fost hranit , si daca da sa lase o floare inainte de a fi mancat 

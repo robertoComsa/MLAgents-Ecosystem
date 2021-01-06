@@ -21,6 +21,10 @@ public class GameManager : Singleton<GameManager>
     [Tooltip("Parametri Galvadon")] [SerializeField] Text[] galvadonParametersText = null;
     [Tooltip("Parametri Phaoris")] [SerializeField] Text[] phaorisParametersText = null;
 
+    [Header("Input editare Mulak - Slider")]
+    [Tooltip("Slider MaxMulakAgents")] [SerializeField] Slider mulakMaxAgentsNumberSlider = null;
+    [Tooltip("Slider Text Value")] [SerializeField] Text mulakMaxAgentsNumberText = null;
+
     [Header("Camera din spatiul de simulare")]
     [Tooltip("Camera")] [SerializeField] FlyingCamera simulationAreaCamera = null;
 
@@ -33,7 +37,13 @@ public class GameManager : Singleton<GameManager>
     public AgentParameters MulakParameters;
     public AgentParameters GalvadonParameters;
     public AgentParameters PhaorisParameters;
-       
+
+    // -------- VARIABILE ------- //
+
+    // Numarul maxim de agenti Mulak permis
+    float mulakMaxAgentsNumberValue = 0;
+    public float GetMulakMaxAgentsNumberValue() { return mulakMaxAgentsNumberValue; }
+
     // Transformul actionbar-ului (element GUI)
     Transform actionBar = null;
 
@@ -88,6 +98,9 @@ public class GameManager : Singleton<GameManager>
 
         // Verificam in fiecare frame daca punem pauza la simulare
         PauseOnEscape();
+
+        // Update text slider
+        mulakMaxAgentsNumberText.text = mulakMaxAgentsNumberSlider.value.ToString();
     }
 
     // --------------------------------------------------------------------- METODE ------------------------------------------------------------------- //
@@ -120,6 +133,9 @@ public class GameManager : Singleton<GameManager>
 
             // Setam numarul initial de agenti (pentru statistici)
             StatisticsManager.Instance.SetInitialAgentNumbers("set");
+
+            // Distrugem agent ce urmeaza sa fie amplasat daca am inceput simularea
+            PlacementController.Instance.DestroyCurrentPlaceableObject();
         }
     }
 
@@ -154,6 +170,9 @@ public class GameManager : Singleton<GameManager>
         // Resetam datele pentru statistici
         StatisticsManager.Instance.SetInitialAgentNumbers("reset");
         StatisticsManager.Instance.ModifySimData("reset");
+
+        // Setam numarul maxim de agenti Mulak
+        mulakMaxAgentsNumberValue = mulakMaxAgentsNumberSlider.value;
     }
 
     // <>--<> GESTIONARE SIMULARE <>--<>
