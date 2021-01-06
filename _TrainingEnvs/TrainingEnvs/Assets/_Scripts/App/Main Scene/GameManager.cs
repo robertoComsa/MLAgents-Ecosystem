@@ -53,6 +53,9 @@ public class GameManager : Singleton<GameManager>
     // Transformul statisticilor simularii (element GUI)
     Transform statisticsOutput = null;
 
+    bool raysEnabled = true;
+    public bool GetRaysEnabled() { return raysEnabled; }
+
     // ------ PROPRIETATI ------- //
 
     public bool CanAgentsRequestDecisions { get; set; } = false;
@@ -98,6 +101,9 @@ public class GameManager : Singleton<GameManager>
 
         // Verificam in fiecare frame daca punem pauza la simulare
         PauseOnEscape();
+
+        // Verificam in fiecare frame daca apasam r (pentru activare/dezactivare rays)
+        EnableOrDisableRays();
 
         // Update text slider
         mulakMaxAgentsNumberText.text = mulakMaxAgentsNumberSlider.value.ToString();
@@ -203,6 +209,13 @@ public class GameManager : Singleton<GameManager>
             // Deblocam mouse-ul
             Cursor.lockState = CursorLockMode.None;
         }
+    }
+
+    // Metoda enable/disable rays
+    public void EnableOrDisableRays()
+    {
+        if (GetSceneState == 2 && Input.GetKeyDown(KeyCode.R))
+            raysEnabled = !raysEnabled;
     }
 
     // Incheie simularea atunci cand nu mai sunt agenti

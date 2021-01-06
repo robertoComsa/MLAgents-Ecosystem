@@ -206,7 +206,7 @@ public class TerestrialSearchAgent : Agent
             proximitySearchTimeGap = Time.time;
         }
 
-        if (targetedRayPos != Vector3.zero)
+        if (GameManager.Instance.GetRaysEnabled()==true)
             Debug.DrawLine(transform.position, targetedRayPos, rayColor);
     }
 
@@ -323,4 +323,26 @@ public class TerestrialSearchAgent : Agent
 
     // Dupa ce mananca agentul se satura (revine la valoarea maxima a factorului de infometare)
     protected void Eat() { hungerFactor = initialHungerFactor; }
+
+    // Metoda de draw line
+    protected void DrawLine(Vector3 start, Vector3 end, Color color, float duration = 0.02f)
+    {
+        GameObject myLine = new GameObject();
+        myLine.transform.position = start;
+        myLine.AddComponent<LineRenderer>();
+        LineRenderer lr = myLine.GetComponent<LineRenderer>();
+
+        lr.material = new Material(Shader.Find("Legacy Shaders/Particles/Alpha Blended Premultiply"));
+
+        lr.startColor = color;
+        lr.endColor = color;
+
+
+        lr.startWidth = 0.1f;
+        lr.endWidth = 0.1f;
+
+        lr.SetPosition(0, start);
+        lr.SetPosition(1, end);
+        GameObject.Destroy(myLine, duration);
+    }
 }

@@ -102,8 +102,8 @@ public class TerestrialGalvadonAgent : TerestrialSearchAgent
             AddReward(-0.1f * distanceToClosestTarget / searchProximity);
         }
 
-        if (targetedRayPos != Vector3.zero)
-            Debug.DrawLine(transform.position, targetedRayPos, rayColor);
+        if (GameManager.Instance.GetRaysEnabled() == true)
+            DrawLine(transform.position, targetedRayPos, rayColor);
     }
 
     /// <summary>

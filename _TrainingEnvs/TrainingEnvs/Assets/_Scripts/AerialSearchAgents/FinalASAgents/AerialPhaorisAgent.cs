@@ -283,8 +283,8 @@ public class AerialPhaorisAgent : Agent
             AddReward(-0.01f * distanceToClosestTarget / searchProximity);
         }
 
-        if (targetedRayPos != Vector3.zero)
-            Debug.DrawLine(transform.position, targetedRayPos, rayColor);
+        if (GameManager.Instance.GetRaysEnabled() == true)
+            DrawLine(transform.position, targetedRayPos, rayColor);
     }
 
     /// <summary>
@@ -418,5 +418,27 @@ public class AerialPhaorisAgent : Agent
         if (GameManager.Instance.CanAgentsRequestDecisions == false && CheckColliderTag(other) == true) // Inseamna ca e in placing mode
             // permitem sau interzicem amplasarea
             PlacementController.Instance.CanPlaceAgents = allowPlacement;
+    }
+
+    // Metoda de draw line
+    protected void DrawLine(Vector3 start, Vector3 end, Color color, float duration = 0.02f)
+    {
+        GameObject myLine = new GameObject();
+        myLine.transform.position = start;
+        myLine.AddComponent<LineRenderer>();
+        LineRenderer lr = myLine.GetComponent<LineRenderer>();
+
+        lr.material = new Material(Shader.Find("Legacy Shaders/Particles/Alpha Blended Premultiply"));
+
+        lr.startColor = color;
+        lr.endColor = color;
+
+
+        lr.startWidth = 0.1f;
+        lr.endWidth = 0.1f;
+
+        lr.SetPosition(0, start);
+        lr.SetPosition(1, end);
+        GameObject.Destroy(myLine, duration);
     }
 }

@@ -196,8 +196,8 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
             AddReward(-0.01f * distanceToClosestTarget / searchProximity);
         }
 
-        if (targetedRayPos != Vector3.zero && isMated != true)
-            Debug.DrawLine(transform.position, targetedRayPos, Color.yellow);
+        if (GameManager.Instance.GetRaysEnabled() == true && isMated != true)
+            DrawLine(transform.position, targetedRayPos, rayColor);
     }
 
     protected override void StarvingProcess()
