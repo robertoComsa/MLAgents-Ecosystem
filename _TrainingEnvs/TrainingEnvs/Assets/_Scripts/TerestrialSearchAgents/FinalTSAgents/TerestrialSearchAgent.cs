@@ -7,11 +7,11 @@ using MLAgents;
 public class TerestrialSearchAgent : Agent
 {
     // <>--<> VARIABILE VIZIBILE IN EDITOR <>--<>
-
-    [Header("Parametrii deplasare")]
+[Header("Parametrii deplasare")]
     [Tooltip("Viteza de inaintare")] [SerializeField] protected float moveSpeed = 0f;
     [Tooltip("Viteza de rotatie")] [SerializeField] protected float rotationSpeed = 0f;
     [Tooltip("Distanta in care agentul cauta tinte")] [SerializeField] protected float searchProximity = 0f;
+    
 
     [Header("Parametrii infometare")]
     [Tooltip("Daca folosim sau nu infometarea")] [SerializeField] protected bool useStarving = false;
@@ -58,6 +58,7 @@ public class TerestrialSearchAgent : Agent
     public override void InitializeAgent()
     {
         base.InitializeAgent();
+
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = Vector3.zero;
         rb.inertiaTensorRotation = Quaternion.identity;

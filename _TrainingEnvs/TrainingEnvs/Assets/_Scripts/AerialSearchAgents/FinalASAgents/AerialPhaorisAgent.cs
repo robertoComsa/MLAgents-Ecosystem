@@ -150,6 +150,11 @@ public class AerialPhaorisAgent : Agent
     /// <param name="vectorAction"></param>
     public override void AgentAction(float[] vectorAction)
     {
+
+        ///
+        /// SA FAC CLAMP INTRE -1 ȘI 1 LA VALORI (VEZI EXEMPLU PT CONTINUU https://github.com/Unity-Technologies/ml-agents/blob/release-0.14.0/docs/Learning-Environment-Design-Agents.md
+        ///
+
         // Calculeaza vectorul de miscare - reprezinta o directie 
         Vector3 move = new Vector3(vectorAction[0], vectorAction[1], vectorAction[2]);
 
@@ -197,6 +202,7 @@ public class AerialPhaorisAgent : Agent
         Vector3 up = Vector3.zero; // +1 sus  , -1 jos
         float X_axis_rotation = 0f;
         float Y_axis_rotation = 0f;
+
 
         // Converteste inputul de la tastatura in miscare si rotire 
         // Desi agentul va lua actiuni continue (valori in intervalul (-1,1)) noi putem oferi doar valori discrete prin intermediul tastaturii 

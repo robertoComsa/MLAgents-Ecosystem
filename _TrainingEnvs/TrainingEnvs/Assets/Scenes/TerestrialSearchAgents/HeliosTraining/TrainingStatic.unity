@@ -415,10 +415,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1646649527}
     m_Modifications:
-    - target: {fileID: 4320382003415631260, guid: 3f471f4330ebf6c43819aacbfaf3714c,
+    - target: {fileID: 6068664738250360298, guid: 3f471f4330ebf6c43819aacbfaf3714c,
         type: 3}
-      propertyPath: moveSpeed
-      value: 10
+      propertyPath: detectableTags.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6068664738250360298, guid: 3f471f4330ebf6c43819aacbfaf3714c,
+        type: 3}
+      propertyPath: detectableTags.Array.data[0]
+      value: prey
+      objectReference: {fileID: 0}
+    - target: {fileID: 6068664738250360298, guid: 3f471f4330ebf6c43819aacbfaf3714c,
+        type: 3}
+      propertyPath: detectableTags.Array.data[1]
+      value: boundary
       objectReference: {fileID: 0}
     - target: {fileID: 6857172273098847144, guid: 3f471f4330ebf6c43819aacbfaf3714c,
         type: 3}
@@ -1843,6 +1853,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prey
       objectReference: {fileID: 0}
+    - target: {fileID: 3896200653237102064, guid: f5b509b745bf9214888320d882dbf5f4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3896200653237102076, guid: f5b509b745bf9214888320d882dbf5f4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2389,6 +2404,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prey (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3896200653237102064, guid: f5b509b745bf9214888320d882dbf5f4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3896200653237102076, guid: f5b509b745bf9214888320d882dbf5f4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2615,6 +2635,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HeliosAgentv2Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 6857172273098847144, guid: fc8ac720ef1d5894aab43ce8caef03ef,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6857172273098847147, guid: fc8ac720ef1d5894aab43ce8caef03ef,
         type: 3}

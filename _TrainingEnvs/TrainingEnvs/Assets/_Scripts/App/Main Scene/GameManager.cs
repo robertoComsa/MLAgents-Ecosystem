@@ -53,7 +53,7 @@ public class GameManager : Singleton<GameManager>
     // Transformul statisticilor simularii (element GUI)
     Transform statisticsOutput = null;
 
-    bool raysEnabled = true;
+    bool raysEnabled = false;
     public bool GetRaysEnabled() { return raysEnabled; }
 
     // ------ PROPRIETATI ------- //

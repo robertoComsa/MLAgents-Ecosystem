@@ -12,11 +12,20 @@ public class HeliosAgentv3 : Agent
     [Tooltip("Viteza de rotatie")] [SerializeField] protected float rotationSpeed = 0f;
     [Tooltip("Distanta in care pradatorul vaneaza")] [SerializeField] protected float huntProximity = 0f;
 
+    [Header("Componenta parinte")]
+    [Tooltip("Componenta transform")]
+    [SerializeField]
+    private Transform parentTransformComponent = null;
+
     // VARIABILE
 
-        // Pozitia de start (folosita in reasezarea agentului in scena)
+    // Pozitia de start (folosita in reasezarea agentului in scena)
     private Vector3 startingPosition = Vector3.zero;
-        // Componenta rigidBody (ne permita sa aplicam manevre fizice)
+
+    // Pozitia componentei parinte
+    private Vector3 parentComponentPosition = Vector3.zero;
+
+    // Componenta rigidBody (ne permita sa aplicam manevre fizice)
     private Rigidbody rb;
         // Contor pentru numarul de erbivori mancati
     private int preyCount = 0;
@@ -126,6 +135,8 @@ public class HeliosAgentv3 : Agent
     private void Awake()
     {
         startingPosition = gameObject.transform.position;
+
+        parentComponentPosition = parentTransformComponent.position;
     }
 
     // Optimizeaza (reduce numarul de utilizari) ale metodei de cautare in proximitate ( metoda foarte "grea" )
@@ -159,6 +170,9 @@ public class HeliosAgentv3 : Agent
             Done();
         // 6 erbivori x 0.2 = 1.2 reward maxim (daca agentul nu ar apuca sa fie penalizat cu -0.01 pe step)
         // Ideal vrem sa antrenam pana cand agentul are reward in jur de 1 (instantierea aleatorie a pradei va face ca rezultatul sa varieze)
+
+        if (gameObject.transform.position.y < 2.2f)
+            ResetPlacement(Random.Range(0, 4));
     }
 
 
@@ -207,13 +221,33 @@ public class HeliosAgentv3 : Agent
         transform.rotation = newRotation;
     }
 
+    // Folosita in antrenarea creierului defensiv mulak
+    public void ResetPlacement(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                gameObject.transform.position = new Vector3(parentComponentPosition.x-18f, 2.45f, parentComponentPosition.y-3f);
+                break;
+            case 1:
+                gameObject.transform.position = new Vector3(parentComponentPosition.x-18f, 2.45f, parentComponentPosition.y-33f);
+                break;
+            case 2:
+                gameObject.transform.position = new Vector3(parentComponentPosition.x-3f, 2.45f, parentComponentPosition.y-18f);
+                break;
+            case 3:
+                gameObject.transform.position = new Vector3(parentComponentPosition.x-33f, 2.45f, parentComponentPosition.y-18f);
+                break;
+        }
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("boundary"))
         {
             SetReward(-1f);
-            Done();
+            ResetPlacement(Random.Range(0, 4));
         }
     }
 
@@ -223,6 +257,7 @@ public class HeliosAgentv3 : Agent
         {
             AddReward(0.2f);
             preyCount++;
+            ResetPlacement(Random.Range(0, 4));
         }
     }
 }
