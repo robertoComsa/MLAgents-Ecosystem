@@ -125,7 +125,7 @@ public class HeliosAgentv3 : Agent
     // Reseteaza agentul si spatiul de antrenare 
     public override void AgentReset()
     {
-        PlaceRandomly(6f);
+        ResetPlacement(Random.Range(0, 4));
         preyCount = 0;
     }
 

@@ -7,8 +7,9 @@ public class MulakDefensive : Agent
 {
     // <>--<> VARIABILE VIZIBILE IN EDITOR <>--<>
 
-    [Header("Parametrii deplasare")]
-    [Tooltip("Viteza de inaintare")] [SerializeField] protected float jumpForce = 0f;
+    [Header("Parametri")]
+    [Tooltip("Forta sariturii")] [SerializeField] protected float jumpForce = 0f;
+    [Tooltip("Radiusul in care verificam daca sunt pradatori")] [SerializeField] protected float radius = 0f;
 
     // <>--<> VARIABILE <>--<>
 
@@ -20,6 +21,12 @@ public class MulakDefensive : Agent
     bool isGrounded = true;
     // Directia sariturii
     Vector3 jumpDirection = new Vector3(1f, 1.5f, -1f);
+    // Timpul dintre sarituri
+    private float timeGap = 0f;
+    // boolean care ne spune daca agentul poate sari
+    private bool jumpAllowed = false;
+    // int folosit pe post de boolean - daca este un pradator in radius sau nu
+    private int predatorInsideRadius = 0; // 0 - no , 1 - yes
 
     // ------------------------------------------------- METODE (Mostenite din) AGENT ---------------------------------------- //
 
@@ -38,6 +45,12 @@ public class MulakDefensive : Agent
     {
         gameObject.transform.position = startingPosition;
         rb.velocity = Vector3.zero;
+        predatorInsideRadius = 0;
+    }
+
+    public override void CollectObservations()
+    {
+        AddVectorObs(predatorInsideRadius); // 1 Int
     }
 
     //
@@ -47,24 +60,59 @@ public class MulakDefensive : Agent
                                     Mathf.Clamp(vectorAction[1], 1, 2),
                                     Mathf.Clamp(vectorAction[2], -1, 1));
 
-        if(isGrounded)
+        if(isGrounded && jumpAllowed && predatorInsideRadius==1)
         {
-            rb.AddForce(jumpDirection * Mathf.Clamp(vectorAction[4], 1, 4), ForceMode.Impulse);
+            rb.AddForce(jumpDirection * Mathf.Clamp(vectorAction[3], 1, 4) * jumpForce, ForceMode.Impulse);
             isGrounded = false;
+            jumpAllowed = false;
         }
-
-        // Recompensa mica pentru existenta
-        AddReward(1 / maxStep); // If it does not die he can get a maximum reward of 1
     }
-    /*
-    /// <returns> Returneaza vectorul de valori vectorAction (format de data aceasta de input uman, nu de reteaua neuronala ) </returns>
+
     public override float[] Heuristic()
     {
-        
-        return new float[] {  };
+        return base.Heuristic();
     }
-    */
+
+    public void RewardAgent()
+    {
+        if (predatorInsideRadius == 0)
+            AddReward(10 / maxStep); 
+    }
+
+
     // ------------------------------------------------- METODE DEFENSIVE AGENT ----------------------------------------------- //
+
+   
+    // Allow jumping once 1s
+    private void AllowJump()
+    {
+        if (Time.time - timeGap >= 3f)
+        {
+            jumpAllowed = true;
+            timeGap = Time.time;
+        }
+    }
+
+    // Metoda de verificare a pradatorilor intr-un radius
+    private void CheckPredatorInRadius(float radius)
+    {
+        // Ne intereseaza daca cel putin 1 pradator este in radius
+        Collider[] predatorCollider = new Collider[1];
+
+        Physics.OverlapSphereNonAlloc(gameObject.transform.position,radius,predatorCollider,9);
+
+        if (predatorCollider[0] != null)
+        {
+            //Debug.Log(predatorCollider[0].gameObject.tag);
+            predatorInsideRadius = 1;
+        }
+        else
+        {
+            //Debug.Log("Not in radius");
+            predatorInsideRadius = 0;
+        }
+        
+    }
 
     // Apelata o singura data inainte de start.
     protected virtual void Awake()
@@ -75,11 +123,22 @@ public class MulakDefensive : Agent
     // Apelata in fiecare frame
     private void FixedUpdate()
     {
+        // Control uman 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.AddForce(jumpDirection * jumpForce, ForceMode.Impulse);
             isGrounded = false;
         }
+
+        // Permite sarituri o data la n secunde
+        AllowJump();
+
+        // Verifica daca exista un pradator in raza de siguranta
+        CheckPredatorInRadius(radius);
+
+        // Reward (Daca nu exista pradator in radius agentul primeste: 0.02 per frame x 50 (fixed frame/s) = 0,1/s 
+        RewardAgent();
+        
     }
 
     // Cat timp atinge pamantul agentul "isGrounded"
@@ -96,7 +155,7 @@ public class MulakDefensive : Agent
             isGrounded = false;
     }
 
-    // Cand agentul loveste un obiect limita
+    // Cand agentul atinge un trigger
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("boundary"))
@@ -105,10 +164,10 @@ public class MulakDefensive : Agent
 
             // Penalizare
             AddReward(-0.1f);
-        }    
+        }
     }
 
-    // Cand agentul este prins de un carnivor
+    // Cand agentul intra intr-o coliziune fizica
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("predator"))
