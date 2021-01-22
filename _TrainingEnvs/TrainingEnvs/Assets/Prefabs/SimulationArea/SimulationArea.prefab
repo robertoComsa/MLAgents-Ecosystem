@@ -495,7 +495,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   placeableAgentsPrefabs:
   - {fileID: 6857172273098847144, guid: c936e83f287ecac4890ca801a22db095, type: 3}
-  - {fileID: 3896200653237102064, guid: 3e65835305259c142b46b4c0783fdd98, type: 3}
+  - {fileID: 974022770039656654, guid: 499620f36192bf542b2caaf97865134d, type: 3}
   - {fileID: 6857172273098847144, guid: b92f19c31d8a2d74db4ae7fadb735781, type: 3}
   - {fileID: 844517960213069560, guid: 812d718efa7d43941927d204ad6ee08e, type: 3}
   placeAgentHotkey: 31000000320000003300000034000000

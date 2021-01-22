@@ -10,15 +10,13 @@ public class MulakDefensive : Agent
     [Header("Parametri")]
     [Tooltip("Forta sariturii")] [SerializeField] protected float jumpForce = 0f;
     [Tooltip("Radiusul in care verificam daca sunt pradatori")] [SerializeField] protected float radius = 0f;
+    [Tooltip("Componenta RB a parintelui")] [SerializeField] private Rigidbody agentRB = null;
+    [Tooltip("Agent collision logics")] [SerializeField] private MulakAgentCollisionLogics agentCollisionLogics = null;
 
     // <>--<> VARIABILE <>--<>
 
     // Pozitia de start (folosita in reasezarea agentului in scena)
     Vector3 startingPosition = Vector3.zero;
-    // Componenta rigidBody (ne permita sa aplicam manevre fizice)
-    Rigidbody rb;
-    // Boolean care ne spune daca agentul este pe pamant sau in aer
-    bool isGrounded = true;
     // Directia sariturii
     Vector3 jumpDirection = new Vector3(1f, 1.5f, -1f);
     // Timpul dintre sarituri
@@ -28,6 +26,9 @@ public class MulakDefensive : Agent
     // int folosit pe post de boolean - daca este un pradator in radius sau nu
     private int predatorInsideRadius = 0; // 0 - no , 1 - yes
 
+    // boolean ce verifica daca a inceput simularea 
+    protected bool simStarted = false;
+
     // ------------------------------------------------- METODE (Mostenite din) AGENT ---------------------------------------- //
 
     // Initializarea agentului; apelata o singura data 
@@ -35,16 +36,18 @@ public class MulakDefensive : Agent
     {
         base.InitializeAgent();
 
-        rb = GetComponent<Rigidbody>();
-        rb.centerOfMass = Vector3.zero;
-        rb.inertiaTensorRotation = Quaternion.identity;
+        agentRB.centerOfMass = Vector3.zero;
+        agentRB.inertiaTensorRotation = Quaternion.identity;
+
+        // Disabling collision for placement purposes 
+        agentRB.isKinematic = true;
     }
 
     // Cod aplicat la inceputul unui episod (MaxStep = 0 = infinit -> nu va mai folosi resetare)
     public override void AgentReset()
     {
         gameObject.transform.position = startingPosition;
-        rb.velocity = Vector3.zero;
+        agentRB.velocity = Vector3.zero;
         predatorInsideRadius = 0;
     }
 
@@ -60,10 +63,10 @@ public class MulakDefensive : Agent
                                     Mathf.Clamp(vectorAction[1], 1, 2),
                                     Mathf.Clamp(vectorAction[2], -1, 1));
 
-        if(isGrounded && jumpAllowed && predatorInsideRadius==1)
+        if(agentCollisionLogics.GetAgentGrounded() && jumpAllowed && predatorInsideRadius==1)
         {
-            rb.AddForce(jumpDirection * Mathf.Clamp(vectorAction[3], 1, 4) * jumpForce, ForceMode.Impulse);
-            isGrounded = false;
+            agentRB.AddForce(jumpDirection * Mathf.Clamp(vectorAction[3], 1, 4) * jumpForce, ForceMode.Impulse);
+            agentCollisionLogics.SetAgentGrounded(false);
             jumpAllowed = false;
         }
     }
@@ -76,7 +79,7 @@ public class MulakDefensive : Agent
     public void RewardAgent()
     {
         if (predatorInsideRadius == 0)
-            AddReward(10 / maxStep); 
+            AddReward(10 / 5000); 
     }
 
 
@@ -124,10 +127,10 @@ public class MulakDefensive : Agent
     private void FixedUpdate()
     {
         // Control uman 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && agentCollisionLogics.GetAgentGrounded())
         {
-            rb.AddForce(jumpDirection * jumpForce, ForceMode.Impulse);
-            isGrounded = false;
+            agentRB.AddForce(jumpDirection * jumpForce, ForceMode.Impulse);
+            agentCollisionLogics.SetAgentGrounded(false);
         }
 
         // Permite sarituri o data la n secunde
@@ -138,8 +141,22 @@ public class MulakDefensive : Agent
 
         // Reward (Daca nu exista pradator in radius agentul primeste: 0.02 per frame x 50 (fixed frame/s) = 0,1/s 
         RewardAgent();
-        
+
+        // Permitem agentului sa ia decizii 
+        if (GameManager.Instance.CanAgentsRequestDecisions == true)
+        {
+            RequestDecision();
+            if (simStarted == false)
+            {
+                agentRB.isKinematic = false;
+                agentRB.detectCollisions = true;
+                simStarted = true;
+            }
+        }
+
     }
+
+    /*
 
     // Cat timp atinge pamantul agentul "isGrounded"
     private void OnCollisionStay(Collision collision)
@@ -178,5 +195,6 @@ public class MulakDefensive : Agent
             AddReward(-0.1f);
         }
     }
+    */
 
 }

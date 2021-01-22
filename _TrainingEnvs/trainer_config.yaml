@@ -120,3 +120,13 @@ PhaorisLearning:
     hidden_units: 256           
     num_layers: 3     
     max_steps: 30.0e6
+
+MulakDashingLearning:
+    summary_freq: 5000         
+    time_horizon: 128           
+    beta: 1.0e-2                
+    batch_size: 2048            
+    buffer_size: 20480          
+    hidden_units: 256           
+    num_layers: 3               
+    max_steps: 5.0e6

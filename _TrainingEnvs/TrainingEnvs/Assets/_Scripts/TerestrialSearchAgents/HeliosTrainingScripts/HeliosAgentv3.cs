@@ -15,7 +15,7 @@ public class HeliosAgentv3 : Agent
     [Header("Componenta parinte")]
     [Tooltip("Componenta transform")]
     [SerializeField]
-    private Transform parentTransformComponent = null;
+    private Transform parentTransform = null;
 
     // VARIABILE
 
@@ -23,7 +23,7 @@ public class HeliosAgentv3 : Agent
     private Vector3 startingPosition = Vector3.zero;
 
     // Pozitia componentei parinte
-    private Vector3 parentComponentPosition = Vector3.zero;
+    //private Vector3 parentComponentPosition = Vector3.zero;
 
     // Componenta rigidBody (ne permita sa aplicam manevre fizice)
     private Rigidbody rb;
@@ -125,7 +125,7 @@ public class HeliosAgentv3 : Agent
     // Reseteaza agentul si spatiul de antrenare 
     public override void AgentReset()
     {
-        ResetPlacement(Random.Range(0, 4));
+        ResetPlacement();
         preyCount = 0;
     }
 
@@ -135,8 +135,6 @@ public class HeliosAgentv3 : Agent
     private void Awake()
     {
         startingPosition = gameObject.transform.position;
-
-        parentComponentPosition = parentTransformComponent.position;
     }
 
     // Optimizeaza (reduce numarul de utilizari) ale metodei de cautare in proximitate ( metoda foarte "grea" )
@@ -149,7 +147,7 @@ public class HeliosAgentv3 : Agent
         }
 
         if (targetedRayPos != Vector3.zero)
-            Debug.DrawLine(transform.position, targetedRayPos, Color.red);
+            DrawLine(transform.position, targetedRayPos, Color.red);
     }
 
     // FixedUpdate este apelata o data la 0.02 secunde (50 de apeluri pe secunda; independent de fps)
@@ -170,9 +168,6 @@ public class HeliosAgentv3 : Agent
             Done();
         // 6 erbivori x 0.2 = 1.2 reward maxim (daca agentul nu ar apuca sa fie penalizat cu -0.01 pe step)
         // Ideal vrem sa antrenam pana cand agentul are reward in jur de 1 (instantierea aleatorie a pradei va face ca rezultatul sa varieze)
-
-        if (gameObject.transform.position.y < 2.2f)
-            ResetPlacement(Random.Range(0, 4));
     }
 
 
@@ -222,32 +217,41 @@ public class HeliosAgentv3 : Agent
     }
 
     // Folosita in antrenarea creierului defensiv mulak
-    public void ResetPlacement(int index)
+    public void ResetPlacement()
     {
-        switch (index)
-        {
-            case 0:
-                gameObject.transform.position = new Vector3(parentComponentPosition.x-18f, 2.45f, parentComponentPosition.y-3f);
-                break;
-            case 1:
-                gameObject.transform.position = new Vector3(parentComponentPosition.x-18f, 2.45f, parentComponentPosition.y-33f);
-                break;
-            case 2:
-                gameObject.transform.position = new Vector3(parentComponentPosition.x-3f, 2.45f, parentComponentPosition.y-18f);
-                break;
-            case 3:
-                gameObject.transform.position = new Vector3(parentComponentPosition.x-33f, 2.45f, parentComponentPosition.y-18f);
-                break;
-        }
+        gameObject.transform.position = new Vector3(parentTransform.localPosition.x + Random.Range(-45f, 45f),
+                                                    1f,
+                                                    parentTransform.localPosition.y + Random.Range(-45f, 45f));
     }
 
+    // Metoda de draw line
+    protected void DrawLine(Vector3 start, Vector3 end, Color color, float duration = 0.02f)
+    {
+        GameObject myLine = new GameObject();
+        myLine.transform.position = start;
+        myLine.AddComponent<LineRenderer>();
+        LineRenderer lr = myLine.GetComponent<LineRenderer>();
+
+        lr.material = new Material(Shader.Find("Legacy Shaders/Particles/Alpha Blended Premultiply"));
+
+        lr.startColor = color;
+        lr.endColor = color;
+
+
+        lr.startWidth = 0.1f;
+        lr.endWidth = 0.1f;
+
+        lr.SetPosition(0, start);
+        lr.SetPosition(1, end);
+        GameObject.Destroy(myLine, duration);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("boundary"))
         {
             SetReward(-1f);
-            ResetPlacement(Random.Range(0, 4));
+            ResetPlacement();
         }
     }
 
@@ -257,7 +261,7 @@ public class HeliosAgentv3 : Agent
         {
             AddReward(0.2f);
             preyCount++;
-            ResetPlacement(Random.Range(0, 4));
+            ResetPlacement();
         }
     }
 }

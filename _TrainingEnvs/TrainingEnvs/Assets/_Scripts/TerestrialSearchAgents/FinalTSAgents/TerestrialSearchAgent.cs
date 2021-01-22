@@ -65,6 +65,7 @@ public class TerestrialSearchAgent : Agent
 
         // Disabling collision for placement purposes 
         rb.isKinematic = true;
+      
     }
 
     // Observatiile numerice oferite agentului
@@ -144,7 +145,7 @@ public class TerestrialSearchAgent : Agent
 
     // -------------------------------------------------------- METODE TERESTRIAL SEARCH AGENT ------------------------------------------------------- //
 
-    private void Update()
+    protected virtual void Update()
     {
         // Daca simularea s-a incheiat distrugem acest agent
         if (GameManager.Instance.SimulationEnded)
@@ -226,7 +227,7 @@ public class TerestrialSearchAgent : Agent
         {
             float distance = Vector3.Distance(transform.position, target.transform.position);
 
-            if (distance < nearestDistance && distance < searchProximity) // fara a 2-a conditie ar primi distanta fata de cel mai apropriat pradator din toata scena
+            if (distance < nearestDistance && distance < searchProximity)
             {
                 targetInRadius = true;
                 nearestDistance = distance;
