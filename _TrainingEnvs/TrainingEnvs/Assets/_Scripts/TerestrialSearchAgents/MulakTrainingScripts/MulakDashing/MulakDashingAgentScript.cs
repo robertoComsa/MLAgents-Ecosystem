@@ -166,7 +166,7 @@ public class MulakDashingAgentScript: Agent
 
         else if (vectorAction[1] == 2f)
             turnAmount = 1f; // -> Rotire dreapta
-     
+     /*
 
         // A 3-a actiune
         float dashPowerMultiplier = 1f;
@@ -176,12 +176,12 @@ public class MulakDashingAgentScript: Agent
 
         else if (vectorAction[2] == 2f)
             dashPowerMultiplier = 3f;
-
+    */
 
         // Aplica dash-ul asupra agentului
         if(isDashAllowed)
         {
-            rb.AddForce(dashDirection * dashForce * dashPowerMultiplier, ForceMode.Impulse);
+            rb.AddForce(dashDirection * dashForce , ForceMode.Impulse);
             isDashAllowed = false;
         }
         
@@ -217,7 +217,7 @@ public class MulakDashingAgentScript: Agent
             turnAction = 2f;
 
         // Put the actions into an array and return
-        return new float[] { dashDirectionIndex, turnAction ,2f};
+        return new float[] { dashDirectionIndex, turnAction};
     }
 
     // Cod aplicat la inceputul unui episod (MaxStep = 0 = infinit -> nu va mai folosi resetare)
@@ -252,10 +252,10 @@ public class MulakDashingAgentScript: Agent
             proximitySearchTimeGap = Time.time;
 
             // Reward pentru directia in care se uita agentul ( 1 - maxim cand se uita direct la tinta , -1 - minim cand se uita in directia opusa)
-            AddReward(0.01f * Vector3.Dot(gameObject.transform.forward.normalized, toClosestTarget.normalized));
+            AddReward(0.1f * Vector3.Dot(gameObject.transform.forward.normalized, toClosestTarget.normalized));
 
             // Reward pentru distanta fata de tinta.
-            AddReward(-0.01f * distanceToClosestTarget / searchProximity);
+            AddReward(-0.1f * distanceToClosestTarget / searchProximity);
         }
 
         //if (GameManager.Instance.GetRaysEnabled() == true)

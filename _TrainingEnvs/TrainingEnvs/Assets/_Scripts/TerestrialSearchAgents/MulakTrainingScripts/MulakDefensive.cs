@@ -8,7 +8,7 @@ public class MulakDefensive : Agent
     // <>--<> VARIABILE VIZIBILE IN EDITOR <>--<>
 
     [Header("Parametri")]
-    [Tooltip("Forta sariturii")] [SerializeField] protected float jumpForce = 0f;
+    [Tooltip("Forta sariturii")] [SerializeField] protected float jumpForceMultiplier = 0f;
     [Tooltip("Radiusul in care verificam daca sunt pradatori")] [SerializeField] protected float radius = 0f;
     [Tooltip("Componenta RB a parintelui")] [SerializeField] private Rigidbody agentRB = null;
     [Tooltip("Agent collision logics")] [SerializeField] private MulakAgentCollisionLogics agentCollisionLogics = null;
@@ -65,7 +65,7 @@ public class MulakDefensive : Agent
 
         if(agentCollisionLogics.GetAgentGrounded() && jumpAllowed && predatorInsideRadius==1)
         {
-            agentRB.AddForce(jumpDirection * Mathf.Clamp(vectorAction[3], 1, 4) * jumpForce, ForceMode.Impulse);
+            agentRB.AddForce(jumpDirection * Mathf.Clamp(vectorAction[3], 0, 1) * jumpForceMultiplier, ForceMode.Impulse);
             agentCollisionLogics.SetAgentGrounded(false);
             jumpAllowed = false;
         }
@@ -129,7 +129,7 @@ public class MulakDefensive : Agent
         // Control uman 
         if (Input.GetKeyDown(KeyCode.Space) && agentCollisionLogics.GetAgentGrounded())
         {
-            agentRB.AddForce(jumpDirection * jumpForce, ForceMode.Impulse);
+            agentRB.AddForce(jumpDirection * jumpForceMultiplier, ForceMode.Impulse);
             agentCollisionLogics.SetAgentGrounded(false);
         }
 
