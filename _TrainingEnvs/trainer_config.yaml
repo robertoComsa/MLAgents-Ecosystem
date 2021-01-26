@@ -75,9 +75,8 @@ Mulak2Learning:
 MulakDefensiveLearning:
     summary_freq: 5000
     time_horizon: 128
-    batch_size: 2560
-    buffer_size: 25600
-    hidden_units: 128
+    batch_size: 4096
+    buffer_size: 40960
     num_layers: 3
     epsilon: 0.1
     beta: 1.0e-3
@@ -124,7 +123,7 @@ PhaorisLearning:
 MulakDashingLearning:
     summary_freq: 5000         
     time_horizon: 128           
-    beta: 1.0e-2                
+    beta: 0.8e-2                
     batch_size: 2048            
     buffer_size: 20480          
     hidden_units: 256           

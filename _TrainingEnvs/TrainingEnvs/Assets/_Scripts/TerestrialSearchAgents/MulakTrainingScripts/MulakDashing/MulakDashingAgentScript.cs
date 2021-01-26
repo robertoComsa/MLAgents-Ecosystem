@@ -100,22 +100,27 @@ public class MulakDashingAgentScript: Agent
 
         AddVectorObs(rb.velocity.normalized); // 1 Vector3 = 3 float
         AddVectorObs(distanceToClosestTarget/searchProximity); // 1 float
+
         AddVectorObs(closestTargetPosition.normalized); // 1 Vector3 = 3 float
         AddVectorObs(gameObject.transform.localPosition.normalized); // 1 Vector3 = 3 float
+
         toClosestTarget = closestTargetPosition - gameObject.transform.localPosition;
         // Un produs dot intre directia in care se uita agentul si directia in care se afla cea mai apropriata tinta
         AddVectorObs(Vector3.Dot(gameObject.transform.forward.normalized, toClosestTarget.normalized)); // 1 valoare float
 
-        // TOTAL_1: 11 
+        AddVectorObs(toClosestTarget.normalized); // 1 Vector3 = 3 float
+        AddVectorObs(transform.forward.normalized); // 1 Vector3 = 3 float
+
+        // TOTAL_1:  17
 
         // Observatii defensive
-        AddVectorObs(predatorInsideRadius); // 1 int
+        //AddVectorObs(predatorInsideRadius); // 1 int
 
         // Sistemul de raze este conceput in principal pentru a depista pradatorii. Agentul primeste din acel sistem directia + distanta in care se afla pradatorul.
 
         // TOTAL_2: 1 
         
-        // TOTAL_FINAL: 12
+        // TOTAL_FINAL: 18
     }
 
     /// <summary>
@@ -132,27 +137,32 @@ public class MulakDashingAgentScript: Agent
         switch(dashDirectionIndex)
         {
             // Sta pe loc
+            /*
             case 0f:
                 dashDirection = Vector3.zero;
                 break;
+            */
 
             // Inainte
-            case 1f:
+            case 0f:
                 dashDirection = gameObject.transform.forward;
                 break;
             
+                /*
+                 * 
             // Inapoi
             case 2f:
                 dashDirection = -gameObject.transform.forward;
                 break;
-
+                */
+           
             // Stanga
-            case 3f:
+            case 1f:
                 dashDirection = -gameObject.transform.right;
                 break;
 
             // Dreapta
-            case 4f:
+            case 2f:
                 dashDirection = gameObject.transform.right;
                 break;
         }
@@ -201,12 +211,14 @@ public class MulakDashingAgentScript: Agent
 
         if (Input.GetKey(KeyCode.W))
             dashDirectionIndex = 1f;
+        /*
         else if (Input.GetKey(KeyCode.S))
             dashDirectionIndex = 2f;
+        */
         else if (Input.GetKey(KeyCode.A))
-            dashDirectionIndex = 3f;
+            dashDirectionIndex = 2f;
         else if (Input.GetKey(KeyCode.D))
-            dashDirectionIndex = 4f;
+            dashDirectionIndex = 3f;
 
         // Seteaza datele ( 0 - nu se roteste ; 1 - se roteste la stanga ; 2 - se roteste la dreapta) pentru al doilea vector de actiuni 
         float turnAction = 0f;
@@ -248,7 +260,9 @@ public class MulakDashingAgentScript: Agent
         if (Time.time - proximitySearchTimeGap >= 0.1f)
         {
             CheckTargetInProximity();
-            CheckPredatorInRadius(safeRadius);
+
+            //CheckPredatorInRadius(safeRadius);
+
             proximitySearchTimeGap = Time.time;
 
             // Reward pentru directia in care se uita agentul ( 1 - maxim cand se uita direct la tinta , -1 - minim cand se uita in directia opusa)
