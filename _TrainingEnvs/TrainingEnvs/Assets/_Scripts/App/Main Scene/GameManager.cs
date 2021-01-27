@@ -308,9 +308,7 @@ public class GameManager : Singleton<GameManager>
         HeliosParameters.SearchProximity = int.Parse(heliosParametersText[2].text);
 
         // Infometare
-        HeliosParameters.hungerFactor = int.Parse(heliosParametersText[3].text);
-        HeliosParameters.hungerTickValue = int.Parse(heliosParametersText[4].text);
-        HeliosParameters.timeBetweenHungerTicks = int.Parse(heliosParametersText[5].text);
+        HeliosParameters.starvingInterval = float.Parse(heliosParametersText[3].text);
 
         // ------------------------------- Setare parametri Mulak ------------------------------------ // 
 
@@ -324,9 +322,7 @@ public class GameManager : Singleton<GameManager>
         MulakParameters.MateProximity = int.Parse(mulakParametersText[4].text);
 
         // Infometare
-        MulakParameters.hungerFactor = int.Parse(mulakParametersText[5].text);
-        MulakParameters.hungerTickValue = int.Parse(mulakParametersText[6].text);
-        MulakParameters.timeBetweenHungerTicks = int.Parse(mulakParametersText[7].text);
+        MulakParameters.starvingInterval = float.Parse(mulakParametersText[5].text);
 
         // ------------------------------- Setare parametri Phaoris ------------------------------------ //
 

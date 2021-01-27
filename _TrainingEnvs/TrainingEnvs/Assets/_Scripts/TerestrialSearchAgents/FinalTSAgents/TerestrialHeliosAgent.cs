@@ -47,8 +47,10 @@ public class TerestrialHeliosAgent : TerestrialSearchAgent
     protected override void StarvingProcess()
     {
         base.StarvingProcess();
-   
-        if (hungerFactor <= 0f)
+
+        Debug.Log(starvingInterval);
+
+        if (starvingInterval <= 0f)
         {
             // Distrugem acest agent (moare de foame)
             Destroy(gameObject);
@@ -88,6 +90,7 @@ public class TerestrialHeliosAgent : TerestrialSearchAgent
             StatisticsManager.Instance.ModifyAgentsNumber("remove", "Mulak");
         }
 
+        // NU RESET
         if(other.gameObject.CompareTag("boundary"))
         {
             AddReward(-0.5f);
@@ -97,6 +100,7 @@ public class TerestrialHeliosAgent : TerestrialSearchAgent
 
     private void OnTriggerEnter(Collider other)
     {
+        // NU RESET
         if(other.CompareTag("boundary"))
         {
             AddReward(-0.5f);

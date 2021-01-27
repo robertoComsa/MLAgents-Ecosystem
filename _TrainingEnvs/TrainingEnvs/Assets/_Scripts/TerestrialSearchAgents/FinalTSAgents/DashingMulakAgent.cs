@@ -17,9 +17,7 @@ public class DashingMulakAgent : Agent
 
     [Header("Parametri infometare")]
     [Tooltip("Daca folosim sau nu infometarea")] [SerializeField] protected bool useStarving = false;
-    [Tooltip("O data la cat timp scade factorul de infometare (secunde)")] [SerializeField] protected float timeBetweenHungerTicks = 0f;
-    [Tooltip("Valoarea cu care scade factorul de infometare")] [SerializeField] protected float hungerTickValue = 0f;
-    [Tooltip("Factorul de infometare")] [SerializeField] protected float hungerFactor = 0f;
+    [Tooltip("O data la cat timp scade factorul de infometare (secunde)")] [SerializeField] protected float starvingInterval = 0f;
 
     [Header("Parametri imperechere")]
     [Tooltip("Culoarea agentilor neimperecheati")] [SerializeField] protected Material notMatedColor = null;
@@ -68,11 +66,10 @@ public class DashingMulakAgent : Agent
 
 
     // Factorul de infometare initial 
-    protected float initialHungerFactor = 0f;
+    float initialStarvingInterval = 0f;
+    float hungerTimeGap = 0f;
     // boolean ce verifica daca a inceput simularea 
     protected bool simStarted = false;
-    // Folosit pentru a infometa agentul
-    protected float hungerTimeGap = 0f;
     //
     protected float randomTargetTimeGap = 0f;
 
@@ -91,6 +88,10 @@ public class DashingMulakAgent : Agent
 
         // Disabling collision for placement purposes 
         rb.isKinematic = true;
+
+        // Infometare
+        initialStarvingInterval = starvingInterval;
+        hungerTimeGap = 1f;
     }
 
     // Observatiile numerice oferite agentului
@@ -195,7 +196,7 @@ public class DashingMulakAgent : Agent
     // -------------------------------------------------------- METODE DASHING SEARCH AGENT ------------------------------------------------------- //
 
     // Metoda de initializare a agentilor cu parametri alesi de utilizator/
-    public virtual void Initialize(float df, float dc, int rs, int sp, int mp, float hF, float hTv, float tBHT)
+    public virtual void Initialize(float df, float dc, int rs, int sp, int mp, float si)
     {
         // Deplasare
         dashForce = df;
@@ -207,13 +208,7 @@ public class DashingMulakAgent : Agent
         mateProximity = mp;
 
         // Infometare
-        hungerFactor = hF;
-        hungerTickValue = hTv;
-        timeBetweenHungerTicks = tBHT;
-
-        // Initializare a factorului de infomatare intial
-        initialHungerFactor = hungerFactor;
-        hungerFactor += hungerTickValue;
+        starvingInterval = si;
     }
 
     // Permite aplicarea unui dash o data la value secunde
@@ -372,20 +367,31 @@ public class DashingMulakAgent : Agent
     // Metoda ce infometeaza agentul o data cu trecerea timpului
     protected virtual void StarvingProcess()
     {
-        if (Time.time - hungerTimeGap >= timeBetweenHungerTicks && useStarving == true && simStarted == true) // O data la timeBetweenHungerTicks secunde
+        if (Time.time - hungerTimeGap >= 1f && useStarving == true && simStarted == true) // O data la timeBetweenHungerTicks secunde
         {
             // Verificam daca nu este pauza pusa
             if (GameManager.Instance.gamePaused == false)
             {
-                hungerFactor -= hungerTickValue;
-                //Debug.Log(hungerFactor);
                 hungerTimeGap = Time.time;
+                starvingInterval -= 1;
             }
+        }
+
+        Debug.Log(starvingInterval);
+
+        if (starvingInterval <= 0f)
+        {
+            // Distrugem acest agent (moare de foame)
+            Destroy(gameObject);
+
+            // Modificam datele simularii
+            StatisticsManager.Instance.ModifySimData("mulakStarved");
+            StatisticsManager.Instance.ModifyAgentsNumber("remove", "Mulak");
         }
     }
 
     // Dupa ce mananca agentul se satura (revine la valoarea maxima a factorului de infometare)
-    protected void Eat() { hungerFactor = initialHungerFactor; }
+    protected void Eat() { starvingInterval = initialStarvingInterval; }
 
     // Metoda de draw line
     protected void DrawLine(Vector3 start, Vector3 end, Color color, float duration = 0.02f)

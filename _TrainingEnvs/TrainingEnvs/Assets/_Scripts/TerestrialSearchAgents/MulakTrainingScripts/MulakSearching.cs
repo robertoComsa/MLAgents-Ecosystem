@@ -130,12 +130,13 @@ public class MulakSearching : TerestrialSearchAgent
         RenameTag("prey");
     }
 
+    /*
     // Metoda de initializare a agentilor cu parametri alesi de utilizator
     public void Initialize(int ms, int rs, int sp, int mp, float hF, float hTv, float tBHT)
     {
         base.Initialize(ms, rs, sp, hF, hTv, tBHT);
         mateProximity = mp;
-    }
+    }*/
 
     /// <summary>
     /// Verifica daca exista tinta intr-un radius setat in jurul agentului (( SI )) daca nu este imperecheat deja.
@@ -201,7 +202,7 @@ public class MulakSearching : TerestrialSearchAgent
     {
         base.StarvingProcess();
 
-        if (hungerFactor <= 0f)
+        if (starvingInterval <= 0f)
         {
             // Distrugem acest agent (moare de foame)
             Destroy(gameObject);

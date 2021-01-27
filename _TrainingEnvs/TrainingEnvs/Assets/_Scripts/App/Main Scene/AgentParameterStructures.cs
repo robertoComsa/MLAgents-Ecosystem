@@ -5,9 +5,7 @@ using UnityEngine;
 public struct AgentParameters
 {
     // Parametri infometare (Comuni intre agentii terestri)
-    public float timeBetweenHungerTicks;
-    public float hungerTickValue;
-    public float hungerFactor;
+    public float starvingInterval;
 
     // Helios, Phaoris
     public int MoveSpeed;

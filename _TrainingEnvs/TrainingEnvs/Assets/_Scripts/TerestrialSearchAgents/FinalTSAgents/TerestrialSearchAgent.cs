@@ -7,7 +7,7 @@ using MLAgents;
 public class TerestrialSearchAgent : Agent
 {
     // <>--<> VARIABILE VIZIBILE IN EDITOR <>--<>
-[Header("Parametrii deplasare")]
+    [Header("Parametrii deplasare")]
     [Tooltip("Viteza de inaintare")] [SerializeField] protected float moveSpeed = 0f;
     [Tooltip("Viteza de rotatie")] [SerializeField] protected float rotationSpeed = 0f;
     [Tooltip("Distanta in care agentul cauta tinte")] [SerializeField] protected float searchProximity = 0f;
@@ -15,9 +15,7 @@ public class TerestrialSearchAgent : Agent
 
     [Header("Parametrii infometare")]
     [Tooltip("Daca folosim sau nu infometarea")] [SerializeField] protected bool useStarving = false;
-    [Tooltip("O data la cat timp scade factorul de infometare (secunde)")] [SerializeField] protected float timeBetweenHungerTicks = 0f;
-    [Tooltip("Valoarea cu care scade factorul de infometare")] [SerializeField] protected float hungerTickValue = 0f;
-    [Tooltip("Factorul de infometare")] [SerializeField] protected float hungerFactor = 0f;
+    [Tooltip("O data la cat (secunde) moare de foame agentul")] [SerializeField] protected float starvingInterval = 0f;
 
     // <>--<> VARIABILE <>--<>
 
@@ -48,7 +46,9 @@ public class TerestrialSearchAgent : Agent
     protected bool simStarted = false;
 
     // Folosit pentru a infometa agentul
-    protected float hungerTimeGap = 0f;
+    protected float hungerTimeGap = 1f;
+    // 
+    protected float initialStarvingInterval = 0f;
 
     //
     protected float randomTargetTimeGap = 0f;
@@ -65,7 +65,10 @@ public class TerestrialSearchAgent : Agent
 
         // Disabling collision for placement purposes 
         rb.isKinematic = true;
-      
+
+        // Infometare
+        initialStarvingInterval = starvingInterval;
+        hungerTimeGap = 1f;
     }
 
     // Observatiile numerice oferite agentului
@@ -159,7 +162,7 @@ public class TerestrialSearchAgent : Agent
     }
 
     // Metoda de initializare a agentilor cu parametri alesi de utilizator/
-    public virtual void Initialize(int ms, int rs, int sp , float hF , float hTv , float tBHT)
+    public virtual void Initialize(int ms, int rs, int sp , float si)
     {
         // Deplasare
         moveSpeed = ms;
@@ -167,13 +170,7 @@ public class TerestrialSearchAgent : Agent
         searchProximity = sp;
 
         // Infometare
-        hungerFactor = hF;
-        hungerTickValue = hTv;
-        timeBetweenHungerTicks = tBHT;
-
-        // Initializare a factorului de infomatare intial
-        initialHungerFactor = hungerFactor;
-        hungerFactor += hungerTickValue;
+        starvingInterval = si;
     }
 
     // FixedUpdate este apelata o data la 0.02 secunde (50 de apeluri pe secunda; independent de fps)
@@ -311,20 +308,20 @@ public class TerestrialSearchAgent : Agent
     // Metoda ce infometeaza agentul o data cu trecerea timpului
     protected virtual void StarvingProcess()
     {
-        if (Time.time - hungerTimeGap >= timeBetweenHungerTicks && useStarving == true && simStarted == true) // O data la timeBetweenHungerTicks secunde
+        if (Time.time - hungerTimeGap >= 1f && useStarving == true && simStarted == true) // O data la timeBetweenHungerTicks secunde
         {
             // Verificam daca nu este pauza pusa
             if (GameManager.Instance.gamePaused == false)
             {
-                hungerFactor -= hungerTickValue;
                 //Debug.Log(hungerFactor);
                 hungerTimeGap = Time.time;
+                starvingInterval -= 1;
             }
         }
     }
 
     // Dupa ce mananca agentul se satura (revine la valoarea maxima a factorului de infometare)
-    protected void Eat() { hungerFactor = initialHungerFactor; }
+    protected void Eat() { starvingInterval = initialStarvingInterval; }
 
     // Metoda de draw line
     protected void DrawLine(Vector3 start, Vector3 end, Color color, float duration = 0.02f)

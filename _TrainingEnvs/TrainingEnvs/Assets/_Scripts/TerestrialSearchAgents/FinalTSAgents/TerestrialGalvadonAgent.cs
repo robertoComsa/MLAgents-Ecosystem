@@ -51,7 +51,7 @@ public class TerestrialGalvadonAgent : TerestrialSearchAgent
     {
         base.StarvingProcess();
 
-        if (hungerFactor <= 0f)
+        if (starvingInterval <= 0f)
         {
             if (carryingFood == true)
                 preyFood.GetDroppedDown();

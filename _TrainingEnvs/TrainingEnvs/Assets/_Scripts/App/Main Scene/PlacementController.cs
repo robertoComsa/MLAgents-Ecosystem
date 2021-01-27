@@ -70,9 +70,7 @@ public class PlacementController : Singleton<PlacementController>
                                 GameManager.Instance.HeliosParameters.RotationSpeed,
                                 GameManager.Instance.HeliosParameters.SearchProximity,
                                 // Infometare
-                                GameManager.Instance.HeliosParameters.hungerFactor,
-                                GameManager.Instance.HeliosParameters.hungerTickValue,
-                                GameManager.Instance.HeliosParameters.timeBetweenHungerTicks
+                                GameManager.Instance.HeliosParameters.starvingInterval
                                 );
 
                             // Folosit pentru StatisticsManager (a contoriza numarul de agenti instantiati de fiecare tip)
@@ -91,9 +89,7 @@ public class PlacementController : Singleton<PlacementController>
                                 // Imperechere
                                 GameManager.Instance.MulakParameters.MateProximity,
                                 // Infometare
-                                GameManager.Instance.MulakParameters.hungerFactor,
-                                GameManager.Instance.MulakParameters.hungerTickValue,
-                                GameManager.Instance.MulakParameters.timeBetweenHungerTicks
+                                GameManager.Instance.MulakParameters.starvingInterval
                                 );
 
                             // Folosit pentru StatisticsManager (a contoriza numarul de agenti instantiati de fiecare tip)
