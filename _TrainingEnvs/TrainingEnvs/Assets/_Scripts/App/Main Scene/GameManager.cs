@@ -315,17 +315,18 @@ public class GameManager : Singleton<GameManager>
         // ------------------------------- Setare parametri Mulak ------------------------------------ // 
 
         // Deplasare
-        MulakParameters.MoveSpeed = int.Parse(mulakParametersText[0].text);
-        MulakParameters.RotationSpeed = int.Parse(mulakParametersText[1].text);
-        MulakParameters.SearchProximity = int.Parse(mulakParametersText[2].text);
+        MulakParameters.DashForce = float.Parse(mulakParametersText[0].text);
+        MulakParameters.DashCooldown = float.Parse(mulakParametersText[1].text);
+        MulakParameters.RotationSpeed = int.Parse(mulakParametersText[2].text);
+        MulakParameters.SearchProximity = int.Parse(mulakParametersText[3].text);
 
         // Imperechere
-        MulakParameters.MateProximity = int.Parse(mulakParametersText[3].text);
+        MulakParameters.MateProximity = int.Parse(mulakParametersText[4].text);
 
         // Infometare
-        MulakParameters.hungerFactor = int.Parse(mulakParametersText[4].text);
-        MulakParameters.hungerTickValue = int.Parse(mulakParametersText[5].text);
-        MulakParameters.timeBetweenHungerTicks = int.Parse(mulakParametersText[6].text);
+        MulakParameters.hungerFactor = int.Parse(mulakParametersText[5].text);
+        MulakParameters.hungerTickValue = int.Parse(mulakParametersText[6].text);
+        MulakParameters.timeBetweenHungerTicks = int.Parse(mulakParametersText[7].text);
 
         // ------------------------------- Setare parametri Phaoris ------------------------------------ //
 

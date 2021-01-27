@@ -11,7 +11,7 @@ public class MulakDashingAgentScript: Agent
     [Tooltip("Forta dash-ului")] [SerializeField] float dashForce = 0f;
     [Tooltip("Dash Cooldown")] [SerializeField] float dashCooldown = 0f;
     [Tooltip("Viteza de rotatie")] [SerializeField] float rotationSpeed = 0f;
-    [Tooltip("Raza in care verificam daca sunt pradatori")] [SerializeField] float safeRadius = 0f;
+    //[Tooltip("Raza in care verificam daca sunt pradatori")] [SerializeField] float safeRadius = 0f;
     [Tooltip("Raza in care cautam cea mai apopriata tinta")] [SerializeField] float searchProximity = 0f;
     [Tooltip("Mate Proximity")] [SerializeField] float mateProximity = 0f;
 
@@ -53,7 +53,7 @@ public class MulakDashingAgentScript: Agent
     // <>--<> VARIABILE DEFENSIVE <>--<>
 
     // int folosit pe post de boolean ( 0 - nu avem pradator in radiusul de siguranta , 1 - avem)
-    int predatorInsideRadius = 0;
+   // int predatorInsideRadius = 0;
     Vector3 predatorPosition = Vector3.zero;
 
     // -------------------------------------------------------- METODE SISTEM ------------------------------------------------ //
@@ -84,7 +84,7 @@ public class MulakDashingAgentScript: Agent
         rb.inertiaTensorRotation = Quaternion.identity;
 
         // Disabling collision for placement purposes 
-        //rb.isKinematic = true;
+        rb.isKinematic = true;
 
         // Salvam pozitia initiala a agentului
         startingPosition = gameObject.transform.position;
@@ -321,7 +321,7 @@ public class MulakDashingAgentScript: Agent
             RandomTargetPositionGenerator();
         }
     }
-
+    /*
     // Metoda de verificare a pradatorilor intr-un radius
     private void CheckPredatorInRadius(float radius)
     {
@@ -342,6 +342,7 @@ public class MulakDashingAgentScript: Agent
         }
 
     }
+    */
 
     // 
     protected virtual void RandomTargetPositionGenerator()

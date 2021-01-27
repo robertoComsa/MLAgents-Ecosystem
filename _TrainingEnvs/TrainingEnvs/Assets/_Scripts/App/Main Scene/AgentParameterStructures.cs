@@ -9,15 +9,17 @@ public struct AgentParameters
     public float hungerTickValue;
     public float hungerFactor;
 
-    // Helios, Mulak, Galvadon & Phaoris
+    // Helios, Phaoris
     public int MoveSpeed;
     public int SearchProximity;
 
-    // Helios, Mulak & Galvadon
+    // Helios, Mulak
     public int RotationSpeed;
 
     // Mulak;
     public int MateProximity;
+    public float DashCooldown;
+    public float DashForce;
 
     // Phaoris
     public int Y_RotationSpeed;

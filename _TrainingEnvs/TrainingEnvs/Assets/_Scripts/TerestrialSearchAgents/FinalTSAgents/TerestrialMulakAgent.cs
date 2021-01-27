@@ -20,6 +20,7 @@ public class TerestrialMulakAgent : TerestrialSearchAgent
 
     //  ---------------------------------------------------------- VARIABILE ---------------------------------------------------- //
 
+    // Culoarea agentului
     protected Renderer agentColor;
     // Verifica daca agentul este pe pamant
     protected bool isGrounded = true;

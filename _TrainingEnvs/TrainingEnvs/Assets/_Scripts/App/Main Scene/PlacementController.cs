@@ -82,9 +82,10 @@ public class PlacementController : Singleton<PlacementController>
                         // Mulak
                         case 1:
                             // Instantiaza agentul cu parametri selectati de utilizator
-                            currentPlaceableObject.gameObject.GetComponent<TerestrialMulakAgent>().Initialize(
+                            currentPlaceableObject.gameObject.GetComponent<DashingMulakAgent>().Initialize(
                                 // Deplasare
-                                GameManager.Instance.MulakParameters.MoveSpeed,
+                                GameManager.Instance.MulakParameters.DashForce,
+                                GameManager.Instance.MulakParameters.DashCooldown,
                                 GameManager.Instance.MulakParameters.RotationSpeed,
                                 GameManager.Instance.MulakParameters.SearchProximity,
                                 // Imperechere
