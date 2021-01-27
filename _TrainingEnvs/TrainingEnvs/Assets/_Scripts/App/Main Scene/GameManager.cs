@@ -15,14 +15,18 @@ public class GameManager : Singleton<GameManager>
     [Tooltip("Spatiul de editare")] [SerializeField] Transform editArea = null;
     [Tooltip("Spatiul de simulare")] [SerializeField] Transform simulationArea = null;
 
-    [Header("Input editare agenti")]
-    [Tooltip("Parametri Helios")] [SerializeField] Text[] heliosParametersText = null;
-    [Tooltip("Parametri Mulak")] [SerializeField] Text[] mulakParametersText = null;
-    [Tooltip("Parametri Phaoris")] [SerializeField] Text[] phaorisParametersText = null;
+    [Header("Input editare Helios - Slidere")]
+    [Tooltip("Slider MaxMulakAgents")] [SerializeField] Slider[] heliosParameterSliders = null;
+    [Tooltip("Slider Text Value")] [SerializeField] Text[] heliosParametersTexts = null;
 
-    [Header("Input editare Mulak - Slider")]
-    [Tooltip("Slider MaxMulakAgents")] [SerializeField] Slider mulakMaxAgentsNumberSlider = null;
-    [Tooltip("Slider Text Value")] [SerializeField] Text mulakMaxAgentsNumberText = null;
+    [Header("Input editare Mulak - Slidere")]
+    [Tooltip("Slider MaxMulakAgents")] [SerializeField] Slider[] mulakParameterSliders = null;
+    [Tooltip("Slider Text Value")] [SerializeField] Text[] mulakParametersTexts = null;
+
+    [Header("Input editare Phaoris - Slidere")]
+    [Tooltip("Slider MaxMulakAgents")] [SerializeField] Slider[] phaorisParameterSliders = null;
+    [Tooltip("Slider Text Value")] [SerializeField] Text[] phaorisParametersTexts = null;
+
 
     [Header("Camera din spatiul de simulare")]
     [Tooltip("Camera")] [SerializeField] FlyingCamera simulationAreaCamera = null;
@@ -123,9 +127,17 @@ public class GameManager : Singleton<GameManager>
         // Verificam daca editam in timp ce amplasam agentii
         if(GetSceneState == 1) EditWhilePlacing();
 
+        // Update text slider Helios
+        for (int i = 0; i < heliosParameterSliders.Length; i++)
+            heliosParametersTexts[i].text = heliosParameterSliders[i].value.ToString();
 
-        // Update text slider
-        mulakMaxAgentsNumberText.text = mulakMaxAgentsNumberSlider.value.ToString();
+        // Update text slider Mulak
+        for (int i = 0; i < mulakParameterSliders.Length; i++) 
+            mulakParametersTexts[i].text = mulakParameterSliders[i].value.ToString();
+
+        // Update text slider Phaoris
+        for (int i = 0; i < phaorisParameterSliders.Length; i++)
+            phaorisParametersTexts[i].text = phaorisParameterSliders[i].value.ToString();
     }
 
     // --------------------------------------------------------------------- METODE ------------------------------------------------------------------- //
@@ -250,9 +262,6 @@ public class GameManager : Singleton<GameManager>
         // Resetam datele pentru statistici
         StatisticsManager.Instance.SetInitialAgentNumbers("reset");
         StatisticsManager.Instance.ModifySimData("reset");
-
-        // Setam numarul maxim de agenti Mulak
-        mulakMaxAgentsNumberValue = mulakMaxAgentsNumberSlider.value;
     }
 
     // <>--<> GESTIONARE SIMULARE <>--<>
@@ -382,33 +391,36 @@ public class GameManager : Singleton<GameManager>
         // ----------------------------- Setare parametri Helios ---------------------------------------- //
 
         // Deplasare
-        HeliosParameters.MoveSpeed = int.Parse(heliosParametersText[0].text);
-        HeliosParameters.RotationSpeed = int.Parse(heliosParametersText[1].text);
-        HeliosParameters.SearchProximity = int.Parse(heliosParametersText[2].text);
+        HeliosParameters.MoveSpeed = heliosParameterSliders[0].value;
+        HeliosParameters.RotationSpeed = heliosParameterSliders[1].value;
+        HeliosParameters.SearchProximity = heliosParameterSliders[2].value;
 
         // Infometare
-        HeliosParameters.starvingInterval = float.Parse(heliosParametersText[3].text);
+        HeliosParameters.starvingInterval = heliosParameterSliders[3].value;
 
         // ------------------------------- Setare parametri Mulak ------------------------------------ // 
 
         // Deplasare
-        MulakParameters.DashForce = float.Parse(mulakParametersText[0].text);
-        MulakParameters.DashCooldown = float.Parse(mulakParametersText[1].text);
-        MulakParameters.RotationSpeed = int.Parse(mulakParametersText[2].text);
-        MulakParameters.SearchProximity = int.Parse(mulakParametersText[3].text);
+        MulakParameters.DashForce = mulakParameterSliders[0].value;
+        MulakParameters.DashCooldown = mulakParameterSliders[1].value;
+        MulakParameters.RotationSpeed = mulakParameterSliders[2].value;
+        MulakParameters.SearchProximity = mulakParameterSliders[3].value;
 
         // Imperechere
-        MulakParameters.MateProximity = int.Parse(mulakParametersText[4].text);
+        MulakParameters.MateProximity = mulakParameterSliders[4].value;
 
         // Infometare
-        MulakParameters.starvingInterval = float.Parse(mulakParametersText[5].text);
+        MulakParameters.starvingInterval = mulakParameterSliders[5].value;
+
+        // Setam numarul maxim de agenti Mulak
+        mulakMaxAgentsNumberValue = mulakParameterSliders[6].value;
 
         // ------------------------------- Setare parametri Phaoris ------------------------------------ //
 
-        PhaorisParameters.MoveSpeed = int.Parse(phaorisParametersText[0].text);
-        PhaorisParameters.Y_RotationSpeed = int.Parse(phaorisParametersText[1].text);
-        PhaorisParameters.X_RotationSpeed = int.Parse(phaorisParametersText[2].text);
-        PhaorisParameters.SearchProximity = int.Parse(phaorisParametersText[3].text);
-        PhaorisParameters.DeliveryDistance = int.Parse(phaorisParametersText[4].text);
+        PhaorisParameters.MoveSpeed = phaorisParameterSliders[0].value;
+        PhaorisParameters.Y_RotationSpeed = phaorisParameterSliders[1].value;
+        PhaorisParameters.X_RotationSpeed = phaorisParameterSliders[2].value;
+        PhaorisParameters.SearchProximity = phaorisParameterSliders[3].value;
+        PhaorisParameters.DeliveryDistance = phaorisParameterSliders[4].value;
     }
 }

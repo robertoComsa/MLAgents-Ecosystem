@@ -8,20 +8,20 @@ public struct AgentParameters
     public float starvingInterval;
 
     // Helios, Phaoris
-    public int MoveSpeed;
-    public int SearchProximity;
+    public float MoveSpeed;
+    public float SearchProximity;
 
     // Helios, Mulak
-    public int RotationSpeed;
+    public float RotationSpeed;
 
     // Mulak;
-    public int MateProximity;
+    public float MateProximity;
     public float DashCooldown;
     public float DashForce;
 
     // Phaoris
-    public int Y_RotationSpeed;
-    public int X_RotationSpeed;
-    public int DeliveryDistance;
+    public float Y_RotationSpeed;
+    public float X_RotationSpeed;
+    public float DeliveryDistance;
 }
 

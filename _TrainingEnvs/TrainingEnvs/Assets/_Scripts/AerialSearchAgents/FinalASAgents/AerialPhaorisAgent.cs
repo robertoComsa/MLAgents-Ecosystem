@@ -238,7 +238,7 @@ public class AerialPhaorisAgent : Agent
     // -------------------------------------------------------- METODE ----------------------------------------------------------- //
 
     // Metoda de initializare a agentilor cu parametri alesi de utilizator/
-    public virtual void Initialize(int ms , int y_s , int x_s , int sp , int dd)
+    public virtual void Initialize(float ms , float y_s , float x_s , float sp , float dd)
     {
         moveSpeed = ms;
         yRotSpeed = y_s;

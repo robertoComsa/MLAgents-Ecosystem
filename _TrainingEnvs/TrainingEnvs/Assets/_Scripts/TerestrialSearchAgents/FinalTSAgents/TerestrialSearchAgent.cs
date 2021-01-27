@@ -162,7 +162,7 @@ public class TerestrialSearchAgent : Agent
     }
 
     // Metoda de initializare a agentilor cu parametri alesi de utilizator/
-    public virtual void Initialize(int ms, int rs, int sp , float si)
+    public virtual void Initialize(float ms, float rs, float sp , float si)
     {
         // Deplasare
         moveSpeed = ms;

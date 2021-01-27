@@ -196,7 +196,7 @@ public class DashingMulakAgent : Agent
     // -------------------------------------------------------- METODE DASHING SEARCH AGENT ------------------------------------------------------- //
 
     // Metoda de initializare a agentilor cu parametri alesi de utilizator/
-    public virtual void Initialize(float df, float dc, int rs, int sp, int mp, float si)
+    public virtual void Initialize(float df, float dc, float rs, float sp, float mp, float si)
     {
         // Deplasare
         dashForce = df;
