@@ -24,7 +24,7 @@ public class StatisticsManager : Singleton<StatisticsManager>
     // Returneaza (momentan) numarul agentilor TSA (in caz ca toti mor , incheiem simularea)
     private int ReturnAgentsNumber()
     {
-        return HeliosAgentsNumber + MulakAgentsNumber + GalvadonAgentsNumber;
+        return HeliosAgentsNumber + MulakAgentsNumber;
     }
 
     // --------------------------------------------- VARIABILE & METODE GESTIONARE VARIABILE ----------------------------------------------------- //
@@ -37,17 +37,13 @@ public class StatisticsManager : Singleton<StatisticsManager>
     private int MulakAgentsNumber = 0;
     public int GetMulakAgentsNumber() { return MulakAgentsNumber; }
 
-    // Numarul de agenti Galvadon
-    private int GalvadonAgentsNumber = 0;
-    public int GetGalvadonAgentsNumber() { return GalvadonAgentsNumber; }
-
     // Numarul de agenti Phaoris
     private int PhaorisAgentsNumber = 0;
     public int GetPhaorisAgentsNumber() { return PhaorisAgentsNumber; }
 
     // Metoda publica ce gestioneaza numarul de agenti pentru fiecare agenti in parte.
     // action poate fi: set (seteaza numarul) , add (adauga) , remove (scade)
-    // agent poate fi: Helios , Mulak , Galvadon
+    // agent poate fi: Helios , Mulak.
     public void ModifyAgentsNumber(string action , string agent , int value = 0) // Daca actiunea este set , fara a oferi o valoare actioneaza ca un reset!
     {
         switch (action)
@@ -61,9 +57,6 @@ public class StatisticsManager : Singleton<StatisticsManager>
                         break;
                     case "Mulak":
                         MulakAgentsNumber = value;
-                        break;
-                    case "Galvadon":
-                        GalvadonAgentsNumber = value;
                         break;
                     case "Phaoris":
                         PhaorisAgentsNumber = value;
@@ -84,9 +77,6 @@ public class StatisticsManager : Singleton<StatisticsManager>
                     case "Mulak":
                         MulakAgentsNumber += value;
                         break;
-                    case "Galvadon":
-                        GalvadonAgentsNumber += value;
-                        break;
                     case "Phaoris":
                         PhaorisAgentsNumber += value;
                         break;
@@ -105,9 +95,6 @@ public class StatisticsManager : Singleton<StatisticsManager>
                         break;
                     case "Mulak":
                         MulakAgentsNumber -= value;
-                        break;
-                    case "Galvadon":
-                        GalvadonAgentsNumber -= value;
                         break;
                     case "Phaoris":
                         PhaorisAgentsNumber = -value;
@@ -133,8 +120,6 @@ public class StatisticsManager : Singleton<StatisticsManager>
     // Numarul de agenti Helios ce au murit de foame
     private int heliosStarved = 0;
 
-    // Numarul de agenti Galvadon ce au murit de foame
-    private int galvadonStarved = 0;
 
     // -- METODA MODIFICARE DATE SIMULARE -- //
     public void ModifySimData(string action = "reset") //  Reset va reseta total datele , numele unui parametru va incrementa acel parametru cu 1
@@ -146,7 +131,6 @@ public class StatisticsManager : Singleton<StatisticsManager>
                 // Numarul de agenti
                 HeliosAgentsNumber = 0;
                 MulakAgentsNumber = 0;
-                GalvadonAgentsNumber = 0;
                 PhaorisAgentsNumber = 0;
 
                 //
@@ -154,7 +138,6 @@ public class StatisticsManager : Singleton<StatisticsManager>
                 mulaksEaten = 0;
                 mulakStarved = 0;
                 heliosStarved = 0;
-                galvadonStarved = 0;
 
                 break;
 
@@ -187,12 +170,6 @@ public class StatisticsManager : Singleton<StatisticsManager>
                 heliosStarved++;
 
                 break;
-
-            case "galvadonStarved":
-
-                galvadonStarved++;
-
-                break;
         }
 
     }
@@ -206,9 +183,6 @@ public class StatisticsManager : Singleton<StatisticsManager>
     // Numar de agenti Mulak initial
     private int initialMulakNumber = 0;
 
-    // Numar de agenti Galvadon initial
-    private int initialGalvadonNumber = 0;
-
     // Numar de agenti Phaoris initial
     private int initialPhaorisNumber = 0;
 
@@ -221,7 +195,6 @@ public class StatisticsManager : Singleton<StatisticsManager>
 
                 initialHeliosNumber = HeliosAgentsNumber;
                 initialMulakNumber = MulakAgentsNumber;
-                initialGalvadonNumber = GalvadonAgentsNumber;
                 initialPhaorisNumber = PhaorisAgentsNumber;
 
                 break;
@@ -230,7 +203,6 @@ public class StatisticsManager : Singleton<StatisticsManager>
 
                 initialHeliosNumber = 0;
                 initialMulakNumber = 0;
-                initialGalvadonNumber = 0;
                 initialPhaorisNumber = 0;
 
                 break;
@@ -247,7 +219,6 @@ public class StatisticsManager : Singleton<StatisticsManager>
             // Instantierea initiala
             + initialHeliosNumber + " agenti Helios \n"
             + initialMulakNumber + " agenti Mulak \n"
-            + initialGalvadonNumber + " agenti Galvadon \n"
             + initialPhaorisNumber + " agenti Phaoris \n\n"
 
             // Mulak (mancati / nascuti)
@@ -258,8 +229,6 @@ public class StatisticsManager : Singleton<StatisticsManager>
             +"Au murit de foame: \n"
             +heliosStarved + " agenti Helios\n"
             +mulakStarved + " agenti Mulak\n"
-            +galvadonStarved + " agenti Galvadon"
-            
             ;
     }
 }

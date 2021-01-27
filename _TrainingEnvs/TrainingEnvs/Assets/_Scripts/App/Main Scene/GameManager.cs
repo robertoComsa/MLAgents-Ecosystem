@@ -18,7 +18,6 @@ public class GameManager : Singleton<GameManager>
     [Header("Input editare agenti")]
     [Tooltip("Parametri Helios")] [SerializeField] Text[] heliosParametersText = null;
     [Tooltip("Parametri Mulak")] [SerializeField] Text[] mulakParametersText = null;
-    [Tooltip("Parametri Galvadon")] [SerializeField] Text[] galvadonParametersText = null;
     [Tooltip("Parametri Phaoris")] [SerializeField] Text[] phaorisParametersText = null;
 
     [Header("Input editare Mulak - Slider")]
@@ -35,7 +34,6 @@ public class GameManager : Singleton<GameManager>
 
     public AgentParameters HeliosParameters;
     public AgentParameters MulakParameters;
-    public AgentParameters GalvadonParameters;
     public AgentParameters PhaorisParameters;
 
     // -------- VARIABILE ------- //
@@ -89,7 +87,6 @@ public class GameManager : Singleton<GameManager>
         // Constructor parametri agenti
         HeliosParameters = new AgentParameters();
         MulakParameters = new AgentParameters();
-        GalvadonParameters = new AgentParameters();
         PhaorisParameters = new AgentParameters();
     }
 
@@ -123,7 +120,7 @@ public class GameManager : Singleton<GameManager>
     private void StartSimulation()
     {
         // Activate agents after placement
-        if (Input.GetKeyDown(KeyCode.M) && GetSceneState == 1)
+        if (Input.GetKeyDown(KeyCode.P) && GetSceneState == 1)
         {
             // Agenti pot lua decizii 
             CanAgentsRequestDecisions = true;
@@ -329,18 +326,6 @@ public class GameManager : Singleton<GameManager>
         MulakParameters.hungerFactor = int.Parse(mulakParametersText[4].text);
         MulakParameters.hungerTickValue = int.Parse(mulakParametersText[5].text);
         MulakParameters.timeBetweenHungerTicks = int.Parse(mulakParametersText[6].text);
-
-        // ------------------------------- Setare parametri Galvadon ---------------------------------- // 
-
-        // Deplasare
-        GalvadonParameters.MoveSpeed = int.Parse(galvadonParametersText[0].text);
-        GalvadonParameters.RotationSpeed = int.Parse(galvadonParametersText[1].text);
-        GalvadonParameters.SearchProximity = int.Parse(galvadonParametersText[2].text);
-
-        // Infometare
-        GalvadonParameters.hungerFactor = int.Parse(galvadonParametersText[3].text);
-        GalvadonParameters.hungerTickValue = int.Parse(galvadonParametersText[4].text);
-        GalvadonParameters.timeBetweenHungerTicks = int.Parse(galvadonParametersText[5].text);
 
         // ------------------------------- Setare parametri Phaoris ------------------------------------ //
 

@@ -99,26 +99,9 @@ public class PlacementController : Singleton<PlacementController>
                             agentInstantiated = "mulak";
 
                             break;
-                        // Galvadon
-                        case 2:
-                            // Instantiaza agentul cu parametri selectati de utilizator
-                            currentPlaceableObject.gameObject.GetComponent<TerestrialGalvadonAgent>().Initialize(
-                                // Deplasare
-                                GameManager.Instance.GalvadonParameters.MoveSpeed,
-                                GameManager.Instance.GalvadonParameters.RotationSpeed,
-                                GameManager.Instance.GalvadonParameters.SearchProximity,
-                                // Infometare
-                                GameManager.Instance.GalvadonParameters.hungerFactor,
-                                GameManager.Instance.GalvadonParameters.hungerTickValue,
-                                GameManager.Instance.GalvadonParameters.timeBetweenHungerTicks
-                                );
 
-                            // Folosit pentru StatisticsManager (a contoriza numarul de agenti instantiati de fiecare tip)
-                            agentInstantiated = "galvadon";
-
-                            break;
                         // Phaoris
-                        case 3:
+                        case 2:
                             // Instantiaza agentul cu parametri selectati de utilizator
                             currentPlaceableObject.gameObject.GetComponent<AerialPhaorisAgent>().Initialize(
                                 GameManager.Instance.PhaorisParameters.MoveSpeed,
@@ -192,11 +175,6 @@ public class PlacementController : Singleton<PlacementController>
                         currentPlaceableObject = null;
                         StatisticsManager.Instance.ModifyAgentsNumber("add", "Mulak");
                     }
-                    break;
-
-                case "galvadon":
-                    currentPlaceableObject = null;
-                    StatisticsManager.Instance.ModifyAgentsNumber("add", "Galvadon");
                     break;
 
                 case "phaoris":
