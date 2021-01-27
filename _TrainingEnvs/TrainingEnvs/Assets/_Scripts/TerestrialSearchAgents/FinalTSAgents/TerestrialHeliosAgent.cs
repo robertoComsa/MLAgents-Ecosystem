@@ -48,8 +48,6 @@ public class TerestrialHeliosAgent : TerestrialSearchAgent
     {
         base.StarvingProcess();
 
-        Debug.Log(starvingInterval);
-
         if (starvingInterval <= 0f)
         {
             // Distrugem acest agent (moare de foame)

@@ -377,8 +377,6 @@ public class DashingMulakAgent : Agent
             }
         }
 
-        Debug.Log(starvingInterval);
-
         if (starvingInterval <= 0f)
         {
             // Distrugem acest agent (moare de foame)

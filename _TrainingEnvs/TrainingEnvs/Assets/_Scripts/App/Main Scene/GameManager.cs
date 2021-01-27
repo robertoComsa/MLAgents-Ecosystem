@@ -45,11 +45,20 @@ public class GameManager : Singleton<GameManager>
     // Transformul actionbar-ului (element GUI)
     Transform actionBar = null;
 
-    // Transformul meniului de editare (element GUI)
-    Transform parameterEditorMenu = null;
-
     // Transformul statisticilor simularii (element GUI)
     Transform statisticsOutput = null;
+
+    // Transformul butonului de back in placement mode
+    Transform backButtonInPlacementMode = null;
+
+    // Transformul butonului de back to main menu
+    Transform backToMainMenuButton = null;
+
+    // Transformul butonului de amplasare agenti
+    Transform placeAgentsButton = null;
+
+    // Transformul parametrilor de editare 
+    Transform parameterEditorLayout = null;
 
     bool raysEnabled = false;
     public bool GetRaysEnabled() { return raysEnabled; }
@@ -78,8 +87,17 @@ public class GameManager : Singleton<GameManager>
         actionBar = canvas.transform.Find("Actionbar");
         simulationArea.gameObject.SetActive(false);
 
-        // Initializam meniul de editare
-        parameterEditorMenu = canvas.transform.Find("ParameterEditorMenu");
+        // Initializam si dezactivam buton de back in placement mode
+        backButtonInPlacementMode = canvas.transform.Find("BackToPlacementButton");
+
+        // Initializare parameter editor layout
+        parameterEditorLayout = canvas.transform.Find("ParameterEditorLayout");
+
+        // Initializare buton place agents
+        placeAgentsButton = canvas.transform.Find("PlaceAgentsButton");
+
+        // Initializare buton back to main menu
+        backToMainMenuButton = canvas.transform.Find("BackToMainMenuButton");
 
         // Initializam afisarea statisticilor
         statisticsOutput = canvas.transform.Find("StatisticsOutput");
@@ -101,6 +119,10 @@ public class GameManager : Singleton<GameManager>
 
         // Verificam in fiecare frame daca apasam r (pentru activare/dezactivare rays)
         EnableOrDisableRays();
+
+        // Verificam daca editam in timp ce amplasam agentii
+        if(GetSceneState == 1) EditWhilePlacing();
+
 
         // Update text slider
         mulakMaxAgentsNumberText.text = mulakMaxAgentsNumberSlider.value.ToString();
@@ -142,6 +164,59 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    // Edit while placing
+    private void EditWhilePlacing()
+    {
+        // Activate agents after placement
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            // Interzicem miscarea camerei
+            simulationAreaCamera.CanMoveCamera = false;
+
+            GetSceneState = 3;
+
+            // Dezactivam bara de selectare a agentilor
+            EnableOrDisableElement(actionBar, false);
+
+            // Activam doar parametrii de editare si butonul de back to placement
+            EnableOrDisableElement(parameterEditorLayout, true);
+            EnableOrDisableElement(backButtonInPlacementMode, true);
+
+            // Deblocam mouse-ul
+            Cursor.lockState = CursorLockMode.None;
+
+            // Interzicem amplasarea agentilor
+            PlacementController.Instance.CanPlaceAgents = false;
+
+            // Distrugem agent ce urmeaza sa fie amplasat daca am inceput simularea
+            PlacementController.Instance.DestroyCurrentPlaceableObject();
+        }
+    }
+
+    // Edit while placing
+    public void BackToPlacementButton()
+    {
+        // Permitem miscarea camerei
+        simulationAreaCamera.CanMoveCamera = true;
+
+        SetParametersBeforePlacing();
+
+        GetSceneState = 1;
+
+        // Dezactivam bara de selectare a agentilor
+        EnableOrDisableElement(actionBar, true);
+
+        // Dezactivam doar parametrii de editare si butonul de back to placement
+        EnableOrDisableElement(parameterEditorLayout, false);
+        EnableOrDisableElement(backButtonInPlacementMode, false);
+
+        // Deblocam mouse-ul
+        Cursor.lockState = CursorLockMode.Locked;
+
+        // Interzicem amplasarea agentilor
+        PlacementController.Instance.CanPlaceAgents = true;
+    }
+
     // Metoda schimbare zone
     public void PlaceAgentsButton()
     {
@@ -150,7 +225,9 @@ public class GameManager : Singleton<GameManager>
 
         // Dezactivam zona de editare (GameObjects + UI)
         EnableOrDisableElement(editArea, false);
-        EnableOrDisableElement(parameterEditorMenu, false);
+        EnableOrDisableElement(parameterEditorLayout, false);
+        EnableOrDisableElement(backToMainMenuButton, false);
+        EnableOrDisableElement(placeAgentsButton, false);
 
         // Activam zona de simulare (GameObjects + UI)
         EnableOrDisableElement(actionBar, true);
@@ -285,7 +362,9 @@ public class GameManager : Singleton<GameManager>
 
         // Activam zona de editare (GameObjects + UI)
         EnableOrDisableElement(editArea, true);
-        EnableOrDisableElement(parameterEditorMenu, true);
+        EnableOrDisableElement(parameterEditorLayout, true);
+        EnableOrDisableElement(backToMainMenuButton, true);
+        EnableOrDisableElement(placeAgentsButton, true);
 
         // Dezactivam zone de simulare (GameObjects + UI)
         EnableOrDisableElement(simulationArea, false);
