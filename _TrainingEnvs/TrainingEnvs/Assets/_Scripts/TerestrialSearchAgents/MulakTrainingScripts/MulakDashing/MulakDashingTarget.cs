@@ -8,8 +8,25 @@ public class MulakDashingTarget : MonoBehaviour
     // 
     public void RandomTargetPositionGenerator()
     {
-        gameObject.transform.position = new Vector3(parentTransform.localPosition.x + Random.Range(-90f, 90f),
+        gameObject.transform.position = new Vector3(parentTransform.localPosition.x + Random.Range(-180f, 180f),
                                                     1f, 
-                                                    parentTransform.localPosition.y +  Random.Range(-90f, 90f));
+                                                    parentTransform.localPosition.y +  Random.Range(-180f, 180f));
+    }
+
+    private void Awake()
+    {
+        RandomTargetPositionGenerator();
+    }
+
+    private void Start()
+    {
+        StartCoroutine(ResetPosition());
+    }
+
+    IEnumerator ResetPosition()
+    {
+        yield return new WaitForSeconds(800f);
+        RandomTargetPositionGenerator();
+        StartCoroutine(ResetPosition());
     }
 }

@@ -1,13 +1,13 @@
 Win64
 PlayerPath?
-C:/Users/HP 830 G5/Desktop/Licenta - ML Agents/eCOSYSTEM/TrainingEnvs.exe
+C:/Users/HP 830 G5/Desktop/Licenta - ML Agents/Git Repo/MLAgents-Ecosystem/_TrainingEnvs/MLA/MLAgents Ecosystem.exe
 SceneListBegin?
 Assets/Scenes/MainGame/MainMenu.unity
 Assets/Scenes/MainGame/MainScene.unity
 SceneListEnd?
 3c08375166df118bd1801438fc36b92f Unity.TextMeshPro.dll:TMPro.TMP_SelectionCaret
 77c21079ace8d76ce6e941d3dabbfe6e Unity.TextMeshPro.dll:TMPro.TMP_Dropdown
-c93d8b78622e96071edf27069ffdf856 Assembly-CSharp.dll:.TerestrialHeliosAgent
+858de8261fd9dce84f0d21bc95c456bd Assembly-CSharp.dll:.TerestrialHeliosAgent
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 06f0fef534ca4c1d6064fd77a26bf722 UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
 780e8f682b3221346c034a6712a0fd25 UnityEngine.Timeline.dll:UnityEngine.Timeline.AnimationPlayableAsset
@@ -21,7 +21,7 @@ e1bbf0ab858085e38fae6b12ebbdcd35 UnityEngine.Timeline.dll:UnityEngine.Timeline.G
 e1bbf0ab858085e38fae6b12ebbdcd35 UnityEngine.Timeline.dll:UnityEngine.Timeline.PlayableTrack
 201e3fde670b00545944bb3db215c80a UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
 e7a73f5f78ba6445195ec23b74a1ce2d Unity.TextMeshPro.dll:TMPro.TMP_ScrollbarEventHandler
-3cb8cd9ba8e13761d5b7cbf40d88a302 Assembly-CSharp.dll:.TerestrialMulakAgent
+96170642296f5734ba8fc66495bcf479 Assembly-CSharp.dll:.TerestrialMulakAgent
 71bb6a6b6c8f052f948db64c7dd3ca4f Unity.ML-Agents.dll:MLAgents.Monitor
 140ce63b9d9fbefc15c595d117b2ea07 Assembly-CSharp.dll:.PhaorisAgent_08
 cf9f5cf2c3145a37ac07f00e50e460f9 UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
@@ -94,8 +94,10 @@ abf1930d8126d0b2e00e9449129a0190 UnityEngine.UI.dll:UnityEngine.EventSystems.Tou
 32942658d1321e3517c5c648e2e4cea3 Unity.ML-Agents.dll:MLAgents.DecisionRequester
 e5154e5653769114daa218934c9e5dab Unity.ML-Agents.dll:MLAgents.Sensor.RayPerceptionSensorComponent2D
 9fc5c6be3ba9dab467624bf5a3c540b8 Assembly-CSharp.dll:.HeliosAgentv2
+d540495783926953b78da67d2ec91e95 Assembly-CSharp.dll:.MulakDashingAgentScript
 4b6d4d86f2f243862a52b9ea12955a26 Assembly-CSharp.dll:.Galvadon2Final
 094d99498db417e274bd04402859d2c0 Assembly-CSharp.dll:.StatisticsManager
+e9dc36131400b41969dbd5966554aceb Assembly-CSharp.dll:.MulakSearching
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 06f0fef534ca4c1d6064fd77a26bf722 UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
 780e8f682b3221346c034a6712a0fd25 UnityEngine.Timeline.dll:UnityEngine.Timeline.AnimationPlayableAsset
@@ -108,7 +110,7 @@ e1bbf0ab858085e38fae6b12ebbdcd35 UnityEngine.Timeline.dll:UnityEngine.Timeline.C
 e1bbf0ab858085e38fae6b12ebbdcd35 UnityEngine.Timeline.dll:UnityEngine.Timeline.GroupTrack
 e1bbf0ab858085e38fae6b12ebbdcd35 UnityEngine.Timeline.dll:UnityEngine.Timeline.PlayableTrack
 201e3fde670b00545944bb3db215c80a UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
-9fc5c6be3ba9dab467624bf5a3c540b8 Assembly-CSharp.dll:.HeliosAgentv3
+d0c153df733c444bd3bb67a4aa02fd27 Assembly-CSharp.dll:.HeliosAgentv3
 4e9333594897a1fb8b136ad2eae996c7 Unity.TextMeshPro.dll:TMPro.TMP_SubMeshUI
 e6ae40841db498b6e673877ac45ad208 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
@@ -131,9 +133,11 @@ fba09e5147beeaf614d9e670b1a9458e Assembly-CSharp.dll:.HeliosAgent
 303ad70ce203ad874efe2965d0fbcff9 Unity.Analytics.Tracker.dll:UnityEngine.Analytics.AnalyticsEventTracker
 7fb9de8dcf73854b6b328eca1f7a6e6d Unity.Analytics.Tracker.dll:UnityEngine.Analytics.AnalyticsTracker
 4b6d4d86f2f243862a52b9ea12955a26 Assembly-CSharp.dll:.GalvadonAgentEat
+741364aa62760e6bbc915e8091235c9e Assembly-CSharp.dll:.DashingMulakAgent
 b8a5e8091ab0b8861d2add371082c5e0 Unity.TextMeshPro.dll:TMPro.TMP_SpriteAsset
 08d95407182c4145326b1fe191861174 Assembly-CSharp.dll:.MulakTesting
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.MainMenu
+7024119345476241dd1d8825eef39b09 Assembly-CSharp.dll:.MulakJumper
 f5c033978b84d6a50d861005ceae0750 Assembly-CSharp.dll:.FoodPickUp
 b3ab2106268377ffe25dd18ac23dca28 Unity.TextMeshPro.dll:TMPro.TMP_Asset
 400d0c336daf6df451b023a541b35968 Assembly-CSharp.dll:.PhaorisAgent
@@ -143,11 +147,13 @@ a6134939a6287adf60e26d8b0b4c4471 Assembly-CSharp.dll:.FoodRespawn
 71bb6a6b6c8f052f948db64c7dd3ca4f Unity.TextMeshPro.dll:TMPro.TMP_SpriteAnimator
 550cd92f36d03903a502911efc2e95c7 Barracuda.dll:Barracuda.NNModel
 4b6d4d86f2f243862a52b9ea12955a26 Assembly-CSharp.dll:.Galvadon2
-c93d8b78622e96071edf27069ffdf856 Assembly-CSharp.dll:.TerestrialSearchAgent
+858de8261fd9dce84f0d21bc95c456bd Assembly-CSharp.dll:.TerestrialSearchAgent
 995c9b6ab74c0a322a11425660688404 Assembly-CSharp.dll:.PreyForHelios
+37d4d441b0292e8b55662c1aaa9d2561 Assembly-CSharp.dll:.AerialPhaorisAgent_Training
 4b6d4d86f2f243862a52b9ea12955a26 Assembly-CSharp.dll:.GalvadonAgentFeed
 4fd8bf02e3089425d3502e26c44ba31a Unity.TextMeshPro.dll:TMPro.TextContainer
 422f48e4fe97392f35c9dde63be9e292 Barracuda.dll:Barracuda.NNModelData
+15d1ad2e5f7312cad82053bf897bb7dc Assembly-CSharp.dll:.MulakDashingTarget
 e6ae40841db498b6e673877ac45ad208 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
 1dcb82730d983b77cec736c6ef19f814 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkDiscovery
@@ -162,9 +168,10 @@ e0ee4b3d4e27318934cc940a969d3d96 UnityEngine.Networking.dll:UnityEngine.Networki
 ad9173d3a69d99153f38ed4b62226129 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransform
 9b895dcabbc1faf095c000c32d471fd0 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
 5887ef1bc706b22b773d253fd443ceef UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
-e309214ffb3ebd3d50408609b7b7c4e9 Assembly-CSharp.dll:.GameManager
+697e9cd431b71c202418e4a0d7ce8369 Assembly-CSharp.dll:.GameManager
+71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.MulakAgentCollisionLogics
 ef5effa566cd92b352ccf60c53a233b1 Assembly-CSharp.dll:.GalvadonAgentFinal
-c93d8b78622e96071edf27069ffdf856 Assembly-CSharp.dll:.TerestrialGalvadonAgent
+858de8261fd9dce84f0d21bc95c456bd Assembly-CSharp.dll:.TerestrialGalvadonAgent
 35a9693c388776aaf487636491a20f11 Unity.TextMeshPro.dll:TMPro.TMP_FontAsset
 e1300922cc039f41ab46a47f4cb05898 Unity.TextMeshPro.dll:TMPro.TMP_Settings
 c3c011e4038696e497ff02cce4cb2d81 Assembly-CSharp.dll:.MulakAgentv1
@@ -196,4 +203,5 @@ df434544c9f7b33d1cc7e635b180d279 Unity.TextMeshPro.dll:TMPro.TextMeshPro
 3165968ba45c74472d279ba04455fccb Unity.TextMeshPro.dll:TMPro.TMP_ColorGradient
 8649814970b42d345b89944b862453cc Unity.TextMeshPro.dll:TMPro.TMP_SubMesh
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.PreyFoodTreeScript
+805371533684b82bab7c2ea0ce0595d7 Assembly-CSharp.dll:.MulakDefensive
 87da94fee78efbdbab8831f98d67e68a Assembly-CSharp.dll:.PlacementController

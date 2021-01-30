@@ -42,7 +42,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.7, y: 1.4, z: 0.3}
+  m_Size: {x: 2, y: 1.4, z: 0.3}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &844517959528209306
 GameObject:
@@ -306,10 +306,10 @@ MonoBehaviour:
     vectorActionSize: 05000000
     vectorActionDescriptions: []
     vectorActionSpaceType: 1
-  m_Model: {fileID: 11400000, guid: c9be010fda9716043beee9d145ed6b54, type: 3}
+  m_Model: {fileID: 0}
   m_InferenceDevice: 0
   m_BehaviorType: 0
-  m_BehaviorName: PhaorisLearning
+  m_BehaviorName: PhaorisLearning_PPO
   m_TeamID: 0
   m_UseChildSensors: 1
 --- !u!65 &2191564850363170527
@@ -341,16 +341,21 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   maxStep: 5000
-  moveSpeed: 10
+  moveSpeed: 25
   yRotSpeed: 100
   xRotSpeed: 100
-  searchProximity: 300
-  deliveryDistanceRequired: 10
+  searchProximity: 100
+  deliveryDistanceRequired: 20
   beakTip: {fileID: 6290518077768160540}
   beakTipRadius: 0.05
   beakFruit: {fileID: 7981425905634179358}
+  plantRandomPositionGenerator: {fileID: 0}
+  newPosValue: 30
+  maxHeight: 15
+  minHeight: 5
   dropFruit: {fileID: 6601563190140889427, guid: 74b12099dd57f7943b8036f2b9762747,
     type: 3}
+  parentTransform: {fileID: 0}
 --- !u!114 &114277110026168132
 MonoBehaviour:
   m_ObjectHideFlags: 0

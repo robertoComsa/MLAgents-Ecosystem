@@ -19,8 +19,17 @@ public class AerialPhaorisAgent_Training : Agent
     [Tooltip("Radiusul in care este acceptata coliziunea cu ciocul")] [SerializeField] float beakTipRadius = 0.05f;
     [Tooltip("Obiect copil al agentului")] [SerializeField] GameObject beakFruit = null;
 
+    [Header("Parametri instantiere")]
+    [Tooltip("Script-ul de reinstantiere al copacului")] [SerializeField] RandomRotationForPlant plantRandomPositionGenerator = null;
+    [Tooltip("Value for agent positions")] [SerializeField] float newPosValue = 0f;
+    [Tooltip("Max y instantiation")] [SerializeField] float maxHeight = 0f;
+    [Tooltip("Min y instantiation")] [SerializeField] float minHeight = 0f;
+
     [Header("Fruct")]
     [Tooltip("Fructul ce trebuie aruncat in jurul agentilor galvadon")] [SerializeField] GameObject dropFruit = null;
+
+    [Header("Componenta parinte")]
+    [SerializeField] Transform parentTransform = null;
 
     //  ---------------------------------------------------------- VARIABILE ----------------------------------------------------- //
 
@@ -57,6 +66,11 @@ public class AerialPhaorisAgent_Training : Agent
     // Valoarea vectorului dot dintre cioc si tinta 
     float beakToTargetDotValue = 0f;
 
+    // index-ul noii pozitii de instantiere
+    int newPositionIndex = 0;
+
+
+
     // ------------------------------------------------- METODE (Mostenite din) AGENT -------------------------------------------- //
 
     // Initializarea agentului; apelata o singura data 
@@ -73,6 +87,10 @@ public class AerialPhaorisAgent_Training : Agent
         ChangeTargetTag("preyFoodTree");
         pickedUpFruit = 0;
         beakFruit.SetActive(false);
+
+        // Primeste o pozitie aleatorie
+        RandomPositionGenerator();
+        plantRandomPositionGenerator.ResetPlantPosition();
     }
 
     // Cod aplicat la inceputul unui episod
@@ -94,8 +112,73 @@ public class AerialPhaorisAgent_Training : Agent
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
 
-        // Replaseaza la inaltimea corecta 
-        gameObject.transform.position = new Vector3(gameObject.transform.position.x, 13.7f, gameObject.transform.position.z);
+        // Reseteaza agentul si planta
+        RandomPositionGenerator();
+        plantRandomPositionGenerator.ResetPlantPosition();
+    }
+
+    // Replaseaza la inaltimea corecta 
+    public void RandomPositionGenerator()
+    {
+        // 1 din 8 pozitii
+        newPositionIndex = Random.Range(0, 9);
+
+        // Selecteaza o pozitie
+        switch (newPositionIndex)
+        {
+            // STANGA SUS
+            case 0:
+                gameObject.transform.position = new Vector3(parentTransform.position.x - newPosValue,
+                                                            Random.Range(5f, 15f),
+                                                            parentTransform.position.z + newPosValue);
+                break;
+            // STANGA MIJLOC
+            case 1:
+                gameObject.transform.position = new Vector3(parentTransform.position.x - newPosValue,
+                                                            Random.Range(5f, 15f),
+                                                            parentTransform.position.z + 0);
+                break;
+            // STANGA JOS
+            case 2:
+                gameObject.transform.position = new Vector3(parentTransform.position.x - newPosValue,
+                                                            Random.Range(5f, 15f),
+                                                            parentTransform.position.z - newPosValue);
+                break;
+            // CENTRU SUS
+            case 3:
+                gameObject.transform.position = new Vector3(parentTransform.position.x,
+                                                            Random.Range(5f, 15f),
+                                                            parentTransform.position.z + newPosValue);
+                break;
+            // CENTRU JOS
+            case 4:
+                gameObject.transform.position = new Vector3(parentTransform.position.x,
+                                                            Random.Range(5f, 15f),
+                                                            parentTransform.position.z - newPosValue);
+                break;
+            // DREAPTA SUS
+            case 5:
+                gameObject.transform.position = new Vector3(parentTransform.position.x + newPosValue,
+                                                            Random.Range(5f, 15f),
+                                                            parentTransform.position.z + newPosValue);
+                break;
+            // DREAPTA MIJLOC
+            case 6:
+                gameObject.transform.position = new Vector3(parentTransform.position.x + newPosValue,
+                                                            Random.Range(5f, 15f),
+                                                            parentTransform.position.z);
+                break;
+            // DREAPTA JOS
+            case 7:
+                gameObject.transform.position = new Vector3(parentTransform.position.x + newPosValue,
+                                                            Random.Range(5f, 15f),
+                                                            parentTransform.position.z - newPosValue);
+                break;
+        }
+
+        // Roteste agentul
+        transform.Rotate(new Vector3(0f, Random.Range(0f, 360f), 0f), Space.Self);
+
     }
 
     // Observatiile numerice oferite agentului
@@ -116,7 +199,7 @@ public class AerialPhaorisAgent_Training : Agent
         // Un vector ce indica directia *inainte* a ciocului (respectiv agent)
         AddVectorObs(beakTip.forward.normalized); // 1 vector3 = 3 valori float
         // Un vector ce indica directia de la cioc la tinta
-        Vector3 beak_to_target = closestTargetGlobalPosition - beakTip.position;
+        Vector3 beak_to_target = closestTargetPosition - beakTip.position;
         AddVectorObs(beak_to_target.normalized); // 1 vector3 = 3 valori float
         // Un dot product - valori negative cand agentul e cu spatele la fructe , valori pozitive cand agentul e cu fata la fructe 
         beakToTargetDotValue = Vector3.Dot(beakTip.forward.normalized, beak_to_target.normalized);
@@ -182,6 +265,14 @@ public class AerialPhaorisAgent_Training : Agent
 
         // Aplica noua rotatie 
         transform.rotation = Quaternion.Euler(X_axis_rotation, Y_axis_rotation, 0f);
+
+        // RECOMPENSEEEEEEEEEEE
+
+        // Reward pentru directia in care se uita agentul ( 1 - maxim cand se uita direct la tinta , -1 - minim cand se uita in directia opusa)
+        AddReward(beakToTargetDotValue/maxStep);
+
+        // Reward pentru distanta fata de tinta.
+        AddReward(-2f * distanceToClosestTarget /(searchProximity * maxStep));
     }
 
     // Cand tipul de comportament este setat pe 'Heuristic' aceasta metoda este folosita pentru a 
@@ -257,16 +348,21 @@ public class AerialPhaorisAgent_Training : Agent
             timeGap = Time.time;
 
             // Verificam daca agentul a terminat sarcina
-            CheckIfFoodWasDelivered();
+           // CheckIfFoodWasDelivered();
 
+
+            // MUTATE TEMPORAR IN AGENT ACTION 
+
+            /*
             // Reward pentru directia in care se uita agentul ( 1 - maxim cand se uita direct la tinta , -1 - minim cand se uita in directia opusa)
             AddReward(0.01f * beakToTargetDotValue);
 
             // Reward pentru distanta fata de tinta.
-            AddReward(-0.01f * distanceToClosestTarget / searchProximity);
+            AddReward(-0.1f * distanceToClosestTarget/searchProximity);
+            */
         }
 
-            DrawLine(transform.position, targetedRayPos, rayColor);
+            DrawLine(beakTip.position, targetedRayPos, rayColor);
     }
 
     /// <summary>
@@ -298,13 +394,21 @@ public class AerialPhaorisAgent_Training : Agent
             closestTargetPosition = closestTarget.transform.localPosition;
             distanceToClosestTarget = nearestDistance;
             targetedRayPos = closestTarget.transform.position;
+
+            if (distanceToClosestTarget < deliveryDistanceRequired)
+            {
+                AddReward(1f);
+                //Resetare agent si planta
+                AgentReset();
+                plantRandomPositionGenerator.ResetPlantPosition();
+            }
         }
         else
         {
-            closestTargetGlobalPosition = Vector3.zero;
-            closestTargetPosition = Vector3.zero;
-            distanceToClosestTarget = 40f;
-            targetedRayPos = Vector3.zero;
+            closestTargetGlobalPosition = parentTransform.position;
+            closestTargetPosition = parentTransform.localPosition;
+            distanceToClosestTarget = 50f;
+            targetedRayPos = parentTransform.position;
         }
     }
 
@@ -328,6 +432,9 @@ public class AerialPhaorisAgent_Training : Agent
 
             // Reward pentru livrarea fructului 
             AddReward(1f);
+            //Resetare agent si planta
+            AgentReset();
+            plantRandomPositionGenerator.ResetPlantPosition();
         }
     }
 
@@ -343,15 +450,28 @@ public class AerialPhaorisAgent_Training : Agent
             Vector3 closestPointToBeakTip = other.ClosestPoint(beakTip.position);
             if (Vector3.Distance(beakTip.position, closestPointToBeakTip) < beakTipRadius && pickedUpFruit == 0)
             {
+
+                // DONT DO ANY OF THESE . JUST  sETREWARD + DONE
+                /*
                 ChangeTargetTag("prey");
                 rayColor = Color.yellow;
                 pickedUpFruit = 1;
                 beakFruit.SetActive(true);
-
+                */
 
                 // Reward pentru culegerea fructului 
                 AddReward(1f);
+                //Resetare agent si planta
+                AgentReset();
+                plantRandomPositionGenerator.ResetPlantPosition();
             }
+        }
+
+        // Penalizare pentru coliziuni
+        if (other.gameObject.CompareTag("boundary"))
+        {
+            AddReward(-1f);
+            AgentReset();
         }
 
 
@@ -360,10 +480,10 @@ public class AerialPhaorisAgent_Training : Agent
     private void OnCollisionEnter(Collision other)
     {
         // Penalizare pentru coliziuni
-        if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("boundary"))
+        if (other.gameObject.CompareTag("Ground"))
         {
-            SetReward(-1f);
-            Done();
+            AddReward(-1f);
+            AgentReset();
         }
     }
 
