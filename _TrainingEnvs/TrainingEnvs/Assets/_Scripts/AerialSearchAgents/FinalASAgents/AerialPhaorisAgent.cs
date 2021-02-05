@@ -369,7 +369,7 @@ public class AerialPhaorisAgent : Agent
             Vector3 closestPointToBeakTip = other.ClosestPoint(beakTip.position);
             if (Vector3.Distance(beakTip.position, closestPointToBeakTip) < beakTipRadius && pickedUpFruit == 0)
             {
-                ChangeTargetTag("helper");
+                ChangeTargetTag("prey");
                 rayColor = Color.yellow;
                 pickedUpFruit = 1;
                 beakFruit.SetActive(true);

@@ -30,7 +30,7 @@ public class RandomRotationForPlant : MonoBehaviour
     public void RandomlyPlacePlant()
     {
         gameObject.transform.position = new Vector3(parentTransform.position.x + Random.Range(-replacingDistance, +replacingDistance),
-                                                    6f + Random.Range(-Y_value,Y_value),
+                                                    10f + Random.Range(-Y_value,Y_value),
                                                     parentTransform.position.z + Random.Range(-replacingDistance, +replacingDistance)
                                                     );
     }

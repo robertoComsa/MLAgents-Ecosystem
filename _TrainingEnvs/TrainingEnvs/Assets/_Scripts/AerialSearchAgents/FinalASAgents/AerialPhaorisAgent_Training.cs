@@ -351,7 +351,7 @@ public class AerialPhaorisAgent_Training : Agent
            // CheckIfFoodWasDelivered();
 
 
-            // MUTATE TEMPORAR IN AGENT ACTION 
+            // MUTATE  IN AGENT ACTION 
 
             /*
             // Reward pentru directia in care se uita agentul ( 1 - maxim cand se uita direct la tinta , -1 - minim cand se uita in directia opusa)

@@ -84,7 +84,7 @@ public class MulakDashingAgentScript: Agent
         rb.inertiaTensorRotation = Quaternion.identity;
 
         // Disabling collision for placement purposes 
-        rb.isKinematic = true;
+        //rb.isKinematic = true;
 
         // Salvam pozitia initiala a agentului
         startingPosition = gameObject.transform.position;
@@ -137,14 +137,14 @@ public class MulakDashingAgentScript: Agent
         switch(dashDirectionIndex)
         {
             // Sta pe loc
-            /*
+            
             case 0f:
                 dashDirection = Vector3.zero;
                 break;
-            */
+            
 
             // Inainte
-            case 0f:
+            case 1f:
                 dashDirection = gameObject.transform.forward;
                 break;
             
@@ -157,12 +157,12 @@ public class MulakDashingAgentScript: Agent
                 */
            
             // Stanga
-            case 1f:
+            case 2f:
                 dashDirection = -gameObject.transform.right;
                 break;
 
             // Dreapta
-            case 2f:
+            case 3f:
                 dashDirection = gameObject.transform.right;
                 break;
         }
@@ -211,10 +211,10 @@ public class MulakDashingAgentScript: Agent
 
         if (Input.GetKey(KeyCode.W))
             dashDirectionIndex = 1f;
-        /*
+        
         else if (Input.GetKey(KeyCode.S))
             dashDirectionIndex = 2f;
-        */
+        
         else if (Input.GetKey(KeyCode.A))
             dashDirectionIndex = 2f;
         else if (Input.GetKey(KeyCode.D))
