@@ -1,1 +1,1 @@
-{"count":1,"gauges":{"Heliosv3Learning.CumulativeReward":{"count":1,"max":-17.1413612,"min":-17.1413612,"value":-17.1413612,"weightedAverage":-17.1413612}},"self":24.137470399999998,"total":24.1928214,"children":{"AgentSendState":{"count":1142,"self":0.0236553,"total":0.0236553,"children":null},"DecideAction":{"count":1142,"self":0.0247573,"total":0.0247573,"children":null},"AgentAct":{"count":1142,"self":0.0049445,"total":0.0049445,"children":null}}}
+{"count":1,"gauges":{},"self":0.1058364,"total":0.1078312,"children":null}

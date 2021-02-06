@@ -7,7 +7,7 @@ public class AerialPhaorisAgent_Training : Agent
 {
     // ------------------------------------------------ VARIABILE VIZIBILE IN EDITOR --------------------------------------------- //
 
-    [Header("Parametrii deplasare")]
+    [Header("Parametri deplasare")]
     [Tooltip("Viteza de inaintare")] [SerializeField] float moveSpeed = 100f;
     [Tooltip("Viteza de giratie (rotire in jurul axei y)")] [SerializeField] float yRotSpeed = 100f;  // yaw
     [Tooltip("Viteza de inclinare (rotire in jurul axei z)")] [SerializeField] float xRotSpeed = 100f;  // pitch
