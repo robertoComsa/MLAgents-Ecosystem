@@ -510,7 +510,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 4ad636c91164ce54fbf1ea91b14a1c6d, type: 3}
     m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
@@ -6255,7 +6255,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 1
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 0.8, g: 0.63529414, b: 0.40392157, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -12927,6 +12927,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 856268225690923402, guid: bf5b52e9e3a14a148ad707eb90610e19,
+        type: 3}
+      propertyPath: parentTransform
+      value: 
+      objectReference: {fileID: 1943825403}
+    - target: {fileID: 856268225690923402, guid: bf5b52e9e3a14a148ad707eb90610e19,
+        type: 3}
+      propertyPath: orizontalClampValue
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 856268225690923402, guid: bf5b52e9e3a14a148ad707eb90610e19,
+        type: 3}
+      propertyPath: maxVerticalClampValue
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 856268225690923402, guid: bf5b52e9e3a14a148ad707eb90610e19,
+        type: 3}
+      propertyPath: minVerticalClampValue
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 856268225772431746, guid: bf5b52e9e3a14a148ad707eb90610e19,
         type: 3}

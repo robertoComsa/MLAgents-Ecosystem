@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 4411094677487402}
   - component: {fileID: 33256364563024804}
   - component: {fileID: 23302177418407866}
+  - component: {fileID: 8847344068839415781}
   m_Layer: 0
   m_Name: SNature_Sapling
-  m_TagString: Untagged
+  m_TagString: boundary
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77,3 +78,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &8847344068839415781
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051648788624220}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.3256993, y: 4.891582, z: 1.8275836}
+  m_Center: {x: 0.21366674, y: 2.233929, z: 0.06321341}

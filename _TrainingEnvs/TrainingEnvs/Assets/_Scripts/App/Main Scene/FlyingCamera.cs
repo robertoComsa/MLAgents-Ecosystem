@@ -21,6 +21,12 @@ public class FlyingCamera : MonoBehaviour
     [SerializeField][Tooltip("Factor de incetinire")] float slowingFactor = 0.25f;
     [SerializeField][Tooltip("Factor de accelerare")] float accelerationFactor = 3;
 
+    [Header("Parametri clamp (fixare) camera")]
+    [SerializeField] [Tooltip("Transformul obiectului parinte")] Transform parentTransform = null;
+    [SerializeField] [Tooltip("Valoarea maxima orizontala")] float orizontalClampValue = 0f;
+    [SerializeField] [Tooltip("Valoarea maxima verticala")] float maxVerticalClampValue = 0f;
+    [SerializeField] [Tooltip("Valoarea minima verticala")] float minVerticalClampValue = 0f;
+
     // ----------------------------------------------------------- VARIABILE ---------------------------------------------------- //
 
     private float rotationX = 0.0f;
@@ -34,6 +40,27 @@ public class FlyingCamera : MonoBehaviour
     void Update()
     {
         if(CanMoveCamera) ApplyMovement();
+    }
+
+    private void FixedUpdate()
+    {
+        if (CanMoveCamera) ClampCameraPosition();
+    }
+
+    void ClampCameraPosition()
+    {
+        // Clamping camera position
+        transform.position = new Vector3(
+
+            // Axa x
+            Mathf.Clamp(transform.position.x, parentTransform.position.x - orizontalClampValue, parentTransform.position.x + orizontalClampValue),
+            // Axa y
+            Mathf.Clamp(transform.position.y, parentTransform.position.y + minVerticalClampValue, parentTransform.position.y + maxVerticalClampValue),
+            // Axa z
+            Mathf.Clamp(transform.position.z, parentTransform.position.z - orizontalClampValue, parentTransform.position.z + orizontalClampValue)
+
+
+                                        );
     }
 
     void ApplyMovement()

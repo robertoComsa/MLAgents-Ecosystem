@@ -196,6 +196,7 @@ public class GameManager : Singleton<GameManager>
 
             // Deblocam mouse-ul
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
 
             // Interzicem amplasarea agentilor
             PlacementController.Instance.CanPlaceAgents = false;
@@ -224,6 +225,7 @@ public class GameManager : Singleton<GameManager>
 
         // Deblocam mouse-ul
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
         // Interzicem amplasarea agentilor
         PlacementController.Instance.CanPlaceAgents = true;
@@ -252,6 +254,7 @@ public class GameManager : Singleton<GameManager>
 
         // Blocam mouse-ul
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
         // Permitem miscarea camerei
         simulationAreaCamera.CanMoveCamera = true;
@@ -279,6 +282,7 @@ public class GameManager : Singleton<GameManager>
             StatisticsManager.Instance.SetSimDataTxt();
             // Deblocam mouse-ul
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             // Blocam camera
             simulationAreaCamera.CanMoveCamera = false;
             // Punem pauza 
@@ -291,6 +295,7 @@ public class GameManager : Singleton<GameManager>
             StartCoroutine(DestroyAgentsThenSwapScene(0.1f));
             // Deblocam mouse-ul
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 
@@ -312,6 +317,7 @@ public class GameManager : Singleton<GameManager>
         StatisticsManager.Instance.SetSimDataTxt();
         // Deblocam mouse-ul
         Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         // Blocam camera
         simulationAreaCamera.CanMoveCamera = false;
 
@@ -328,6 +334,7 @@ public class GameManager : Singleton<GameManager>
         EnableOrDisableElement(statisticsOutput, false);
         // Blocam mouse-ul
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         // Permitem miscarea camerei
         simulationAreaCamera.CanMoveCamera = true;
         // Incheiem pauza
@@ -343,12 +350,11 @@ public class GameManager : Singleton<GameManager>
         Time.timeScale = 1;
         // Eliminam agentii din scena
         StartCoroutine(DestroyAgentsThenSwapScene(0.1f));
-        // Deblocam mouse-ul
-        Cursor.lockState = CursorLockMode.None;
         // Dezactivam afisarea statisticilor
         EnableOrDisableElement(statisticsOutput, false);
         // Deblocam mouse-ul
         Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         // Deblocam butonul de resume simulare
         resumeButton.interactable = true;
 
