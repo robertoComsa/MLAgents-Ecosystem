@@ -8,6 +8,7 @@ public class FoodPickUp : MonoBehaviour
 
     [SerializeField] private bool needsRandomPosition = false;
     [SerializeField] float destroyTimeAfterDrop = 0f;
+    [SerializeField] float magnetForce = 0f;
 
     // VARIABILE
 
@@ -55,18 +56,23 @@ public class FoodPickUp : MonoBehaviour
     }
    
     // Sistem ce face ca fructul sa dispara la x timp dupa ce a atins pamantul 
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
            StartCoroutine(DestroyFruit(destroyTimeAfterDrop));
     }
 
+    // Sistem de magnet (catre erbivori) al fructului
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("prey"))
+            transform.position = Vector3.MoveTowards(transform.position, other.transform.position, magnetForce * Time.deltaTime);
+    }
+
     IEnumerator DestroyFruit(float timeToWait)
     {
         yield return new WaitForSeconds(timeToWait);
-        if(isPickedUp==false)
-            Destroy(gameObject);
+        Destroy(gameObject);
     }
 
     // -------------------------------  Metode resetare - Folosite in antrenamente nu si in scena finala

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5764007184350118746}
   - component: {fileID: 114136989759851692}
   - component: {fileID: 4483552666086888967}
+  - component: {fileID: 7906190560400025391}
   m_Layer: 0
   m_Name: preyFood
   m_TagString: preyFood
@@ -105,8 +106,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81453e66bd65f2f48930db13d2577556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  needsRandomPosition: 1
+  needsRandomPosition: 0
   destroyTimeAfterDrop: 20
+  magnetForce: 100
 --- !u!54 &4483552666086888967
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -123,3 +125,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!135 &7906190560400025391
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6601563190140889427}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 30
+  m_Center: {x: 0, y: 0, z: 0}

@@ -67,7 +67,6 @@ public class TerestrialSearchAgent : Agent
         rb.isKinematic = true;
 
         // Infometare
-        initialStarvingInterval = starvingInterval;
         hungerTimeGap = 1f;
     }
 
@@ -171,6 +170,7 @@ public class TerestrialSearchAgent : Agent
 
         // Infometare
         starvingInterval = si;
+        initialStarvingInterval = starvingInterval;
     }
 
     // FixedUpdate este apelata o data la 0.02 secunde (50 de apeluri pe secunda; independent de fps)

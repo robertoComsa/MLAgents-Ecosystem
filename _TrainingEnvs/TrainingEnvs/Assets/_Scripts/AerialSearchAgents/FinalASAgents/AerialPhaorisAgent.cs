@@ -290,7 +290,7 @@ public class AerialPhaorisAgent : Agent
         }
 
         if (GameManager.Instance.GetRaysEnabled() == true)
-            DrawLine(transform.position, targetedRayPos, rayColor);
+            DrawLine(beakTip.position, targetedRayPos, rayColor);
     }
 
     /// <summary>
@@ -312,18 +312,14 @@ public class AerialPhaorisAgent : Agent
             {              
                 targetInRadius = true;
                 nearestDistance = distance;
-                closestTarget = target;
-                
-                // Folosit pentru a verifica daca agentul galvadon cara deja un fruct sau nu
-                if(targetTagName == "helper")
-                    isGalvadonCarryingFood = target.GetComponent<TerestrialGalvadonAgent>().GetCarryingFood();              
+                closestTarget = target;       
             }   
         }
 
         if (targetInRadius)
         {
             closestTargetGlobalPosition = closestTarget.transform.position;
-            closestTargetPosition = closestTarget.transform.localPosition;
+            closestTargetPosition = closestTarget.transform.localPosition + new Vector3(0f,6f,0f);
             distanceToClosestTarget = nearestDistance;
             targetedRayPos = closestTarget.transform.position;
         }
@@ -340,7 +336,7 @@ public class AerialPhaorisAgent : Agent
     // O functie predefinita va da drop la mancare in viitor
     void CheckIfFoodWasDelivered()
     {
-        if (targetTagName == "helper" && distanceToClosestTarget <= deliveryDistanceRequired && isGalvadonCarryingFood == false)
+        if (targetTagName == "prey" && distanceToClosestTarget <= deliveryDistanceRequired)
         {
             // Agent
             beakFruit.SetActive(false);

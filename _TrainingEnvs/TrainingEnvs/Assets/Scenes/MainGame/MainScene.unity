@@ -12948,6 +12948,26 @@ PrefabInstance:
       propertyPath: minVerticalClampValue
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 856268225690923402, guid: bf5b52e9e3a14a148ad707eb90610e19,
+        type: 3}
+      propertyPath: verticalSpeed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 856268225690923402, guid: bf5b52e9e3a14a148ad707eb90610e19,
+        type: 3}
+      propertyPath: horizontalSpeed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 856268225690923402, guid: bf5b52e9e3a14a148ad707eb90610e19,
+        type: 3}
+      propertyPath: slowingFactor
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 856268225690923402, guid: bf5b52e9e3a14a148ad707eb90610e19,
+        type: 3}
+      propertyPath: accelerationFactor
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 856268225772431746, guid: bf5b52e9e3a14a148ad707eb90610e19,
         type: 3}
       propertyPath: m_Layer

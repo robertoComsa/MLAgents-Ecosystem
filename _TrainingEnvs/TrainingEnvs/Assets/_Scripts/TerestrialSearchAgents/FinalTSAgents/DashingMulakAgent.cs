@@ -90,7 +90,6 @@ public class DashingMulakAgent : Agent
         rb.isKinematic = true;
 
         // Infometare
-        initialStarvingInterval = starvingInterval;
         hungerTimeGap = 1f;
     }
 
@@ -209,6 +208,7 @@ public class DashingMulakAgent : Agent
 
         // Infometare
         starvingInterval = si;
+        initialStarvingInterval = starvingInterval;
     }
 
     // Permite aplicarea unui dash o data la value secunde
@@ -423,8 +423,17 @@ public class DashingMulakAgent : Agent
 
     private void OnCollisionEnter(Collision other)
     {
+        // Este mancat de agentul carnivor
         if (other.gameObject.CompareTag("predator"))
             Destroy(gameObject);
+
+        // Mananca un fruct
+        if(other.gameObject.CompareTag("preyFood"))
+        {
+            Eat();
+            Debug.Log("Just ate a fruit");
+            Destroy(other.gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
