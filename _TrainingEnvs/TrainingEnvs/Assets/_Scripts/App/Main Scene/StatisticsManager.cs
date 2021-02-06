@@ -215,20 +215,22 @@ public class StatisticsManager : Singleton<StatisticsManager>
     // ------------------ Setarea simData text ------------- //s
     public void SetSimDataTxt()
     {
-        simData.text = "Au fost instantiati: \n" 
+        simData.text = "Au fost instantiati: \n"
             // Instantierea initiala
             + initialHeliosNumber + " agenti Helios \n"
             + initialMulakNumber + " agenti Mulak \n"
             + initialPhaorisNumber + " agenti Phaoris \n\n"
 
             // Mulak (mancati / nascuti)
-            +mulaksCreated + " agenti Mulak au fost creati (prin multiplicare) \n"
-            +mulaksEaten + " angenti Mulak au fost mancati \n\n"
+            + mulaksCreated + " agenti Mulak au fost creati (prin multiplicare) \n"
+            + mulaksEaten + " angenti Mulak au fost mancati \n\n"
 
             // Decese din cauza infometarii
-            +"Au murit de foame: \n"
-            +heliosStarved + " agenti Helios\n"
-            +mulakStarved + " agenti Mulak\n"
-            ;
+            + "Au murit de foame: \n"
+            + heliosStarved + " agenti Helios\n"
+            + mulakStarved + " agenti Mulak\n\n"
+
+            // Durata simularii
+            + "Durata simularii (secunde): " + GameManager.Instance.GetSimDuration().ToString("F2");
     }
 }

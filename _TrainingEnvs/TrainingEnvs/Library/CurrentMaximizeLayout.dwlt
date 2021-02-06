@@ -22,10 +22,10 @@ MonoBehaviour:
     y: 30
     width: 1536
     height: 731
-  m_MinSize: {x: 677, y: 448}
-  m_MaxSize: {x: 18004, y: 14024}
+  m_MinSize: {x: 681, y: 424}
+  m_MaxSize: {x: 18008, y: 14024}
   vertical: 0
-  controlID: 1725
+  controlID: 1736
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -127,10 +127,10 @@ MonoBehaviour:
     y: 0
     width: 811
     height: 731
-  m_MinSize: {x: 202, y: 448}
-  m_MaxSize: {x: 4002, y: 8048}
+  m_MinSize: {x: 202, y: 424}
+  m_MaxSize: {x: 4002, y: 8024}
   vertical: 1
-  controlID: 1726
+  controlID: 1612
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -150,8 +150,8 @@ MonoBehaviour:
     y: 0
     width: 811
     height: 364
-  m_MinSize: {x: 202, y: 224}
-  m_MaxSize: {x: 4002, y: 4024}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 5}
   m_Panes:
   - {fileID: 5}
@@ -256,8 +256,8 @@ MonoBehaviour:
     y: 364
     width: 811
     height: 367
-  m_MinSize: {x: 202, y: 224}
-  m_MaxSize: {x: 4002, y: 4024}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 2}
   m_Panes:
   - {fileID: 2}
@@ -282,8 +282,8 @@ MonoBehaviour:
     y: 0
     width: 204
     height: 731
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 204, y: 224}
+  m_MaxSize: {x: 4004, y: 4024}
   m_ActualView: {fileID: 8}
   m_Panes:
   - {fileID: 8}
@@ -320,7 +320,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 5ee7ffffdefbffffd0560000ec56000088570000
+      m_ExpandedIDs: 84f9ffffdefbfffff4340000ca350000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -368,7 +368,7 @@ MonoBehaviour:
   m_MinSize: {x: 275, y: 324}
   m_MaxSize: {x: 10002, y: 14024}
   vertical: 1
-  controlID: 1650
+  controlID: 1687
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -494,20 +494,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/_Scripts/App/Main Menu
+    - Assets/_Scripts/App/Main Scene
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/_Scripts/App/Main Menu
+  - Assets/_Scripts/App/Main Scene
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\HP 830 G5\Desktop\Licenta - ML Agents\Git Repo\MLAgents-Ecosystem\_TrainingEnvs\TrainingEnvs
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: ec2e0000
-    m_LastClickedID: 12012
-    m_ExpandedIDs: 00000000f4290000042a0000962a0000c22a00000e2b00007c2b00007c2c0000f22c0000442d00005a2d0000e22d0000f62d00005a2f0000962f0000a42f00009e4c0000a04c0000a24c000000ca9a3b
+    m_SelectedIDs: 5e2d0000
+    m_LastClickedID: 11614
+    m_ExpandedIDs: 00000000f4290000042a0000962a0000c22a00000e2b00007c2b00007c2c0000f22c0000442d00005a2d0000e22d0000f62d00005a2f0000962f0000a42f00004a3300004c3300004e33000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -535,7 +535,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000f4290000042a0000962a0000c22a00000e2b00007c2b00007c2c0000f22c0000442d00005a2d0000e22d0000f62d00005a2f0000962f0000a42f00009e4c0000a04c0000a24c000000ca9a3b
+    m_ExpandedIDs: 00000000f4290000042a0000962a0000c22a00000e2b00007c2b00007c2c0000f22c0000442d00005a2d0000e22d0000f62d00005a2f0000962f0000a42f00004a3300004c3300004e33000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -560,8 +560,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs: b4370000
+    m_LastClickedInstanceID: 14260
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: 9c2a0000ce2a0000b62d000000000000
     m_RenameOverlay:

@@ -67,6 +67,16 @@ public class GameManager : Singleton<GameManager>
     bool raysEnabled = false;
     public bool GetRaysEnabled() { return raysEnabled; }
 
+    // -------- VARIABILE TIMER ------- //
+
+    // Boolean ce dicteaza daca timerul este activat
+    bool activeTimer = false;
+    // Timpul in app pana cand se da drumul la simulare
+    float startSimTime = 0f;
+    // Durata simularii
+    float simDuration = 0f;
+    public float GetSimDuration() { return simDuration; }
+
     // ------ PROPRIETATI ------- //
 
     public bool CanAgentsRequestDecisions { get; set; } = false;
@@ -138,6 +148,10 @@ public class GameManager : Singleton<GameManager>
         // Update text slider Phaoris
         for (int i = 0; i < phaorisParameterSliders.Length; i++)
             phaorisParametersTexts[i].text = phaorisParameterSliders[i].value.ToString();
+
+        // Daca timer-ul este activ il folosim
+        if (activeTimer)
+            simDuration = Time.time - startSimTime;
     }
 
     // --------------------------------------------------------------------- METODE ------------------------------------------------------------------- //
@@ -173,6 +187,10 @@ public class GameManager : Singleton<GameManager>
 
             // Distrugem agent ce urmeaza sa fie amplasat daca am inceput simularea
             PlacementController.Instance.DestroyCurrentPlaceableObject();
+
+            // Seteaza timpul in care incepe simularea
+            startSimTime = Time.time;
+            activeTimer = true;
         }
     }
 
@@ -323,6 +341,9 @@ public class GameManager : Singleton<GameManager>
 
         // Blocam butonul de resume simulare
         resumeButton.interactable = false;
+
+        // oprim timer-ul
+        activeTimer = false;
     }
 
     // Metoda de reluare a simularii
@@ -357,6 +378,9 @@ public class GameManager : Singleton<GameManager>
         Cursor.visible = true;
         // Deblocam butonul de resume simulare
         resumeButton.interactable = true;
+
+        // oprim timer-ul
+        activeTimer = false;
 
     }
 
