@@ -333,7 +333,7 @@ MonoBehaviour:
   searchProximity: 300
   deliveryDistanceRequired: 9
   beakTip: {fileID: 6290518077768160540}
-  beakTipRadius: 0.2
+  beakTipRadius: 1
   beakFruit: {fileID: 7981425905634179358}
   dropFruit: {fileID: 6601563190140889427, guid: 74b12099dd57f7943b8036f2b9762747,
     type: 3}

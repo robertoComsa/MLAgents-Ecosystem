@@ -107,8 +107,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needsRandomPosition: 0
-  destroyTimeAfterDrop: 20
-  magnetForce: 100
+  destroyTimeAfterDrop: 30
+  magnetForce: 50
 --- !u!54 &4483552666086888967
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -136,5 +136,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 30
+  m_Radius: 50
   m_Center: {x: 0, y: 0, z: 0}

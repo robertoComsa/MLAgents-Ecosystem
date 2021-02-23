@@ -1,6 +1,6 @@
 Win64
 PlayerPath?
-C:/Users/HP 830 G5/Desktop/Licenta - ML Agents/Git Repo/MLAgents-Ecosystem/_TrainingEnvs/MLA/MLAgents Ecosystem.exe
+C:/Users/HP 830 G5/Desktop/Simularea unui ecosiste/MLAgents Ecosystem.exe
 SceneListBegin?
 Assets/Scenes/MainGame/MainMenu.unity
 Assets/Scenes/MainGame/MainScene.unity
@@ -56,7 +56,7 @@ aa165095bcf0f4d99594ea33df01c81b UnityEngine.UI.dll:UnityEngine.UI.Slider
 0fd6822f6177297bd0eb4d83cc7a9030 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 abf1930d8126d0b2e00e9449129a0190 UnityEngine.UI.dll:UnityEngine.EventSystems.TouchInputModule
 64e54c0cbb0177c5ea26f340efb9ff85 UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
-24826f10c1b7ecfa87ada03260b0378e Assembly-CSharp.dll:.FlyingCamera
+b7ae4460dbd97a86f4e439661c19659f Assembly-CSharp.dll:.FlyingCamera
 d3c76b14a25eebd3a3323dd43297919c Unity.TextMeshPro.dll:TMPro.TMP_InputField
 fe731173d4dfb7dbe20c6ea0fab1ea7a Assembly-CSharp.dll:.RandomPositionForHelper
 cf9f5cf2c3145a37ac07f00e50e460f9 UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
@@ -136,9 +136,9 @@ fba09e5147beeaf614d9e670b1a9458e Assembly-CSharp.dll:.HeliosAgent
 741364aa62760e6bbc915e8091235c9e Assembly-CSharp.dll:.DashingMulakAgent
 b8a5e8091ab0b8861d2add371082c5e0 Unity.TextMeshPro.dll:TMPro.TMP_SpriteAsset
 08d95407182c4145326b1fe191861174 Assembly-CSharp.dll:.MulakTesting
-71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.MainMenu
+2b9ec1b7e1484b9d0c9a06fbd847d9b2 Assembly-CSharp.dll:.MainMenu
 7024119345476241dd1d8825eef39b09 Assembly-CSharp.dll:.MulakJumper
-f5c033978b84d6a50d861005ceae0750 Assembly-CSharp.dll:.FoodPickUp
+b37ab7f1c50d93b7b906cf480ccbb1a0 Assembly-CSharp.dll:.FoodPickUp
 b3ab2106268377ffe25dd18ac23dca28 Unity.TextMeshPro.dll:TMPro.TMP_Asset
 400d0c336daf6df451b023a541b35968 Assembly-CSharp.dll:.PhaorisAgent
 2c75ba5bd0a08be27022ff1af546484e Unity.ML-Agents.dll:MLAgents.Sensor.RayPerceptionSensorComponent3D
@@ -149,7 +149,7 @@ a6134939a6287adf60e26d8b0b4c4471 Assembly-CSharp.dll:.FoodRespawn
 4b6d4d86f2f243862a52b9ea12955a26 Assembly-CSharp.dll:.Galvadon2
 858de8261fd9dce84f0d21bc95c456bd Assembly-CSharp.dll:.TerestrialSearchAgent
 995c9b6ab74c0a322a11425660688404 Assembly-CSharp.dll:.PreyForHelios
-37d4d441b0292e8b55662c1aaa9d2561 Assembly-CSharp.dll:.AerialPhaorisAgent_Training
+127f7a315ee51040b8f3ae37d031fb67 Assembly-CSharp.dll:.AerialPhaorisAgent_Training
 4b6d4d86f2f243862a52b9ea12955a26 Assembly-CSharp.dll:.GalvadonAgentFeed
 4fd8bf02e3089425d3502e26c44ba31a Unity.TextMeshPro.dll:TMPro.TextContainer
 422f48e4fe97392f35c9dde63be9e292 Barracuda.dll:Barracuda.NNModelData
@@ -198,7 +198,7 @@ d251bf88db6c95a6b1aa0b69298da9ef UnityEngine.SpatialTracking.dll:UnityEngine.Spa
 ac1679b22c4b7a0ce52f85de9d79e69f Unity.ML-Agents.dll:MLAgents.Demonstration
 400d0c336daf6df451b023a541b35968 Assembly-CSharp.dll:.PhaorisAgent_03
 d791aa6007fa3640be1164ea75bb087d Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
-71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.RandomRotationForPlant
+5d8de860adfa213a75486aebdb4d4380 Assembly-CSharp.dll:.RandomRotationForPlant
 df434544c9f7b33d1cc7e635b180d279 Unity.TextMeshPro.dll:TMPro.TextMeshPro
 3165968ba45c74472d279ba04455fccb Unity.TextMeshPro.dll:TMPro.TMP_ColorGradient
 8649814970b42d345b89944b862453cc Unity.TextMeshPro.dll:TMPro.TMP_SubMesh

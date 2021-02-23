@@ -231,6 +231,6 @@ public class StatisticsManager : Singleton<StatisticsManager>
             + mulakStarved + " agenti Mulak\n\n"
 
             // Durata simularii
-            + "Durata simularii (secunde): " + GameManager.Instance.GetSimDuration().ToString("F2");
+            + "Durata simularii (secunde): " + (GameManager.Instance.GetSimDuration()+1).ToString("F2");
     }
 }

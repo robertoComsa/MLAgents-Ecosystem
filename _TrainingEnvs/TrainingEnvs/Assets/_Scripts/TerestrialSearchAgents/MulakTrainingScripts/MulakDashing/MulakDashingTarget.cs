@@ -25,7 +25,7 @@ public class MulakDashingTarget : MonoBehaviour
 
     IEnumerator ResetPosition()
     {
-        yield return new WaitForSeconds(30f);
+        yield return new WaitForSeconds(50f);
         RandomTargetPositionGenerator();
         StartCoroutine(ResetPosition());
     }

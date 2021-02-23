@@ -218,9 +218,7 @@ MonoBehaviour:
   searchProximity: 0
   mateProximity: 0
   useStarving: 1
-  timeBetweenHungerTicks: 0
-  hungerTickValue: 0
-  hungerFactor: 0
+  starvingInterval: 0
   notMatedColor: {fileID: 2100000, guid: 5390b06dd5daaac48921e9165574f72f, type: 2}
   MatedColor: {fileID: 2100000, guid: 8de7a01eb4aef4e4e9e55e1b12256e17, type: 2}
   mulakPrefab: {fileID: 2915569399892396104}

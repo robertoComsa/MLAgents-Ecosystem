@@ -57,8 +57,8 @@ public class AerialPhaorisAgent : Agent
     // Valoarea vectorului dot dintre cioc si tinta 
     float beakToTargetDotValue = 0f;
 
-    // Daca cel mai apropriat galvadon are deja mancare sau nu 
-    bool isGalvadonCarryingFood = false;
+    //
+    protected float randomTargetTimeGap = 0f;
 
     // ------------------------------------------------- METODE (Mostenite din) AGENT -------------------------------------------- //
 
@@ -325,10 +325,22 @@ public class AerialPhaorisAgent : Agent
         }
         else
         {
-            closestTargetGlobalPosition = Vector3.zero;
-            closestTargetPosition = Vector3.zero;
-            distanceToClosestTarget = 40f;
-            targetedRayPos = Vector3.zero;
+            // Give random pos through a function that checksif 10s passed and then gives a new random target positioN
+            RandomTargetPositionGenerator();
+        }
+    }
+
+    // O data la 10s daca agentul nu are o tinta acesta primeste aleatoriu un loc din spatiul de antrenare ca tinta
+    protected virtual void RandomTargetPositionGenerator()
+    {
+        if (Time.time - randomTargetTimeGap >= 10f)
+        {
+            randomTargetTimeGap = Time.time;
+
+            closestTargetPosition = new Vector3(Random.Range(-180f, 180f), 6f, Random.Range(-180f, 180f));
+            closestTargetGlobalPosition = closestTargetPosition;
+            distanceToClosestTarget = Vector3.Distance(transform.position, closestTargetPosition);
+            targetedRayPos = closestTargetPosition;
         }
     }
 

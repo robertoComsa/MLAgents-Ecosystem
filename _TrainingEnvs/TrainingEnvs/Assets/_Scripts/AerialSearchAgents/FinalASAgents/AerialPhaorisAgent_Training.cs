@@ -22,8 +22,8 @@ public class AerialPhaorisAgent_Training : Agent
     [Header("Parametri instantiere")]
     [Tooltip("Script-ul de reinstantiere al copacului")] [SerializeField] RandomRotationForPlant plantRandomPositionGenerator = null;
     [Tooltip("Value for agent positions")] [SerializeField] float newPosValue = 0f;
-    [Tooltip("Max y instantiation")] [SerializeField] float maxHeight = 0f;
-    [Tooltip("Min y instantiation")] [SerializeField] float minHeight = 0f;
+   // [Tooltip("Max y instantiation")] [SerializeField] float maxHeight = 0f;
+   // [Tooltip("Min y instantiation")] [SerializeField] float minHeight = 0f;
 
     [Header("Fruct")]
     [Tooltip("Fructul ce trebuie aruncat in jurul agentilor galvadon")] [SerializeField] GameObject dropFruit = null;
@@ -190,16 +190,16 @@ public class AerialPhaorisAgent_Training : Agent
         // -- 
 
         // Pozitia agentului ( raportat la obiectul parinte ) ------ ADAUGAT IN PHAORIS_04
-        AddVectorObs(gameObject.transform.localPosition.normalized); // 1 vector 3 = 3 valori float
+        AddVectorObs(gameObject.transform.position.normalized); // 1 vector 3 = 3 valori float
         // Un vector ce indica pozitia celei mai apropriate tinte (de asemenea raportata la obiectul parinte - care este comun)
-        AddVectorObs(closestTargetPosition.normalized); // 1 vector3 = 3 valori float
+        AddVectorObs(closestTargetGlobalPosition.normalized); // 1 vector3 = 3 valori float
 
         // -- 
 
         // Un vector ce indica directia *inainte* a ciocului (respectiv agent)
         AddVectorObs(beakTip.forward.normalized); // 1 vector3 = 3 valori float
         // Un vector ce indica directia de la cioc la tinta
-        Vector3 beak_to_target = closestTargetPosition - beakTip.position;
+        Vector3 beak_to_target = closestTargetGlobalPosition - beakTip.position;
         AddVectorObs(beak_to_target.normalized); // 1 vector3 = 3 valori float
         // Un dot product - valori negative cand agentul e cu spatele la fructe , valori pozitive cand agentul e cu fata la fructe 
         beakToTargetDotValue = Vector3.Dot(beakTip.forward.normalized, beak_to_target.normalized);
